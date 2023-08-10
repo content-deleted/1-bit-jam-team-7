@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.YarnSpinner-Godot.YarnScript"
+type="Resource"
+uid="uid://itpy1fvtudbu"
+path="res://.godot/imported/SaltNPeppa_Intro.yarn-a0db36e30a2eaf2e5fa2d729785f3fec.tres"
+
+[deps]
+
+source_file="res://dialogue/SaltNPeppa_Intro.yarn"
+dest_files=["res://.godot/imported/SaltNPeppa_Intro.yarn-a0db36e30a2eaf2e5fa2d729785f3fec.tres"]
+
+[params]
+

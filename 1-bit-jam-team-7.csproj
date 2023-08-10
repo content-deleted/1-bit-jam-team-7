@@ -1,0 +1,10 @@
+<Project Sdk="Godot.NET.Sdk/4.1.1">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>bitjamteam7</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="addons\YarnSpinner-Godot\Runtime\DLLs\**" />
+  </ItemGroup>
+</Project>

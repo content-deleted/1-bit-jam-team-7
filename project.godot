@@ -1,0 +1,29 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="1-bit-jam-team-7"
+run/main_scene="res://scenes/YarnTestScene.tscn"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+NodeFindUtility="*res://addons/YarnSpinner-Godot/Runtime/NodeFindUtility.cs"
+DefaultActions="*res://addons/YarnSpinner-Godot/Runtime/Commands/DefaultActions.cs"
+
+[dotnet]
+
+project/assembly_name="1-bit-jam-team-7"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/YarnSpinner-Godot/plugin.cfg")
