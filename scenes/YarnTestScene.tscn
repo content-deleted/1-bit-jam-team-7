@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://xf670302nh8h"]
+[gd_scene load_steps=10 format=3 uid="uid://xf670302nh8h"]
 
 [ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/DialogueRunner.cs" id="1_2t3k6"]
 [ext_resource type="Resource" uid="uid://drw67c1w6ujuf" path="res://dialogue/test_mewnion.tres" id="2_32hqc"]
@@ -6,8 +6,22 @@
 [ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/InMemoryVariableStorage.cs" id="4_xhs78"]
 [ext_resource type="PackedScene" uid="uid://hq3anudf4mek" path="res://addons/YarnSpinner-Godot/Prefabs/LineView.tscn" id="5_mbpgh"]
 [ext_resource type="PackedScene" uid="uid://b230rcu43va40" path="res://addons/YarnSpinner-Godot/Prefabs/OptionListView.tscn" id="6_8qj15"]
+[ext_resource type="Shader" path="res://shaders/1bitPostProcess.gdshader" id="7_cersc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6cpdo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qr68s"]
+shader = ExtResource("7_cersc")
+shader_parameter/primaryColor = Color(0, 0.396078, 0.141176, 1)
+shader_parameter/secondaryColor = Color(0.3, 0.6, 0.3, 1)
+shader_parameter/threshold = 0.5
 
 [node name="Node3D" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
+mesh = SubResource("SphereMesh_6cpdo")
 
 [node name="DialogueRunner" type="Control" parent="." node_paths=PackedStringArray("_variableStorage", "lineProvider")]
 layout_mode = 3
@@ -24,6 +38,9 @@ startNode = "level1_saltnpepa"
 lineProvider = NodePath("TextLineProvider")
 verboseLogging = false
 
+[node name="Camera3D" type="Camera3D" parent="DialogueRunner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.70491)
+
 [node name="TextLineProvider" type="Node" parent="DialogueRunner"]
 script = ExtResource("3_mam1c")
 
@@ -35,3 +52,12 @@ layout_mode = 1
 
 [node name="OptionListView" parent="DialogueRunner" instance=ExtResource("6_8qj15")]
 layout_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_qr68s")
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 1154.0
+offset_bottom = 647.0
