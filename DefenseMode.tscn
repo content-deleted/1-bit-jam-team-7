@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch5lqbfm0ojq6"]
+
+[ext_resource type="Texture2D" uid="uid://cqei3p4t8f5lf" path="res://gfx/base.png" id="1_6jkod"]
+[ext_resource type="Script" path="res://Base.cs" id="2_yu1cv"]
+[ext_resource type="Texture2D" uid="uid://h3cxj1ktgjkn" path="res://gfx/Triangle.png" id="3_fa1on"]
+[ext_resource type="Script" path="res://EnemyController.cs" id="4_82sou"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35svn"]
+radius = 13.0
+
+[node name="DefenseMode" type="Node2D"]
+
+[node name="EnemyController" type="Node2D" parent="."]
+script = ExtResource("4_82sou")
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(212, 150)
+texture = ExtResource("1_6jkod")
+script = ExtResource("2_yu1cv")
+
+[node name="Weapon" type="Sprite2D" parent="Base"]
+texture = ExtResource("3_fa1on")
+
+[node name="Area2D" type="Area2D" parent="Base/Weapon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Weapon/Area2D"]
+shape = SubResource("CircleShape2D_35svn")

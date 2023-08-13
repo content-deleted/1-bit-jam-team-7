@@ -10,20 +10,21 @@ config_version=5
 
 [application]
 
-config/name="1-bit-jam-team-7"
-run/main_scene="res://scenes/YarnTestScene.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/name="1BitJam"
+run/main_scene="res://DefenseMode.tscn"
+config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[autoload]
+[display]
 
-NodeFindUtility="*res://addons/YarnSpinner-Godot/Runtime/NodeFindUtility.cs"
-DefaultActions="*res://addons/YarnSpinner-Godot/Runtime/Commands/DefaultActions.cs"
+window/size/viewport_width=1000
+window/size/viewport_height=500
 
 [dotnet]
 
-project/assembly_name="1-bit-jam-team-7"
+project/assembly_name="1BitJam"
 
-[editor_plugins]
+[rendering]
 
-enabled=PackedStringArray("res://addons/YarnSpinner-Godot/plugin.cfg")
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
