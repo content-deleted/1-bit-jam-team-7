@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.YarnSpinner-Godot.YarnScript"
+type="Resource"
+uid="uid://br1e2a6o4oi7y"
+path="res://.godot/imported/level1_saltnpepa.yarn-1f4685dd18fe1365979d5eefb61f3dcb.tres"
+
+[deps]
+
+source_file="res://dialogue/Old/level1_saltnpepa.yarn"
+dest_files=["res://.godot/imported/level1_saltnpepa.yarn-1f4685dd18fe1365979d5eefb61f3dcb.tres"]
+
+[params]
+

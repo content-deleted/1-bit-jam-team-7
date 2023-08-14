@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cu4smcityg60y"]
+
+[ext_resource type="Script" path="res://scripts/Triangle.cs" id="1_8d2a4"]
+[ext_resource type="Texture2D" uid="uid://bwiotlvwq485p" path="res://sprites/triangle.png" id="2_bucwp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i43oo"]
+atlas = ExtResource("2_bucwp")
+region = Rect2(0, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfcti"]
+atlas = ExtResource("2_bucwp")
+region = Rect2(31, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uagji"]
+atlas = ExtResource("2_bucwp")
+region = Rect2(62, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjhwr"]
+atlas = ExtResource("2_bucwp")
+region = Rect2(93, 0, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhg4a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i43oo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfcti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uagji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjhwr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_30hsy"]
+radius = 10.1
+
+[node name="Triangle" type="RigidBody2D"]
+collision_mask = 2
+gravity_scale = 0.0
+contact_monitor = true
+lock_rotation = true
+linear_damp_mode = 1
+script = ExtResource("1_8d2a4")
+baseSpeed = 30
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uhg4a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_30hsy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -1,0 +1,243 @@
+[gd_scene load_steps=26 format=3 uid="uid://xf670302nh8h"]
+
+[ext_resource type="Script" path="res://scripts/CameraController.cs" id="1_4hloo"]
+[ext_resource type="Script" path="res://scripts/ArenaController.cs" id="1_5e3au"]
+[ext_resource type="Shader" path="res://shaders/1bitPostProcess.gdshader" id="2_4a2es"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/DialogueRunner.cs" id="3_2ps1t"]
+[ext_resource type="Resource" uid="uid://dwh8v5nm33y05" path="res://dialogue/Tutorial.tres" id="4_ucdrt"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/LineProviders/TextLineProvider.cs" id="5_ynglp"]
+[ext_resource type="PackedScene" uid="uid://coddfs0ig6q0y" path="res://scenes/instances/CustomLineView.tscn" id="6_1h8qr"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/InMemoryVariableStorage.cs" id="6_1iqqk"]
+[ext_resource type="PackedScene" uid="uid://b230rcu43va40" path="res://addons/YarnSpinner-Godot/Prefabs/OptionListView.tscn" id="8_gpirx"]
+[ext_resource type="Script" path="res://scripts/PlayerMovement.cs" id="9_4q0ag"]
+[ext_resource type="PackedScene" uid="uid://cu4smcityg60y" path="res://scenes/instances/triangle.tscn" id="10_oa6jx"]
+[ext_resource type="Texture2D" uid="uid://d3d6frjgp33oh" path="res://sprites/playerSprite.png" id="10_rcuk4"]
+[ext_resource type="Script" path="res://scripts/Cage.cs" id="11_2o5qh"]
+[ext_resource type="Texture2D" uid="uid://qotjucedslrd" path="res://sprites/cage.png" id="12_1nils"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnu6l"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qr68s"]
+shader = ExtResource("2_4a2es")
+shader_parameter/primaryColor = Color(0, 0.223529, 0.0666667, 1)
+shader_parameter/secondaryColor = Color(0.419608, 0.615686, 0, 1)
+shader_parameter/threshold = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vplxu"]
+atlas = ExtResource("12_1nils")
+region = Rect2(0, 0, 58, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocnit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vplxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e04q8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haywm"]
+atlas = ExtResource("10_rcuk4")
+region = Rect2(116, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vof0p"]
+atlas = ExtResource("10_rcuk4")
+region = Rect2(174, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t1o6"]
+atlas = ExtResource("10_rcuk4")
+region = Rect2(0, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cec61"]
+atlas = ExtResource("10_rcuk4")
+region = Rect2(58, 0, 58, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rryyu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haywm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vof0p")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t1o6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cec61")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhe3w"]
+radius = 19.9196
+
+[node name="Base" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, 12)
+script = ExtResource("1_4hloo")
+
+[node name="GameoverPanel" type="Panel" parent="Camera2D"]
+visible = false
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.0
+offset_top = -209.0
+offset_right = -239.0
+offset_bottom = -169.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(13.8491, 10.4046)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_hnu6l")
+
+[node name="Label" type="Label" parent="Camera2D/GameoverPanel"]
+z_index = 1
+offset_left = 4.91007
+offset_top = 9.70726
+offset_right = 232.91
+offset_bottom = 67.7073
+scale = Vector2(0.1302, 0.314268)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+material = SubResource("ShaderMaterial_qr68s")
+offset_left = -576.0
+offset_top = -316.0
+offset_right = 576.0
+offset_bottom = 332.0
+
+[node name="DialogueRunner" type="Control" parent="Camera2D" node_paths=PackedStringArray("_variableStorage", "lineProvider")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = 96.0
+offset_right = -116.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.303366, 0.303366)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_2ps1t")
+yarnProject = ExtResource("4_ucdrt")
+_variableStorage = NodePath("InMemoryVariableStorage")
+views = [NodePath("LineView"), NodePath("OptionListView")]
+startNode = "tutorial_intro"
+lineProvider = NodePath("TextLineProvider")
+verboseLogging = false
+
+[node name="TextLineProvider" type="Node" parent="Camera2D/DialogueRunner"]
+script = ExtResource("5_ynglp")
+
+[node name="InMemoryVariableStorage" type="Node" parent="Camera2D/DialogueRunner"]
+script = ExtResource("6_1iqqk")
+
+[node name="LineView" parent="Camera2D/DialogueRunner" instance=ExtResource("6_1h8qr")]
+z_index = 2
+layout_mode = 1
+fadeInTime = 0.279
+fadeOutTime = 0.094
+
+[node name="OptionListView" parent="Camera2D/DialogueRunner" instance=ExtResource("8_gpirx")]
+layout_mode = 1
+
+[node name="PlayArea" type="Node" parent="."]
+script = ExtResource("1_5e3au")
+trianglePrefab = ExtResource("10_oa6jx")
+triangleSpawnTimerMax = 60
+
+[node name="StartPosition" type="Marker2D" parent="PlayArea"]
+
+[node name="Cage" type="Area2D" parent="PlayArea"]
+position = Vector2(63, -44)
+collision_layer = 2
+script = ExtResource("11_2o5qh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayArea/Cage"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ocnit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/Cage"]
+visible = false
+position = Vector2(2, 0)
+scale = Vector2(2.41674, 3.02091)
+shape = SubResource("CircleShape2D_e04q8")
+one_way_collision_margin = 0.0
+
+[node name="Cage2" type="Area2D" parent="PlayArea"]
+position = Vector2(-63, -44)
+collision_layer = 2
+script = ExtResource("11_2o5qh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayArea/Cage2"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ocnit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/Cage2"]
+visible = false
+position = Vector2(2, 0)
+scale = Vector2(2.41674, 3.02091)
+shape = SubResource("CircleShape2D_e04q8")
+one_way_collision_margin = 0.0
+
+[node name="Cage3" type="Area2D" parent="PlayArea"]
+position = Vector2(0, 59)
+collision_layer = 2
+script = ExtResource("11_2o5qh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayArea/Cage3"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ocnit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/Cage3"]
+visible = false
+position = Vector2(2, 0)
+scale = Vector2(2.41674, 3.02091)
+shape = SubResource("CircleShape2D_e04q8")
+one_way_collision_margin = 0.0
+
+[node name="Player" type="Area2D" parent="PlayArea"]
+collision_layer = 2
+script = ExtResource("9_4q0ag")
+Speed = 200
+dashSpeed = 600.0
+extraDashIFrames = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayArea/Player"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_rryyu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/Player"]
+visible = false
+shape = SubResource("CircleShape2D_nhe3w")
+
+[connection signal="body_entered" from="PlayArea/Cage" to="PlayArea/Cage" method="_on_body_entered"]
+[connection signal="body_entered" from="PlayArea/Cage2" to="PlayArea/Cage2" method="_on_body_entered"]
+[connection signal="body_entered" from="PlayArea/Cage3" to="PlayArea/Cage3" method="_on_body_entered"]
+[connection signal="body_entered" from="PlayArea/Player" to="PlayArea/Player" method="_on_player_body_entered"]

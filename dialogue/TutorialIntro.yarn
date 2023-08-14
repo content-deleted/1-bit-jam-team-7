@@ -1,0 +1,13 @@
+﻿title: tutorial_intro
+tags:
+---
+    Oh no!
+    Your butterflies are under attack!
+    By who?
+    Who cares! butterflies are at stake!
+    Get out there and capture the shapes before they destroy your precious bugs
+    For now, use the arrow keys to move and the space bar to dash
+    Good luck!
+    <<set $tutorialDone to true>>
+    <<enableDash>>
+===
