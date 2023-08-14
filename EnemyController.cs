@@ -48,19 +48,19 @@ public partial class EnemyController : Node2D
 
 		Enemy newEnemy = new Enemy();
 
-		newEnemy.type = randEnemy.Next(1, 4);
 		Sprite2D newEnemySprite = new Sprite2D();
 		newEnemy.sprite = newEnemySprite;
 		this.AddChild(newEnemy.sprite);
-		newEnemy.sprite.Texture = (Texture2D)ResourceLoader.Load("res://gfx/" + enemyTypes[newEnemy.type] + ".png");
+		newEnemy.sprite.Texture = (Texture2D)ResourceLoader.Load("res://gfx/lostsoul.svg");
 		Area2D enemyArea = new Area2D();
 		CollisionShape2D enemyCollision = new CollisionShape2D();
 		CircleShape2D enemycircle = new CircleShape2D();
 		enemycircle.Radius = 15;
 		enemyCollision.Shape = enemycircle;
 		enemyArea.AddChild(enemyCollision);
-		enemyArea.AddToGroup("Enemy" + enemyTypes[newEnemy.type]);
+		enemyArea.AddToGroup("Enemy");
 		newEnemy.sprite.AddChild(enemyArea);
+		newEnemy.speed = 20;
 		
 		
 
@@ -85,37 +85,18 @@ public partial class EnemyController : Node2D
 		}
 
 		newEnemy.sprite.Position = newEnemy.position;
+		newEnemy.sprite.Scale = new Vector2(newEnemy.sprite.Position.Y / GetViewportRect().Size[1], newEnemy.sprite.Position.Y / GetViewportRect().Size[1] ) * 2;
 
 		enemies.Add(newEnemy);
 	}
 
 	public void MoveEnemy(Enemy enemy, double delta){
 
-		if (enemy.type == 1){ // Triangle enemy
+		if (((Area2D)(enemy.sprite.GetChild(0))).GetOverlappingAreas().Count > 0 && ((Area2D)(enemy.sprite.GetChild(0))).GetOverlappingAreas()[0].IsInGroup("Light")){
 
-			enemy.direction = playerBase.Position - enemy.position;
-			enemy.speed = 80;
-
-			enemy.sprite.Translate(enemy.direction.Normalized() * enemy.speed * (float)delta);
-
-			enemy.position = enemy.sprite.Position;
-
-		} else if (enemy.type == 2){ // Square enemy
-
-			enemy.direction = playerBase.Position - enemy.position;
-			enemy.speed = 40;
-
-			enemy.sprite.Translate(enemy.direction.Normalized() * enemy.speed * (float)delta);
-
-			enemy.position = enemy.sprite.Position;
-
-		} else if (enemy.type == 3){ // Hexagon enemy
-
-			enemy.direction = playerBase.Position - enemy.position;
-			enemy.speed = 60;
-
-			enemy.sprite.Translate(enemy.direction.Normalized() * enemy.speed * (float)delta);
-
+			enemy.direction = (playerBase.Position - enemy.sprite.Position).Normalized() * (float)delta;
+			enemy.sprite.Translate(enemy.direction * enemy.speed);
+			enemy.sprite.Scale = new Vector2(enemy.sprite.Position.Y / GetViewportRect().Size[1], enemy.sprite.Position.Y / GetViewportRect().Size[1] ) * 2;
 			enemy.position = enemy.sprite.Position;
 
 		}
@@ -134,7 +115,6 @@ public partial class EnemyController : Node2D
 
 	public class Enemy{
 
-		public int type;
 		public Sprite2D sprite;
 		public Vector2 position;
 		public Vector2 direction;
@@ -143,10 +123,5 @@ public partial class EnemyController : Node2D
 
 	}
 
-	public Dictionary<int, string> enemyTypes = new Dictionary<int, string>(){
-		{1, "Triangle"},
-		{2, "Square"},
-		{3, "Hexagon"}
-	};
 
 }
