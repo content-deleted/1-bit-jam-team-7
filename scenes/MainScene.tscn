@@ -1,8 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://xf670302nh8h"]
+[gd_scene load_steps=47 format=3 uid="uid://xf670302nh8h"]
 
 [ext_resource type="Script" path="res://scripts/CameraController.cs" id="1_4hloo"]
 [ext_resource type="Script" path="res://scripts/ArenaController.cs" id="1_5e3au"]
 [ext_resource type="Shader" path="res://shaders/1bitPostProcess.gdshader" id="2_4a2es"]
+[ext_resource type="Script" path="res://scripts/GameoverPanel.cs" id="2_gpkxs"]
+[ext_resource type="Script" path="res://scripts/PaletteController.cs" id="3_1mf8b"]
 [ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/DialogueRunner.cs" id="3_2ps1t"]
 [ext_resource type="Resource" uid="uid://dwh8v5nm33y05" path="res://dialogue/Tutorial.tres" id="4_ucdrt"]
 [ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/LineProviders/TextLineProvider.cs" id="5_ynglp"]
@@ -10,10 +12,16 @@
 [ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/InMemoryVariableStorage.cs" id="6_1iqqk"]
 [ext_resource type="PackedScene" uid="uid://b230rcu43va40" path="res://addons/YarnSpinner-Godot/Prefabs/OptionListView.tscn" id="8_gpirx"]
 [ext_resource type="Script" path="res://scripts/PlayerMovement.cs" id="9_4q0ag"]
+[ext_resource type="PackedScene" uid="uid://c0twkps47xn7t" path="res://scenes/instances/hexagon.tscn" id="10_a323p"]
 [ext_resource type="PackedScene" uid="uid://cu4smcityg60y" path="res://scenes/instances/triangle.tscn" id="10_oa6jx"]
 [ext_resource type="Texture2D" uid="uid://d3d6frjgp33oh" path="res://sprites/playerSprite.png" id="10_rcuk4"]
+[ext_resource type="PackedScene" uid="uid://csg3w1cm7bk15" path="res://scenes/instances/square.tscn" id="11_00h5n"]
 [ext_resource type="Script" path="res://scripts/Cage.cs" id="11_2o5qh"]
 [ext_resource type="Texture2D" uid="uid://qotjucedslrd" path="res://sprites/cage.png" id="12_1nils"]
+[ext_resource type="PackedScene" uid="uid://do6a5ijl3uwtx" path="res://scenes/instances/star.tscn" id="12_uqjgp"]
+[ext_resource type="Texture2D" uid="uid://cdna17r6magq4" path="res://sprites/playerSpriteHexagon.png" id="18_jdpqb"]
+[ext_resource type="Texture2D" uid="uid://bq084j0aixq2x" path="res://sprites/playerSpriteSquare.png" id="19_qti2w"]
+[ext_resource type="Texture2D" uid="uid://4rlenhpchiy" path="res://sprites/playerSpriteStar.png" id="20_2ojcr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnu6l"]
 bg_color = Color(1, 1, 1, 1)
@@ -24,15 +32,22 @@ shader_parameter/primaryColor = Color(0, 0.223529, 0.0666667, 1)
 shader_parameter/secondaryColor = Color(0.419608, 0.615686, 0, 1)
 shader_parameter/threshold = 0.5
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vplxu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jc5o"]
 atlas = ExtResource("12_1nils")
 region = Rect2(0, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcflo"]
+atlas = ExtResource("12_1nils")
+region = Rect2(58, 0, 58, 61)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocnit"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vplxu")
+"texture": SubResource("AtlasTexture_2jc5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcflo")
 }],
 "loop": true,
 "name": &"default",
@@ -41,6 +56,30 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e04q8"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc7t3"]
+atlas = ExtResource("18_jdpqb")
+region = Rect2(116, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_102gn"]
+atlas = ExtResource("18_jdpqb")
+region = Rect2(174, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfdqq"]
+atlas = ExtResource("19_qti2w")
+region = Rect2(116, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h80x"]
+atlas = ExtResource("19_qti2w")
+region = Rect2(174, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b377"]
+atlas = ExtResource("20_2ojcr")
+region = Rect2(116, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7cyk"]
+atlas = ExtResource("20_2ojcr")
+region = Rect2(174, 0, 58, 61)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_haywm"]
 atlas = ExtResource("10_rcuk4")
 region = Rect2(116, 0, 58, 61)
@@ -48,6 +87,30 @@ region = Rect2(116, 0, 58, 61)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vof0p"]
 atlas = ExtResource("10_rcuk4")
 region = Rect2(174, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1v1p"]
+atlas = ExtResource("18_jdpqb")
+region = Rect2(0, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qlcy"]
+atlas = ExtResource("18_jdpqb")
+region = Rect2(58, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kstb7"]
+atlas = ExtResource("19_qti2w")
+region = Rect2(0, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv3nf"]
+atlas = ExtResource("19_qti2w")
+region = Rect2(58, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un2mr"]
+atlas = ExtResource("20_2ojcr")
+region = Rect2(0, 0, 58, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv2dc"]
+atlas = ExtResource("20_2ojcr")
+region = Rect2(58, 0, 58, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4t1o6"]
 atlas = ExtResource("10_rcuk4")
@@ -61,13 +124,79 @@ region = Rect2(58, 0, 58, 61)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cc7t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_102gn")
+}],
+"loop": true,
+"name": &"dashHexagon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfdqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h80x")
+}],
+"loop": true,
+"name": &"dashSquare",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b377")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7cyk")
+}],
+"loop": true,
+"name": &"dashStar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_haywm")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vof0p")
 }],
 "loop": true,
-"name": &"dash",
+"name": &"dashTriangle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1v1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qlcy")
+}],
+"loop": true,
+"name": &"defaultHexagon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kstb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv3nf")
+}],
+"loop": true,
+"name": &"defaultSquare",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_un2mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv2dc")
+}],
+"loop": true,
+"name": &"defaultStar",
 "speed": 5.0
 }, {
 "frames": [{
@@ -78,7 +207,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_cec61")
 }],
 "loop": true,
-"name": &"default",
+"name": &"defaultTriangle",
 "speed": 5.0
 }]
 
@@ -109,17 +238,52 @@ scale = Vector2(13.8491, 10.4046)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_hnu6l")
+script = ExtResource("2_gpkxs")
 
 [node name="Label" type="Label" parent="Camera2D/GameoverPanel"]
 z_index = 1
-offset_left = 4.91007
-offset_top = 9.70726
-offset_right = 232.91
+layout_mode = 0
+offset_left = 4.54903
+offset_top = 9.70724
+offset_right = 232.549
 offset_bottom = 67.7073
 scale = Vector2(0.1302, 0.314268)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "GAME OVER"
+
+[node name="scorelabel" type="Label" parent="Camera2D/GameoverPanel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.48642
+offset_top = -14.3294
+offset_right = 222.514
+offset_bottom = 43.6707
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0505129, 0.0721698)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "SCORE:"
+horizontal_alignment = 1
+
+[node name="restartlabel" type="Label" parent="Camera2D/GameoverPanel"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 15.6689
+offset_top = 28.2567
+offset_right = 243.669
+offset_bottom = 86.2568
+scale = Vector2(0.0505129, 0.0721698)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "RESTART?"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
@@ -129,16 +293,17 @@ offset_left = -576.0
 offset_top = -316.0
 offset_right = 576.0
 offset_bottom = 332.0
+script = ExtResource("3_1mf8b")
 
 [node name="DialogueRunner" type="Control" parent="Camera2D" node_paths=PackedStringArray("_variableStorage", "lineProvider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -116.0
-offset_top = 96.0
-offset_right = -116.0
-offset_bottom = 96.0
+offset_left = -112.0
+offset_top = 140.0
+offset_right = -112.0
+offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.303366, 0.303366)
@@ -161,16 +326,36 @@ script = ExtResource("6_1iqqk")
 [node name="LineView" parent="Camera2D/DialogueRunner" instance=ExtResource("6_1h8qr")]
 z_index = 2
 layout_mode = 1
+offset_left = -253.819
+offset_top = 6.59265
+offset_right = -253.819
+offset_bottom = 6.59265
 fadeInTime = 0.279
 fadeOutTime = 0.094
 
 [node name="OptionListView" parent="Camera2D/DialogueRunner" instance=ExtResource("8_gpirx")]
 layout_mode = 1
 
+[node name="HUD" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Score" type="Label" parent="Camera2D/HUD"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = -141.0
+offset_right = 223.0
+offset_bottom = -110.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+
 [node name="PlayArea" type="Node" parent="."]
 script = ExtResource("1_5e3au")
-trianglePrefab = ExtResource("10_oa6jx")
-triangleSpawnTimerMax = 60
+enemyPrefabs = Array[PackedScene]([ExtResource("10_a323p"), ExtResource("11_00h5n"), ExtResource("12_uqjgp"), ExtResource("10_oa6jx")])
+triangleSpawnTimerMax = 120
 
 [node name="StartPosition" type="Marker2D" parent="PlayArea"]
 
@@ -182,6 +367,8 @@ script = ExtResource("11_2o5qh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayArea/Cage"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ocnit")
+frame = 1
+frame_progress = 0.700893
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/Cage"]
 visible = false
@@ -228,16 +415,20 @@ script = ExtResource("9_4q0ag")
 Speed = 200
 dashSpeed = 600.0
 extraDashIFrames = 0
+primaryColors = PackedColorArray(0, 0.223529, 0.0666667, 1, 0, 0, 0, 1, 0, 0, 0.478431, 1, 0.266667, 0.168627, 0, 1)
+secondaryColors = PackedColorArray(0.419608, 0.615686, 0, 1, 0.772549, 0, 0, 1, 0.878431, 0.670588, 1, 1, 0.827451, 0.705882, 0.517647, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayArea/Player"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rryyu")
+animation = &"defaultTriangle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/Player"]
 visible = false
 shape = SubResource("CircleShape2D_nhe3w")
 
+[node name="EnemyPool" type="Node2D" parent="PlayArea"]
+
 [connection signal="body_entered" from="PlayArea/Cage" to="PlayArea/Cage" method="_on_body_entered"]
 [connection signal="body_entered" from="PlayArea/Cage2" to="PlayArea/Cage2" method="_on_body_entered"]
 [connection signal="body_entered" from="PlayArea/Cage3" to="PlayArea/Cage3" method="_on_body_entered"]
-[connection signal="body_entered" from="PlayArea/Player" to="PlayArea/Player" method="_on_player_body_entered"]

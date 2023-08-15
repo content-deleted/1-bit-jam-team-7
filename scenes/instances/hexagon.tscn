@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0twkps47xn7t"]
+
+[ext_resource type="Script" path="res://scripts/Triangle.cs" id="1_eolef"]
+[ext_resource type="Texture2D" uid="uid://d64asg770640" path="res://sprites/hexagon.png" id="2_ov0nv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfiwb"]
+atlas = ExtResource("2_ov0nv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdt0k"]
+atlas = ExtResource("2_ov0nv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uro6"]
+atlas = ExtResource("2_ov0nv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yqlr"]
+atlas = ExtResource("2_ov0nv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w7myk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfiwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdt0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uro6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yqlr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_30hsy"]
+radius = 10.1
+
+[node name="Hexagon" type="RigidBody2D"]
+collision_mask = 2
+gravity_scale = 0.0
+contact_monitor = true
+lock_rotation = true
+linear_damp_mode = 1
+script = ExtResource("1_eolef")
+baseSpeed = 30
+metadata/enemyType = "Hexagon"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w7myk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_30hsy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Yarn.GodotYarn;
+using System.Collections.Generic;
 
 
 public partial class PlayerMovement : Area2D
@@ -24,7 +25,7 @@ public partial class PlayerMovement : Area2D
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animatedSprite2D.Play();
-		animatedSprite2D.Animation = "default";
+		animatedSprite2D.Animation = "default" + mode;
 	}
 
 	// Custom start used for positioning I guess
@@ -46,19 +47,28 @@ public partial class PlayerMovement : Area2D
 			if (velocity.Length() > 0)
 			{
 				velocity = velocity.Normalized() * Speed;
-			}
 
-			if (velocity.X < 0)
-			{
-				animatedSprite2D.FlipH = true;
-			}
-			else
-			{
-				animatedSprite2D.FlipH = false;
+                if (velocity.X < 0)
+                {
+                    animatedSprite2D.FlipH = true;
+                }
+                else
+                {
+                    animatedSprite2D.FlipH = false;
+                }
 			}
 		}
 	
 		Position += velocity * (float)delta;
+
+        HandleModeShift();
+
+        foreach(var body in GetOverlappingBodies()) {
+            if((String)body.GetMeta("enemyType") == mode) {
+                body.QueueFree();
+                ArenaController.controller.score++;
+            }
+        }
 	}
 
 	public Vector2 getMovementVector() {
@@ -87,27 +97,29 @@ public partial class PlayerMovement : Area2D
 		return velocity;
 	}
 
-	#region Collision
-	[Signal]
-	public delegate void HitEventHandler();
+	// #region Collision
+	// [Signal]
+	// public delegate void HitEventHandler();
 
-	private void OnBodyEntered(PhysicsBody2D body)
-	{
-		EmitSignal(SignalName.Hit);
+	// private void OnBodyEntered(PhysicsBody2D body)
+	// {
+	// 	EmitSignal(SignalName.Hit);
 
-		GD.Print("Hit!");
-        // why does this not work?
-	}
+	// 	GD.Print("Hit!");
+    //     // why does this not work?
+	// }
 
     
-    private void _on_player_body_entered(Node2D body)
-    {
-        // Probably more stuff goes here
-        body.QueueFree();
-    }
+    // private void _on_player_body_entered(Node2D body)
+    // {
+    //     // check the mode matches
+    //     if((String)body.GetMeta("enemyType") == mode) {
+    //         body.QueueFree();
+    //     }
+    // }
 
 
-	#endregion
+	// #endregion
 
 	#region Dash
 
@@ -146,9 +158,11 @@ public partial class PlayerMovement : Area2D
 		get => _dashing;
 		set {
 			_dashing = value;
-			animatedSprite2D.Animation = value ? "dash" : "default";
+			animatedSprite2D.Animation = getCurAnimationName();
 		}
 	}
+    private string getCurAnimationName() => (dashing ? "dash" : "default") + mode;
+
 	[Export]
 	public float dashSpeed = 2;
 	public int framesDashing = 0; // current frames in dash
@@ -159,7 +173,7 @@ public partial class PlayerMovement : Area2D
 	[Export]
 	public float sweetSpotMin = 10; // If greater than this we can dash again
 
-	Vector2 DashDir = Vector2.Zero;
+	Vector2 DashDir = Vector2.Right;
 
 	public Vector2 HandleDash(Vector2 velocity) {
 		if(Input.IsActionJustPressed("ui_select")) {
@@ -171,8 +185,6 @@ public partial class PlayerMovement : Area2D
 
 				if(velocity != Vector2.Zero) {
 					DashDir = velocity.Normalized();
-				} else {
-					DashDir = Vector2.Right;
 				}
 				playDashSFX();
 		   }
@@ -210,4 +222,36 @@ public partial class PlayerMovement : Area2D
 	}
 
 	#endregion
+
+    #region Shift
+
+    private int currentMode = 0;
+
+    string[] modes = {"Triangle","Square","Hexagon","Star"};
+
+    [Export]
+    Color[] primaryColors = new Color[4];
+
+    [Export]
+    Color[] secondaryColors = new Color[4];
+
+    public string mode {
+        get {
+            return modes[currentMode];
+        }
+    }
+
+    private void HandleModeShift() {
+        if (Input.IsActionJustPressed("action_shift"))
+		{
+            currentMode++;
+            currentMode %= modes.Length;
+
+            PaletteController.SetNewPallete(primaryColors[currentMode], secondaryColors[currentMode]);
+
+            animatedSprite2D.Animation = getCurAnimationName();
+        }
+    }
+
+    #endregion
 }

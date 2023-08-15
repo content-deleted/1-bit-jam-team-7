@@ -4,9 +4,11 @@ tags:
     Oh no!
     Your butterflies are under attack!
     By who?
-    Who cares! butterflies are at stake!
-    Get out there and capture the shapes before they destroy your precious bugs
-    For now, use the arrow keys to move and the space bar to dash
+    Who cares! Butterflies are at stake!
+    Get out there and capture those shapes before they destroy your precious bugs
+    For now, use the arrow keys / wasd to move and the space bar to dash
+    Hit the shift key to switch between shapes, you'll need to use the right shape to capture enemies!
+    Just run into an enemy to capture it, Im sure you'll be fine.
     Good luck!
     <<set $tutorialDone to true>>
     <<enableDash>>
