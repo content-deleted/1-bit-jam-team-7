@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqei3p4t8f5lf"
-path.s3tc="res://.godot/imported/base.png-ca63ce3175cc2393b71d4ae55534b3c6.s3tc.ctex"
+uid="uid://cii12oj3n13o1"
+path.s3tc="res://.godot/imported/LampLight.png-7dd3a60956c78a791839f2eb52565350.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://gfx/base.png"
-dest_files=["res://.godot/imported/base.png-ca63ce3175cc2393b71d4ae55534b3c6.s3tc.ctex"]
+source_file="res://gfx/LampLight.png"
+dest_files=["res://.godot/imported/LampLight.png-7dd3a60956c78a791839f2eb52565350.s3tc.ctex"]
 
 [params]
 
