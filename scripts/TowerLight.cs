@@ -63,13 +63,16 @@ public partial class TowerLight : Node3D
 		Godot.Collections.Dictionary result = spaceState.IntersectRay(query);
 
 		((Sprite3D)this.GetChild(0)).Scale = new Vector3(focalLength, focalLength, focalLength);
+		((Sprite3D)this.GetChild(0)).Visible = true;
 
 		if (result.Count > 0){
 
 			this.Position = new Vector3(((Vector3)result["position"]).X, 0, ((Vector3)result["position"]).Z);
-		}
-		
+		} else {
 
+			((Sprite3D)this.GetChild(0)).Visible = false;
+
+		}
 	}
 
 

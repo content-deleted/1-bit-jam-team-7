@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=14 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Texture2D" uid="uid://cqei3p4t8f5lf" path="res://gfx/base.png" id="1_6jkod"]
+[ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
 [ext_resource type="Texture2D" uid="uid://1d5qyux4x7vq" path="res://gfx/player.png" id="2_k4i8a"]
 [ext_resource type="Script" path="res://scripts/Player.cs" id="2_rhjw6"]
 [ext_resource type="Script" path="res://scripts/TowerLight.cs" id="2_ty0mf"]
 [ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="3_c4xbn"]
 [ext_resource type="Texture2D" uid="uid://basi6eg1wa5uo" path="res://gfx/TowerLight.png" id="5_kwxuc"]
+[ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
+[ext_resource type="Texture2D" uid="uid://cnlrjvi47hh27" path="res://gfx/Hexagon.png" id="9_1fyo0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
 
@@ -15,25 +18,31 @@ size = Vector3(20, 0.1, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7axem"]
 size = Vector3(20, 0.1, 20)
 
+[sub_resource type="Curve3D" id="Curve3D_17eyj"]
+
 [node name="DefenseMode" type="Node3D"]
 
-[node name="TowerSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579445, 0)
-texture = ExtResource("1_6jkod")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2.48466, 3.91176)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0984263, 0)
 physics_material_override = SubResource("PhysicsMaterial_ewno6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_7axem")
+
+[node name="Base" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579445, 0)
+script = ExtResource("1_l6emr")
+
+[node name="TowerSprite" type="Sprite3D" parent="Base"]
+texture = ExtResource("1_6jkod")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 5)
+fov = 70.0
 
 [node name="TowerLight" type="Node3D" parent="."]
 script = ExtResource("2_ty0mf")
@@ -54,3 +63,13 @@ texture = ExtResource("3_c4xbn")
 [node name="PlayerSprite" type="Sprite3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 texture = ExtResource("2_k4i8a")
+
+[node name="EnemySpawn" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
+curve = SubResource("Curve3D_17eyj")
+script = ExtResource("8_afdgi")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="EnemySpawn"]
+
+[node name="Sprite3D" type="Sprite3D" parent="EnemySpawn/PathFollow3D"]
+texture = ExtResource("9_1fyo0")
