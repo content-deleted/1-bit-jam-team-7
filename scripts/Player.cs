@@ -3,17 +3,18 @@ using System;
 
 public partial class Player : Node3D
 {
-	float playerSpeed = 0;
-	double stamina = 3;
+	public float playerSpeed = 0;
+	public double stamina = 3;
 
-	double staminaCoolDown = 5;
-	double staminaCoolDownTimer = 0;
+	public double staminaCoolDown = 5;
+	public double staminaCoolDownTimer = 0;
 
-	float playerDefaultSpeed = 2;
-	Vector3 playerDirection = new Vector3(0, 0, 0);
+	public float playerDefaultSpeed = 2;
+	public Vector3 playerDirection = new Vector3(0, 0, 0);
 
-	Sprite3D playerSprite;
-	Sprite3D lampLight;
+	public Sprite3D playerSprite;
+	public Sprite3D lampLight;
+	public Camera mainCamera;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -22,6 +23,7 @@ public partial class Player : Node3D
 
 		playerSprite = GetNode<Sprite3D>("PlayerSprite");
 		lampLight = GetNode<Sprite3D>("LampLight");
+		mainCamera = GetNode<Camera>("//root/DefenseMode/MainCamera");
 
 	}
 
@@ -29,75 +31,43 @@ public partial class Player : Node3D
 	public override void _Process(double delta)
 	{
 
-		Move(delta);
+	}
+
+    public override void _PhysicsProcess(double delta)
+    {
+        
+		BillBoard();
+
+    }
+
+    public void BillBoard(){
+
+		playerSprite.LookAt(mainCamera.Position, new Vector3(0, 1, 0));
 
 	}
 
+	public Vector3 CameraRelativeMove(Vector3 movement){
 
-	public void Move(double delta)
-	{
+		if (mainCamera.cameraOrientation == 1){
 
-		playerSpeed = playerDefaultSpeed;
+			return new Vector3(movement.Z, movement.Y, -movement.X);
 
-		if(Input.IsActionPressed("Sprint") && stamina > 0 && staminaCoolDownTimer >= 0){
+		} else if (mainCamera.cameraOrientation == 2){
 
-			playerSpeed *= 1.8f;
-			stamina -= delta;
+			return new Vector3(-movement.X, movement.Y, -movement.Z);
 
-		} else if (stamina >= 0){
+		} else if (mainCamera.cameraOrientation == 3){
 
-			staminaCoolDownTimer = staminaCoolDown;
-
-		} else {
-
-			staminaCoolDownTimer -= delta;
-			stamina += delta;
-
-			Mathf.Clamp(staminaCoolDownTimer, 0, 5);
-			Mathf.Clamp(stamina, 0, 3);
-
-		}
-
-
-		if(Input.IsActionPressed("MovePlayerUp") && !Input.IsActionPressed("MovePlayerDown")){
-
-			playerDirection.Z = -1;
-
-		} else if (Input.IsActionPressed("MovePlayerDown") && !Input.IsActionPressed("MovePlayerUp")){
-
-			playerDirection.Z = 1;
+			return new Vector3(-movement.Z, movement.Y, movement.X);
 
 		} else {
-
-			playerDirection.Z = 0;
-
-		}
-
-		if(Input.IsActionPressed("MovePlayerLeft") && !Input.IsActionPressed("MovePlayerRight")){
-
-			playerDirection.X = -1;
-			playerSprite.FlipH = true;
-			playerSprite.Position = new Vector3(0.005f, 0.15f, 0);
-			lampLight.Position = new Vector3(-0.075f, 0, 0);
-
-		} else if (Input.IsActionPressed("MovePlayerRight") && !Input.IsActionPressed("MovePlayerLeft")){
-
-			playerDirection.X = 1;
-			playerSprite.FlipH = false;
-			playerSprite.Position = new Vector3(-0.005f, 0.15f, 0);
-			lampLight.Position = new Vector3(0.075f, 0, 0);
-
-		} else {
-
-			playerDirection.X = 0;
 			
+			return movement;
 
 
 		}
 
-		Vector3 playerMove = playerDirection.Normalized() * playerSpeed * (float)delta;
-
-		this.Translate(playerMove);
-
 	}
+
+	
 }

@@ -12,19 +12,15 @@ public partial class EnemyController : Path3D
 	Base playerBase;
 	Path3D enemyPath;
 
-	Curve3D visualCurve = new Curve3D();
-
 	PathFollow3D testEnemy;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 
-		CreateEnemyPath(this.Curve);
-		CreateEnemyPath(visualCurve);
 
 		enemies = new List<Enemy>(); //inherit from PathFollow3D
-		playerBase = (Base)GetNode("//root/DefenseMode/Base");
+		playerBase = (Base)GetNode("//root/DefenseMode/World/PlayerNodes/Base");
 
 
 		testEnemy = (PathFollow3D)this.GetChild(0);
@@ -112,21 +108,5 @@ public partial class EnemyController : Path3D
 
 	}
 
-	public void CreateEnemyPath(Curve3D curve){
-
-		
-		curve.AddPoint(new Vector3(0, 0, 0));
-		curve.AddPoint(new Vector3(17, 0, 1));
-		curve.AddPoint(new Vector3(16, 0, 16));
-		curve.AddPoint(new Vector3(3, 0, 15));
-		curve.AddPoint(new Vector3(4, 0, 4));
-		curve.AddPoint(new Vector3(13, 0, 5));
-		curve.AddPoint(new Vector3(12, 0, 12));
-		curve.AddPoint(new Vector3(7, 0, 11));
-		curve.AddPoint(new Vector3(9, 0, 9));
-
-
-		
-	}
 
 }

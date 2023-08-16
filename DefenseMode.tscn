@@ -1,18 +1,40 @@
-[gd_scene load_steps=22 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=24 format=3 uid="uid://ch5lqbfm0ojq6"]
 
+[ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Texture2D" uid="uid://cqei3p4t8f5lf" path="res://gfx/base.png" id="1_6jkod"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
+[ext_resource type="Script" path="res://scripts/Camera.cs" id="2_0lvke"]
 [ext_resource type="Shader" path="res://gfx/dither/1bitdither.gdshader" id="2_1d4u5"]
 [ext_resource type="Texture2D" uid="uid://1d5qyux4x7vq" path="res://gfx/player.png" id="2_k4i8a"]
 [ext_resource type="Script" path="res://scripts/Player.cs" id="2_rhjw6"]
 [ext_resource type="Script" path="res://scripts/TowerLight.cs" id="2_ty0mf"]
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="3_5quch"]
+[ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="3_720i0"]
 [ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="3_c4xbn"]
 [ext_resource type="Texture2D" uid="uid://c1qoy4nrg18q1" path="res://gfx/dither/bayer16tile2.png" id="4_bgojc"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="4_es7q3"]
 [ext_resource type="Texture2D" uid="uid://basi6eg1wa5uo" path="res://gfx/TowerLight.png" id="5_kwxuc"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
 [ext_resource type="Texture2D" uid="uid://cnlrjvi47hh27" path="res://gfx/Hexagon.png" id="9_1fyo0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_453us"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_401co"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_blhxc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xek2j"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7axem"]
+size = Vector3(20, 0.1, 20)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3oht"]
 shader = ExtResource("2_1d4u5")
@@ -23,44 +45,89 @@ shader_parameter/u_dither_size = 2.0
 shader_parameter/dither_range = Vector2(0.3, 0.6)
 shader_parameter/u_dither_tex = ExtResource("4_bgojc")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_453us"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_xek2j"]
-size = Vector3(20, 0.1, 20)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7axem"]
-size = Vector3(20, 0.1, 20)
-
-[sub_resource type="Environment" id="Environment_401co"]
-background_mode = 1
-background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.0
-ambient_light_energy = 0.0
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_blhxc"]
-
-[sub_resource type="Curve3D" id="Curve3D_17eyj"]
-up_vector_enabled = false
-
 [node name="DefenseMode" type="Node3D"]
+script = ExtResource("1_4m6pl")
 
-[node name="TowerSprite" type="Sprite3D" parent="."]
+[node name="World" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0984263, 0)
+
+[node name="Environment" type="Node3D" parent="World"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/Environment"]
+physics_material_override = SubResource("PhysicsMaterial_ewno6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Environment/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_453us")
+
+[node name="Floor" type="StaticBody3D" parent="World/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World/Environment"]
+environment = SubResource("Environment_401co")
+camera_attributes = SubResource("CameraAttributesPractical_blhxc")
+
+[node name="Level" type="StaticBody3D" parent="World"]
+physics_material_override = SubResource("PhysicsMaterial_ewno6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Level"]
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Level"]
+shape = SubResource("BoxShape3D_7axem")
+
+[node name="EnemySpawn" type="Path3D" parent="World/Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.0984263, -9)
+curve = ExtResource("3_720i0")
+script = ExtResource("8_afdgi")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="World/Level/EnemySpawn"]
+transform = Transform3D(-0.195076, 0, -0.980788, 0, 1, 0, 0.980788, 0, -0.195076, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="World/Level/EnemySpawn/PathFollow3D"]
+texture = ExtResource("9_1fyo0")
+
+[node name="PlayerNodes" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
+
+[node name="Base" type="Node3D" parent="World/PlayerNodes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579445, 0)
+script = ExtResource("1_l6emr")
+
+[node name="TowerSprite" type="Sprite3D" parent="World/PlayerNodes/Base"]
 texture = ExtResource("1_6jkod")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="TowerLight" type="Node3D" parent="World/PlayerNodes"]
+script = ExtResource("2_ty0mf")
+
+[node name="Sprite3D" type="Sprite3D" parent="World/PlayerNodes/TowerLight"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+layers = 3
+texture = ExtResource("5_kwxuc")
+
+[node name="Player" type="Node3D" parent="World/PlayerNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15619, 0, 0)
+script = ExtResource("2_rhjw6")
+
+[node name="LampLight" type="Sprite3D" parent="World/PlayerNodes/Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.075, 0, 0)
+texture = ExtResource("3_c4xbn")
+
+[node name="PlayerSprite" type="Sprite3D" parent="World/PlayerNodes/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+texture = ExtResource("2_k4i8a")
+
+[node name="ViewportOverlay" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 follow_viewport_scale = 3.021
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ViewportOverlay"]
 visible = false
 position = Vector2(337.968, 221.45)
 texture = ExtResource("4_es7q3")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="ViewportOverlay"]
+visible = false
 material = SubResource("ShaderMaterial_t3oht")
 offset_left = 20.192
 offset_top = -39.3909
@@ -68,65 +135,7 @@ offset_right = 1172.19
 offset_bottom = 608.609
 script = ExtResource("3_5quch")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0984263, 0)
-physics_material_override = SubResource("PhysicsMaterial_ewno6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-material_override = SubResource("StandardMaterial3D_453us")
-
-[node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0984263, 0)
-physics_material_override = SubResource("PhysicsMaterial_ewno6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_xek2j")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_7axem")
-
-[node name="Base" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579445, 0)
-script = ExtResource("1_l6emr")
-
-[node name="TowerSprite" type="Sprite3D" parent="Base"]
-texture = ExtResource("1_6jkod")
-
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 5)
 fov = 70.0
-
-[node name="TowerLight" type="Node3D" parent="."]
-script = ExtResource("2_ty0mf")
-
-[node name="Sprite3D" type="Sprite3D" parent="TowerLight"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-layers = 3
-texture = ExtResource("5_kwxuc")
-
-[node name="Player" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15619, 0, 0)
-script = ExtResource("2_rhjw6")
-
-[node name="LampLight" type="Sprite3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.075, 0, 0)
-texture = ExtResource("3_c4xbn")
-
-[node name="PlayerSprite" type="Sprite3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-texture = ExtResource("2_k4i8a")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_401co")
-camera_attributes = SubResource("CameraAttributesPractical_blhxc")
-
-[node name="EnemySpawn" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
-curve = SubResource("Curve3D_17eyj")
-script = ExtResource("8_afdgi")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="EnemySpawn"]
-
-[node name="Sprite3D" type="Sprite3D" parent="EnemySpawn/PathFollow3D"]
-texture = ExtResource("9_1fyo0")
+script = ExtResource("2_0lvke")
