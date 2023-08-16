@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>BitJam</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="addons\YarnSpinner-Godot\Runtime\DLLs\**" />
+  </ItemGroup>
 </Project>
