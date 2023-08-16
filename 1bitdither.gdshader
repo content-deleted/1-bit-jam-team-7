@@ -21,14 +21,14 @@ float luminance (vec4 c) {
 void fragment() {
 		vec4 baseColor = textureLod(screen_texture, SCREEN_UV, 0.0);
 		
+		float lum = luminance(baseColor);
+		
 		vec2 screen_size = vec2(textureSize(screen_texture, 0)) / float(u_dither_size);
 		
 		ivec2 noise_size = textureSize(u_dither_tex, 0);
 		vec2 inv_noise_size = vec2(1.0 / float(noise_size.x), 1.0 / float(noise_size.y));
 		vec2 noise_uv = SCREEN_UV * inv_noise_size * vec2(float(screen_size.x), float(screen_size.y));
-		vec4 dither = texture(u_dither_tex, noise_uv);
-		
-		float lum = luminance(baseColor);
+		vec4 dither = texture(u_dither_tex, noise_uv) * (lum > dither_range.x+(dither_range.y - dither_range.x)/ 2.0 ? 2.0 : 1.0) ;
 		
 		vec4 final = lum > dither_range.x && lum < dither_range.y ? dither : baseColor;
 		final = luminance(final) > threshold ? primaryColor : secondaryColor;

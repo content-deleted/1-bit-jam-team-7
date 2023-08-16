@@ -10,8 +10,8 @@
 [ext_resource type="Script" path="res://scripts/TowerLight.cs" id="2_ty0mf"]
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="3_5quch"]
 [ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="3_720i0"]
-[ext_resource type="Texture2D" uid="uid://c1qoy4nrg18q1" path="res://gfx/dither/bayer16tile2.png" id="4_bgojc"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="4_es7q3"]
+[ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
 [ext_resource type="Texture2D" uid="uid://cnlrjvi47hh27" path="res://gfx/Hexagon.png" id="9_1fyo0"]
 [ext_resource type="Shader" path="res://1bitdither.gdshader" id="13_mgh0l"]
@@ -41,7 +41,7 @@ shader_parameter/secondaryColor = Color(0, 0, 0, 1)
 shader_parameter/threshold = 0.5
 shader_parameter/u_dither_size = 2.0
 shader_parameter/dither_range = Vector2(0.3, 0.6)
-shader_parameter/u_dither_tex = ExtResource("4_bgojc")
+shader_parameter/u_dither_tex = ExtResource("4_xdur2")
 
 [node name="DefenseMode" type="Node3D"]
 script = ExtResource("1_4m6pl")
