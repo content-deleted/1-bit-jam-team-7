@@ -33,18 +33,19 @@ public partial class Player : Node3D
 
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+    // not needed, all sprites have this built in
+    // public override void _PhysicsProcess(double delta)
+    // {
         
-		BillBoard();
+	// 	BillBoard();
 
-    }
+    // }
 
-    public void BillBoard(){
+    // public void BillBoard(){
 
-		playerSprite.LookAt(mainCamera.Position, new Vector3(0, 1, 0));
+	// 	playerSprite.LookAt(mainCamera.Position, new Vector3(0, 1, 0));
 
-	}
+	// }
 
 	public Vector3 CameraRelativeMove(Vector3 movement){
 

@@ -26,6 +26,19 @@ public partial class DefenseMode : Node3D
 
 	}
 
+	//initializing functions
+	public void CallVariousNodes(){
+
+		playerNode = GetNode<Player>("World/PlayerNodes/Player");
+
+		towerLightNode = GetNode<TowerLight>("World/PlayerNodes/TowerLight");
+
+		mainCamera = GetNode<Camera>("MainCamera");
+
+		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
+
+	}
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
@@ -108,7 +121,7 @@ public partial class DefenseMode : Node3D
 	}
 
 
-	public void MoveTowerLight(){
+	public void MoveTowerLight() {
 
 		Vector3 from = mainCamera.ProjectRayOrigin(GetViewport().GetMousePosition());
 		Vector3 to = from + mainCamera.ProjectRayNormal(GetViewport().GetMousePosition()) * (float)towerLightNode.RayLength;
@@ -119,16 +132,12 @@ public partial class DefenseMode : Node3D
 
 		Godot.Collections.Dictionary result = spaceState.IntersectRay(query);
 
-		((Sprite3D)towerLightNode.GetChild(0)).Scale = new Vector3(towerLightNode.focalLength, towerLightNode.focalLength, towerLightNode.focalLength);
-		((Sprite3D)towerLightNode.GetChild(0)).Visible = true;
+		var light = towerLightNode.GetNode("SpotLight3D") as SpotLight3D;
+		light.SpotAngle = 23.0f * towerLightNode.focalLength;
+        light.LightEnergy = 0.5f / towerLightNode.focalLength;
 
 		if (result.Count > 0){
-
 			towerLightNode.Position = new Vector3(((Vector3)result["position"]).X, 0, ((Vector3)result["position"]).Z);
-		} else {
-
-			((Sprite3D)towerLightNode.GetChild(0)).Visible = false;
-
 		}
 	}
 
@@ -161,21 +170,6 @@ public partial class DefenseMode : Node3D
 		}
 		
 	
-	}
-
-
-//initializing functions
-
-	public void CallVariousNodes(){
-
-		playerNode = GetNode<Player>("World/PlayerNodes/Player");
-		
-		towerLightNode = GetNode<TowerLight>("World/PlayerNodes/TowerLight");
-
-		mainCamera = GetNode<Camera>("MainCamera");
-
-		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
-
 	}
 
 }
