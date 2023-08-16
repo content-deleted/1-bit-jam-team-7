@@ -96,14 +96,12 @@ public partial class DefenseMode : Node3D
 			playerNode.playerDirection.X = -1;
 			playerNode.playerSprite.FlipH = true;
 			playerNode.playerSprite.Position = new Vector3(0.005f, 0.15f, 0);
-			playerNode.lampLight.Position = new Vector3(-0.075f, 0, 0);
 
 		} else if (Input.IsActionPressed("MovePlayerRight") && !Input.IsActionPressed("MovePlayerLeft")){
 
 			playerNode.playerDirection.X = 1;
 			playerNode.playerSprite.FlipH = false;
 			playerNode.playerSprite.Position = new Vector3(-0.005f, 0.15f, 0);
-			playerNode.lampLight.Position = new Vector3(0.075f, 0, 0);
 
 		} else {
 

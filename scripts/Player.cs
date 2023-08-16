@@ -13,7 +13,6 @@ public partial class Player : Node3D
 	public Vector3 playerDirection = new Vector3(0, 0, 0);
 
 	public Sprite3D playerSprite;
-	public Sprite3D lampLight;
 	public Camera mainCamera;
 
 
@@ -22,7 +21,6 @@ public partial class Player : Node3D
 	{
 
 		playerSprite = GetNode<Sprite3D>("PlayerSprite");
-		lampLight = GetNode<Sprite3D>("LampLight");
 		mainCamera = GetNode<Camera>("//root/DefenseMode/MainCamera");
 
 	}
