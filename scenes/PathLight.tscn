@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2oxjh4rodvrx"]
+
+[ext_resource type="Texture2D" uid="uid://bgwfwyf3h3720" path="res://gfx/pathTemp.png" id="1_tsqdn"]
+
+[node name="PathLight" type="PathFollow3D"]
+
+[node name="DirectionalLight3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 0, 0, 0)
+modulate = Color(0.521569, 0.509804, 0.545098, 1)
+shaded = true
+texture = ExtResource("1_tsqdn")

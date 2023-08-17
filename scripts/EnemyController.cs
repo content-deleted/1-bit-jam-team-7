@@ -1,29 +1,50 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO;
+
 
 public partial class EnemyController : Path3D
 {	
-	Random randEnemy = new Random();
-	List<Enemy> enemies;
+
+
+
+	//visualization var
+	[Export]
+	float lightCount = 300;
+	PackedScene pathLight;
+
+
+	//enemy spawn var
+
+	public int enemyCount = 0;
+
+
 	double enemyTimer;
 	double enemyTime = 2;
 
+	DefenseMode defenseMode;
 	Base playerBase;
 	Path3D enemyPath;
 
-	PathFollow3D testEnemy;
+	PackedScene testEnemy;
+
+	List<PathFollow3D> pathLights = new List<PathFollow3D>();
+	public List<PathFollow3D> enemies = new List<PathFollow3D>();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 
-
-		enemies = new List<Enemy>(); //inherit from PathFollow3D
+		defenseMode = (DefenseMode)GetNode("/root/DefenseMode");
+		testEnemy = GD.Load<PackedScene>("res://scenes/enemies/TestEnemy.tscn");
+		pathLight = GD.Load<PackedScene>("res://scenes/PathLight.tscn");
+		
 		playerBase = (Base)GetNode("//root/DefenseMode/World/PlayerNodes/Base");
 
+		SetPathLights();
 
-		testEnemy = (PathFollow3D)this.GetChild(0);
+		//testEnemy = (PathFollow3D)this.GetChild(0);
 
 
 	}
@@ -32,78 +53,45 @@ public partial class EnemyController : Path3D
 	public override void _Process(double delta)
 	{
 
-		testEnemy.Progress += (float)delta;
 
 		if (enemyTimer > 0){
 
 			enemyTimer -= delta;
 
 		} else {
+			
+			if (defenseMode.waveCountDownTimer <= 0 && defenseMode.waveState && enemyCount > 0){
 
-			//SpawnEnemy();
-			enemyTimer = enemyTime;
+				SpawnEnemy();
+				enemyTimer = enemyTime;
 
-		}
-
-		foreach (Enemy enemy in enemies){
-
-			MoveEnemy(enemy, delta);
-
+			}
 		}
 
 	}
 
 	public void SpawnEnemy(){
 
-		GD.Print("EnemySpawned");
-
-		Enemy newEnemy = new Enemy();
-
-		Sprite3D newEnemySprite = new Sprite3D();
-		newEnemy.sprite = newEnemySprite;
-		this.AddChild(newEnemy.sprite);
-		newEnemy.sprite.Texture = (Texture2D)ResourceLoader.Load("res://gfx/Hexagon.png");
-		Area3D enemyArea = new Area3D();
-		CollisionShape2D enemyCollision = new CollisionShape2D();
-		CircleShape2D enemycircle = new CircleShape2D();
-		enemycircle.Radius = 15;
-		enemyCollision.Shape = enemycircle;
-		enemyArea.AddChild(enemyCollision);
-		enemyArea.AddToGroup("Enemy");
-		newEnemy.sprite.AddChild(enemyArea);
-		newEnemy.speed = 20;
+		var enemy = (PathFollow3D)testEnemy.Instantiate();
+		enemies.Add(enemy);
+		this.AddChild(enemy);
 		
-		newEnemySprite.Position = this.Position;
+		enemyCount--;
 
-		int quadrant = randEnemy.Next(1, 5);
+	}
 
+	public void SetPathLights(){
+
+		for (int i = 0; i < lightCount; i ++){
+
+			var lightInstance = (PathFollow3D)pathLight.Instantiate();
 		
+			pathLights.Add(lightInstance);
+			this.AddChild(lightInstance);
+			lightInstance.ProgressRatio = i / lightCount;
+			
 
-
-		enemies.Add(newEnemy);
-	}
-
-	public void MoveEnemy(Enemy enemy, double delta){
-
-	
-
-	}
-
-	public void KillEnemy(Sprite3D enemySprite){
-
-		GD.Print("Killed enemy");
-
-		enemies.Remove(enemies.Find(x => x.sprite == enemySprite));
-		enemySprite.QueueFree();
-
-	}
-
-	public class Enemy{
-
-		public Sprite3D sprite;
-		public Vector3 position;
-		public Vector3 direction;
-		public float speed;
+		}
 
 
 	}
