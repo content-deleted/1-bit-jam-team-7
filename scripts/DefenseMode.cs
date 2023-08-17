@@ -10,8 +10,24 @@ public partial class DefenseMode : Node3D
 	// wave control variables
 
 	int wave;
-	double waveTimer;
-	bool waveState;
+	int waveAmount;
+
+	double waveCountDown = 5;
+	public double waveCountDownTimer;
+
+	double waveTimer; 
+    private bool _waveState;
+	public bool waveState {
+        get { return _waveState; }
+        set { 
+            _waveState = value;
+            if(value) {
+                ShopController.Close();
+            } else {
+                ShopController.Open();
+            }
+        }
+    }
 
 	//game Node references
 
@@ -19,12 +35,14 @@ public partial class DefenseMode : Node3D
 	TowerLight towerLightNode;
 	Camera mainCamera;
 	EnemyController enemyControllerNode;
+	WorldEnvironment worldEnvironmentNode;
 	
 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+        waveState = false;
 		CallVariousNodes();
 
 	}
@@ -40,6 +58,9 @@ public partial class DefenseMode : Node3D
 		mainCamera = GetNode<Camera>("MainCamera");
 
 		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
+
+		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,13 +70,80 @@ public partial class DefenseMode : Node3D
 		MovePlayer(delta);
 		MoveTowerLight();
 
+		if(waveState){
+
+			Wave(delta);
+
+		} else if (!waveState){
+
+			Sunrise(delta);
+
+		}
+
+	}
+//wave State functions
+
+	public void StartWave(){
+
+		wave += 1;
+
+		waveCountDownTimer = waveCountDown;
+
+		enemyControllerNode.enemyCount = 5; // progression handled here later
+
+		waveState = true;	
+
 	}
 
+	public void EndWave(){
+
+		waveState = false;
+
+	}
+
+	public void Wave(double delta) {
+
+		if (waveCountDownTimer >= 0){
+			
+			Sunset(delta);
+
+		} else {
+
+			
+			if (enemyControllerNode.enemyCount == 0 && enemyControllerNode.enemies.Count == 0){
+
+				EndWave();
+
+			}
+
+
+		}
+	}
+
+	public void Sunrise(double delta){
+			
+		waveCountDownTimer += delta;
+
+		worldEnvironmentNode.Environment.AmbientLightEnergy += (float)delta;
+
+		worldEnvironmentNode.Environment.AmbientLightEnergy = Mathf.Clamp(worldEnvironmentNode.Environment.AmbientLightEnergy, 0.0f, 1f);
+
+	}
+
+	public void Sunset(double delta){
+
+		waveCountDownTimer -= delta;
+
+		worldEnvironmentNode.Environment.AmbientLightEnergy -= (float)delta;
+
+		worldEnvironmentNode.Environment.AmbientLightEnergy = Mathf.Clamp(worldEnvironmentNode.Environment.AmbientLightEnergy, 0.0f, 1f);
+
+	}
 
 
 //player Input functions
 
-	public void MovePlayer(double delta) // this goes in Process because it's delta dependent (frame indepdenent)
+	public void MovePlayer(double delta) // this goes in Process because it's delta dependent (frame independent)
 	{
 
 		playerNode.playerSpeed = playerNode.playerDefaultSpeed;
@@ -121,7 +209,6 @@ public partial class DefenseMode : Node3D
 
 	}
 
-
 	public void MoveTowerLight() {
 
 		Vector3 from = mainCamera.ProjectRayOrigin(GetViewport().GetMousePosition());
@@ -135,7 +222,7 @@ public partial class DefenseMode : Node3D
 
 		var light = towerLightNode.GetNode("SpotLight3D") as SpotLight3D;
 		light.SpotAngle = 23.0f * towerLightNode.focalLength;
-		light.LightEnergy = 0.5f / towerLightNode.focalLength;
+		light.LightEnergy = 0.75f / towerLightNode.focalLength;
 
 		if (result.Count > 0){
 			towerLightNode.Position = new Vector3(((Vector3)result["position"]).X, 0, ((Vector3)result["position"]).Z);
@@ -147,16 +234,16 @@ public partial class DefenseMode : Node3D
 		if(@event is InputEventMouseButton inputEventMouse && inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.WheelDown){
 
 			towerLightNode.focalLength -= 0.1f;
-			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.2f, 1f);
+			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 3f);
 
 
 		} else if (@event is InputEventMouseButton inputEventMouse2 && inputEventMouse2.Pressed && inputEventMouse2.ButtonIndex == MouseButton.WheelUp){
 
 			towerLightNode.focalLength += 0.1f;
-			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.2f, 1f);
+			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 3f);
 
 			
-		} else if (@event is InputEventKey inputEventKey && inputEventKey.Pressed){
+		} else if (@event is InputEventKey inputEventKey && inputEventKey.Pressed){ // single key press
 
 			if (inputEventKey.Keycode == Key.Q){
 
@@ -166,10 +253,15 @@ public partial class DefenseMode : Node3D
 
 				mainCamera.SetLook("right");
 
+			} else if (!waveState && inputEventKey.Keycode == Key.Enter){
+
+
+				StartWave();
+
 			}
 
-		}
-		
+
+		}		
 	
 	}
 

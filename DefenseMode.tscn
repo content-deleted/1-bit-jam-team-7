@@ -1,7 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=36 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
-[ext_resource type="Texture2D" uid="uid://cqei3p4t8f5lf" path="res://gfx/base.png" id="1_6jkod"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="2_0lvke"]
 [ext_resource type="Texture2D" uid="uid://1d5qyux4x7vq" path="res://gfx/player.png" id="2_k4i8a"]
@@ -13,8 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="3_c4xbn"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="4_es7q3"]
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
+[ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
-[ext_resource type="Texture2D" uid="uid://cnlrjvi47hh27" path="res://gfx/Hexagon.png" id="9_1fyo0"]
+[ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
 [ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="12_ddmq2"]
 [ext_resource type="Script" path="res://scripts/ShopItem.cs" id="13_2xch8"]
 [ext_resource type="Shader" path="res://1bitdither.gdshader" id="13_mgh0l"]
@@ -25,8 +25,8 @@
 background_mode = 1
 background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.0
-ambient_light_source = 1
-ambient_light_energy = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 1
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_blhxc"]
@@ -36,6 +36,12 @@ size = Vector3(20, 0.1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7axem"]
 size = Vector3(20, 0.1, 20)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8c5aw"]
+height = 0.3
+radius = 0.35
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wlefu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag53l"]
 bg_color = Color(0.996078, 0.996078, 0.996078, 1)
@@ -154,28 +160,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.0984263, -9)
 curve = ExtResource("3_720i0")
 script = ExtResource("8_afdgi")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="World/Level/EnemySpawn"]
-transform = Transform3D(-0.195076, 0, -0.980788, 0, 1, 0, 0.980788, 0, -0.195076, 0, 0, 0)
-
-[node name="Sprite3D" type="Sprite3D" parent="World/Level/EnemySpawn/PathFollow3D"]
-texture = ExtResource("9_1fyo0")
-
 [node name="PlayerNodes" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
 
 [node name="Base" type="Node3D" parent="World/PlayerNodes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579445, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68, 0)
 script = ExtResource("1_l6emr")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385823, -0.036046)
-omni_range = 1.496
+omni_range = 2.5
 
 [node name="TowerSprite" type="Sprite3D" parent="World/PlayerNodes/Base"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 billboard = 1
 shaded = true
 texture_filter = 0
-texture = ExtResource("1_6jkod")
+texture = ExtResource("7_hs6jn")
+
+[node name="Area3D" type="Area3D" parent="World/PlayerNodes/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.616092, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/Base/Area3D"]
+shape = SubResource("CylinderShape3D_8c5aw")
 
 [node name="TowerLight" type="Node3D" parent="World/PlayerNodes"]
 script = ExtResource("2_ty0mf")
@@ -184,14 +191,21 @@ script = ExtResource("2_ty0mf")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.80871, 0)
 light_energy = 0.5
 light_indirect_energy = 0.269
+spot_range = 5.85
 spot_angle = 13.03
+
+[node name="Area3D" type="Area3D" parent="World/PlayerNodes/TowerLight"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/TowerLight/Area3D"]
+shape = SubResource("SphereShape3D_wlefu")
 
 [node name="Player" type="Node3D" parent="World/PlayerNodes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15619, 0, 0)
 script = ExtResource("2_rhjw6")
 
 [node name="PlayerSprite" type="Sprite3D" parent="World/PlayerNodes/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.15, 0)
+billboard = 1
 texture = ExtResource("2_k4i8a")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
@@ -279,6 +293,7 @@ offset_right = 460.0
 offset_bottom = 45.0
 scale = Vector2(2.04177, 2.04177)
 theme_override_styles/panel = SubResource("StyleBoxFlat_qdecf")
+script = ExtResource("11_qa5lt")
 
 [node name="Shoplabelbg" type="Panel" parent="ViewportOverlay/HUD/ShopBorder"]
 layout_mode = 0
@@ -399,6 +414,9 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 fov = 70.0
 script = ExtResource("2_0lvke")
 
+[connection signal="area_entered" from="World/PlayerNodes/Base/Area3D" to="World/PlayerNodes/Base" method="OnArea3DEntered"]
+[connection signal="area_entered" from="World/PlayerNodes/TowerLight/Area3D" to="World/PlayerNodes/TowerLight" method="OnArea3DEntered"]
+[connection signal="area_exited" from="World/PlayerNodes/TowerLight/Area3D" to="World/PlayerNodes/TowerLight" method="OnArea3DExited"]
 [connection signal="pressed" from="ViewportOverlay/HUD/DescriptionPanel/button" to="ViewportOverlay/HUD/DescriptionPanel" method="OnButtonPressed"]
 [connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="OpenDescriptionPanel"]
 [connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="HideDescriptionPanel"]

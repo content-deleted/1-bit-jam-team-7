@@ -28,6 +28,7 @@ void fragment() {
 		ivec2 noise_size = textureSize(u_dither_tex, 0);
 		vec2 inv_noise_size = vec2(1.0 / float(noise_size.x), 1.0 / float(noise_size.y));
 		vec2 noise_uv = SCREEN_UV * inv_noise_size * vec2(float(screen_size.x), float(screen_size.y));
+		// vec2 noise_uv = inv_noise_size * vec2(float(1000), float(500)) * SCREEN_UV / 2.0;
 		vec4 dither = texture(u_dither_tex, noise_uv) * (lum > dither_range.x+(dither_range.y - dither_range.x)/ 2.0 ? 2.0 : 1.0) ;
 		
 		vec4 final = lum > dither_range.x && lum < dither_range.y ? dither : baseColor;
