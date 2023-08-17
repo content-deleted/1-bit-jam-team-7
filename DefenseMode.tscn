@@ -133,6 +133,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0984263, 0)
 [node name="Environment" type="Node3D" parent="World"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World/Environment"]
+visible = false
 physics_material_override = SubResource("PhysicsMaterial_ewno6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Environment/StaticBody3D"]
@@ -140,6 +141,7 @@ material_override = ExtResource("2_s6oau")
 
 [node name="Floor" type="StaticBody3D" parent="World/Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World/Environment"]
 environment = SubResource("Environment_401co")
@@ -148,7 +150,400 @@ camera_attributes = SubResource("CameraAttributesPractical_blhxc")
 [node name="Level" type="StaticBody3D" parent="World"]
 physics_material_override = SubResource("PhysicsMaterial_ewno6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Level"]
+[node name="FloorPlane" type="Node3D" parent="World/Level"]
+
+[node name="Quarter" type="Node3D" parent="World/Level/FloorPlane"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5, 0, -5)
+
+[node name="FloorSegment" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="Quarter2" type="Node3D" parent="World/Level/FloorPlane"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, -5)
+
+[node name="FloorSegment" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="Quarter3" type="Node3D" parent="World/Level/FloorPlane"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5, 0, 5)
+
+[node name="FloorSegment" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="Quarter4" type="Node3D" parent="World/Level/FloorPlane"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 5)
+
+[node name="FloorSegment" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
+mesh = SubResource("BoxMesh_xek2j")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("2_s6oau")
+
+[node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("2_s6oau")

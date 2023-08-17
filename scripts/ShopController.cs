@@ -9,7 +9,16 @@ public partial class ShopController : Panel
 
     public static ShopController controller;
 
-    public static bool towerPlacing = false;
+    private static bool _towerPlacing = false;
+    public static bool towerPlacing {
+        get => _towerPlacing;
+        set {
+           _towerPlacing = value;
+           if(!value && towerPlacementTest != null) {
+             towerPlacementTest.Hide();
+           }
+        }
+    }
 
     public static ShopItem.towerInfo currentTower;
 
@@ -34,9 +43,13 @@ public partial class ShopController : Panel
         if(openness < 1.0 && open) {
             openness+=(float)delta;
             updateOpening();
+            return;
         } else if(openness > 0 && !open) {
             openness-=(float)delta;
             updateOpening();
+            // not sure why we need to do this probably UI input
+            if(towerPlacing) towerPlacing = false;
+            return;
         } else if(!open) {
             Hide();
         }
@@ -57,8 +70,13 @@ public partial class ShopController : Panel
 
 	public override void _Input(InputEvent @event){
         if(towerPlacing && towerPlacementTest.Visible) {
-            if(@event is InputEventMouseButton inputEventMouse && inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left){
-                TowerController.TryPlaceTower(currentTower, towerPlacementTest.GlobalPosition);
+            if(@event is InputEventMouseButton inputEventMouse && inputEventMouse.Pressed) {
+                if(inputEventMouse.ButtonIndex == MouseButton.Left){
+                    TowerController.TryPlaceTower(currentTower, towerPlacementTest.GlobalPosition);
+                }
+                if(inputEventMouse.ButtonIndex == MouseButton.Right){
+                    towerPlacing = false;
+                }
             }
         }
     }
@@ -74,6 +92,6 @@ public partial class ShopController : Panel
 
     public static void Close() {
         controller.open = false;
-        controller.Show();
+        towerPlacing = false;
     }
 }

@@ -22,8 +22,8 @@ public partial class DefenseMode : Node3D
 		set { 
 			_waveState = value;
 			if(value) {
-				ShopController.Close();
 				towerLightNode.Show();
+                ShopController.Close();
 			} else {
 				ShopController.Open();
 				towerLightNode.Hide();
@@ -83,7 +83,7 @@ public partial class DefenseMode : Node3D
 	public static bool mouseOnField = false;
 
 	// TODO: just get y plane intersection, no need for ray casting
-	public void UpdateMouseFieldPos() {
+	public void UpdateMouseFieldPos_old() {
 		Vector3 from = mainCamera.ProjectRayOrigin(GetViewport().GetMousePosition());
 		Vector3 to = from + mainCamera.ProjectRayNormal(GetViewport().GetMousePosition()) * (float)towerLightNode.RayLength;
 
@@ -99,6 +99,25 @@ public partial class DefenseMode : Node3D
 		} else {
 			mouseOnField = false;
 		}
+	}
+
+	public void UpdateMouseFieldPos() {
+		var plane = new Plane(Vector3.Up);
+		Vector3 from = mainCamera.ProjectRayOrigin(GetViewport().GetMousePosition());
+		Vector3 to = mainCamera.ProjectRayNormal(GetViewport().GetMousePosition());
+
+		var pos = plane.IntersectsRay(from, to);
+
+		if (pos != null) {
+			var vec = (Vector3)pos;
+			if(Math.Abs(vec.X) < 9.5 && Math.Abs(vec.Z) < 9.5) {
+				mouseFieldPos = (Vector3)pos;
+				mouseOnField = true;
+                return;
+			}
+		} 
+
+		mouseOnField = false;
 	}
 
 	#region Wave State Functions
