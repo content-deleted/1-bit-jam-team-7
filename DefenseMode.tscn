@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=38 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
 [ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="12_ddmq2"]
+[ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="12_ff2pb"]
 [ext_resource type="Script" path="res://scripts/ShopItem.cs" id="13_2xch8"]
 [ext_resource type="Shader" path="res://1bitdither.gdshader" id="13_mgh0l"]
 
@@ -630,7 +631,7 @@ offset_left = 113.0
 offset_top = 69.0
 offset_right = 233.0
 offset_bottom = 219.0
-scale = Vector2(1.26973, 1.42437)
+scale = Vector2(1.45883, 1.63651)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ag53l")
 script = ExtResource("12_ddmq2")
 
@@ -651,14 +652,17 @@ text = " Buy "
 
 [node name="title" type="Label" parent="ViewportOverlay/HUD/DescriptionPanel"]
 layout_mode = 0
-offset_left = 9.05067
-offset_top = 0.672329
-offset_right = 206.051
-offset_bottom = 48.6723
-scale = Vector2(0.504052, 0.504052)
+offset_left = 3.4274
+offset_top = 5.49952
+offset_right = 339.427
+offset_bottom = 56.4995
+scale = Vector2(0.34135, 0.34135)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 60
 text = "Tower Name"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="divider" type="Panel" parent="ViewportOverlay/HUD/DescriptionPanel"]
 layout_mode = 0
@@ -671,13 +675,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_50hdl")
 
 [node name="body" type="Label" parent="ViewportOverlay/HUD/DescriptionPanel"]
 layout_mode = 0
-offset_left = 2.2627
-offset_top = 30.2549
-offset_right = 402.263
-offset_bottom = 606.255
-scale = Vector2(0.28644, 0.28644)
+offset_left = -0.685486
+offset_top = 29.9418
+offset_right = 499.315
+offset_bottom = 529.942
+scale = Vector2(0.242506, 0.242506)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 40
 text = "This is a tower yeayay I love towers fuck yeah fuck yeah hehahhahah
 
 yeah and heres some more stuff yeah"
@@ -706,13 +714,14 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_2u6vo")
 
 [node name="Shoplabel" type="Label" parent="ViewportOverlay/HUD/ShopBorder/Shoplabelbg"]
 layout_mode = 0
-offset_left = 5.57849
-offset_top = 1.95295
-offset_right = 83.5785
-offset_bottom = 49.9529
-scale = Vector2(0.390404, 0.702875)
+offset_left = 1.80148
+offset_top = 9.34439
+offset_right = 79.8015
+offset_bottom = 57.3443
+scale = Vector2(0.154014, 0.277284)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 100
 text = "Shop"
 
 [node name="ShopItem" type="Button" parent="ViewportOverlay/HUD/ShopBorder"]
@@ -790,6 +799,68 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "30G"
 horizontal_alignment = 1
+
+[node name="Info" type="Control" parent="ViewportOverlay/HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="goldlabel" type="Label" parent="ViewportOverlay/HUD/Info"]
+offset_left = 930.0
+offset_top = 5.0
+offset_right = 1064.0
+offset_bottom = 91.0
+scale = Vector2(0.452271, 0.452271)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 60
+text = "GOLD"
+horizontal_alignment = 2
+
+[node name="gold" type="Label" parent="ViewportOverlay/HUD/Info"]
+layout_mode = 0
+offset_left = 908.0
+offset_top = 29.0
+offset_right = 1123.0
+offset_bottom = 115.0
+scale = Vector2(0.389911, 0.389911)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 60
+text = "32G"
+horizontal_alignment = 2
+
+[node name="scorelabel" type="Label" parent="ViewportOverlay/HUD/Info"]
+offset_left = 916.0
+offset_top = 51.0
+offset_right = 1083.0
+offset_bottom = 137.0
+scale = Vector2(0.452271, 0.452271)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 60
+text = "SCORE"
+horizontal_alignment = 2
+
+[node name="score" type="Label" parent="ViewportOverlay/HUD/Info"]
+offset_left = 908.0
+offset_top = 77.0
+offset_right = 1123.0
+offset_bottom = 163.0
+scale = Vector2(0.389911, 0.389911)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 60
+text = "32"
+horizontal_alignment = 2
 
 [node name="ColorRect" type="ColorRect" parent="ViewportOverlay"]
 z_index = 10

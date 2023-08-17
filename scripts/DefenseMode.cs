@@ -17,6 +17,17 @@ public partial class DefenseMode : Node3D
 
 	double waveTimer; 
 	private bool _waveState;
+
+    private static int _score;
+    public static int score {
+        get=> _score;
+        set {
+            _score = value;
+            scoreLabel.Text = value.ToString();
+        }
+    }
+    public static Label scoreLabel;
+
 	public bool waveState {
 		get { return _waveState; }
 		set { 
@@ -46,6 +57,7 @@ public partial class DefenseMode : Node3D
 	{
 		CallVariousNodes();
 		waveState = false;
+        score = 0;
 	}
 
 	//initializing functions
@@ -62,6 +74,7 @@ public partial class DefenseMode : Node3D
 
 		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
 
+        scoreLabel = GetNode<Label>("ViewportOverlay/HUD/Info/score");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

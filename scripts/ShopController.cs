@@ -9,6 +9,15 @@ public partial class ShopController : Panel
 
     float offscreenDistance = 100;
 
+    private static int _gold;
+    public static int gold {
+        get => _gold;
+        set {
+            _gold = value;
+            controller.goldLabel.Text = _gold+"G";
+        }
+    }
+
     public static ShopController controller;
 
     private static bool _towerPlacing = false;
@@ -26,6 +35,8 @@ public partial class ShopController : Panel
 
     public static Tower towerPlacementTest;
 
+    public Label goldLabel;
+
 	public override void _Ready()
 	{
         if(controller != null) {
@@ -36,6 +47,10 @@ public partial class ShopController : Panel
 
         origin = GlobalPosition;
         GlobalPosition -= new Vector2(0, offscreenDistance);
+
+        goldLabel = GetParent().GetNode("Info/gold") as Label;
+        // TODO: REMOVE DEBUG
+        gold = 999;
 	}
     
     float openness = 0;
@@ -72,7 +87,10 @@ public partial class ShopController : Panel
         if(@event is InputEventMouseButton inputEventMouse && inputEventMouse.Pressed) {
             if(towerPlacing && towerPlacementTest.Visible) {
                 if(inputEventMouse.ButtonIndex == MouseButton.Left){
-                    TowerController.TryPlaceTower(currentTower, towerPlacementTest.GlobalPosition);
+                    if(currentTower.cost < gold) {
+                        TowerController.PlaceTower(currentTower, towerPlacementTest.GlobalPosition);
+                        gold-= currentTower.cost;
+                    }
                 }
                 if(inputEventMouse.ButtonIndex == MouseButton.Right){
                     towerPlacing = false;
@@ -83,7 +101,13 @@ public partial class ShopController : Panel
                     var tower = areas.Select(a => a.GetParentOrNull<Tower>()).Where(t => t != null).FirstOrDefault();
                     if(tower != null) {
                         CurrentlyViewingTower = tower;
-                        DescriptionPanel.ShowPanel(GetViewport().GetMousePosition(), tower.info.name, "Placeholder, put stats here", true, " Sell ", SellCurrentlyViewingTower);
+                        var mousePos = GetViewport().GetMousePosition();
+                        var screenSize = GetViewport().GetVisibleRect().Size;
+                        var relative = mousePos / screenSize;
+                        if(relative.Y > 0.5) {
+                            mousePos.Y -= screenSize.Y / 2.25f;
+                        }
+                        DescriptionPanel.ShowPanel(mousePos, tower.info.name, "Placeholder, put stats here", true, " Sell ", SellCurrentlyViewingTower);
                     }
                 }
             }
@@ -93,6 +117,7 @@ public partial class ShopController : Panel
     public Tower CurrentlyViewingTower;
 
     public void SellCurrentlyViewingTower() {
+        gold += (int)Math.Floor(CurrentlyViewingTower.info.cost * 0.8f);
         CurrentlyViewingTower.QueueFree();
         DescriptionPanel.HidePanel();
     }

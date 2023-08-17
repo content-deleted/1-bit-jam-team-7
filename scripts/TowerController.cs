@@ -22,7 +22,7 @@ public partial class TowerController : Node3D
         
 	}
 
-    public static void TryPlaceTower(ShopItem.towerInfo tower, Vector3 pos) {
+    public static void PlaceTower(ShopItem.towerInfo tower, Vector3 pos) {
         var tow = tower.prefab.Instantiate() as Tower;
         tow.info = tower;
         controller.AddChild(tow);
