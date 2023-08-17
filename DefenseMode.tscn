@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=34 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Texture2D" uid="uid://cqei3p4t8f5lf" path="res://gfx/base.png" id="1_6jkod"]
@@ -10,10 +10,13 @@
 [ext_resource type="Script" path="res://scripts/TowerLight.cs" id="2_ty0mf"]
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="3_5quch"]
 [ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="3_720i0"]
+[ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="3_c4xbn"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="4_es7q3"]
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
 [ext_resource type="Texture2D" uid="uid://cnlrjvi47hh27" path="res://gfx/Hexagon.png" id="9_1fyo0"]
+[ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="12_ddmq2"]
+[ext_resource type="Script" path="res://scripts/ShopItem.cs" id="13_2xch8"]
 [ext_resource type="Shader" path="res://1bitdither.gdshader" id="13_mgh0l"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
@@ -33,6 +36,77 @@ size = Vector3(20, 0.1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7axem"]
 size = Vector3(20, 0.1, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag53l"]
+bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.310617, 0.310617, 0.310617, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02sjn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.481789, 0.48179, 0.481789, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy53r"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50hdl"]
+bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdecf"]
+bg_color = Color(0.581033, 0.581033, 0.581033, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 200.0
+expand_margin_right = 200.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2u6vo"]
+texture = ExtResource("3_c4xbn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jo2"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6wyq"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wa0f5"]
+bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3oht"]
 shader = ExtResource("13_mgh0l")
@@ -126,21 +200,205 @@ omni_range = 0.818
 [node name="ViewportOverlay" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="ViewportOverlay"]
+[node name="HUD" type="Control" parent="ViewportOverlay"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 44.0
+offset_bottom = 39.0
+
+[node name="DescriptionPanel" type="Panel" parent="ViewportOverlay/HUD"]
 visible = false
-position = Vector2(337.968, 221.45)
-texture = ExtResource("4_es7q3")
+z_index = 1
+layout_mode = 0
+offset_left = 113.0
+offset_top = 69.0
+offset_right = 233.0
+offset_bottom = 219.0
+scale = Vector2(1.26973, 1.42437)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ag53l")
+script = ExtResource("12_ddmq2")
+
+[node name="button" type="Button" parent="ViewportOverlay/HUD/DescriptionPanel"]
+visible = false
+layout_mode = 0
+offset_left = 40.7278
+offset_top = 115.641
+offset_right = 74.7278
+offset_bottom = 146.641
+scale = Vector2(0.552121, 0.552121)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_02sjn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
+button_mask = 7
+text = " Buy "
+
+[node name="title" type="Label" parent="ViewportOverlay/HUD/DescriptionPanel"]
+layout_mode = 0
+offset_left = 9.05067
+offset_top = 0.672329
+offset_right = 206.051
+offset_bottom = 48.6723
+scale = Vector2(0.504052, 0.504052)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Tower Name"
+
+[node name="divider" type="Panel" parent="ViewportOverlay/HUD/DescriptionPanel"]
+layout_mode = 0
+offset_left = 19.6097
+offset_top = 24.204
+offset_right = 59.6097
+offset_bottom = 39.204
+scale = Vector2(1.92978, 0.142586)
+theme_override_styles/panel = SubResource("StyleBoxFlat_50hdl")
+
+[node name="body" type="Label" parent="ViewportOverlay/HUD/DescriptionPanel"]
+layout_mode = 0
+offset_left = 2.2627
+offset_top = 30.2549
+offset_right = 402.263
+offset_bottom = 606.255
+scale = Vector2(0.28644, 0.28644)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "This is a tower yeayay I love towers fuck yeah fuck yeah hehahhahah
+
+yeah and heres some more stuff yeah"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ShopBorder" type="Panel" parent="ViewportOverlay/HUD"]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 5.0
+offset_right = 460.0
+offset_bottom = 45.0
+scale = Vector2(2.04177, 2.04177)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qdecf")
+
+[node name="Shoplabelbg" type="Panel" parent="ViewportOverlay/HUD/ShopBorder"]
+layout_mode = 0
+offset_left = -201.296
+offset_top = 22.5295
+offset_right = -161.296
+offset_bottom = 62.5295
+rotation = -0.56314
+scale = Vector2(1.10391, 0.573317)
+theme_override_styles/panel = SubResource("StyleBoxTexture_2u6vo")
+
+[node name="Shoplabel" type="Label" parent="ViewportOverlay/HUD/ShopBorder/Shoplabelbg"]
+layout_mode = 0
+offset_left = 5.57849
+offset_top = 1.95295
+offset_right = 83.5785
+offset_bottom = 49.9529
+scale = Vector2(0.390404, 0.702875)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Shop"
+
+[node name="ShopItem" type="Button" parent="ViewportOverlay/HUD/ShopBorder"]
+layout_mode = 0
+offset_left = -152.809
+offset_top = 4.40794
+offset_right = -121.809
+offset_bottom = 35.4079
+scale = Vector2(0.963744, 0.963744)
+theme_override_styles/normal = SubResource("StyleBoxFlat_x6jo2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+script = ExtResource("13_2xch8")
+
+[node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/ShopItem"]
+layout_mode = 0
+offset_left = 4.57379
+offset_top = 24.9016
+offset_right = 44.5738
+offset_bottom = 39.9016
+scale = Vector2(0.70392, 0.70392)
+theme_override_styles/panel = SubResource("StyleBoxFlat_j6wyq")
+
+[node name="pricelabel" type="Label" parent="ViewportOverlay/HUD/ShopBorder/ShopItem/Panel"]
+layout_mode = 0
+offset_left = 4.96227
+offset_top = -1.24057
+offset_right = 82.9623
+offset_bottom = 46.7594
+scale = Vector2(0.373452, 0.373452)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "30G"
+horizontal_alignment = 1
+
+[node name="PlaceholderItem" type="Panel" parent="ViewportOverlay/HUD/ShopBorder"]
+layout_mode = 0
+offset_left = -118.525
+offset_top = 4.40794
+offset_right = -78.5247
+offset_bottom = 44.4079
+scale = Vector2(0.649377, 0.728467)
+theme_override_styles/panel = SubResource("StyleBoxFlat_wa0f5")
+
+[node name="InnerPlaceholder" type="Label" parent="ViewportOverlay/HUD/ShopBorder/PlaceholderItem"]
+layout_mode = 0
+offset_left = 11.7924
+offset_top = -8.10072
+offset_right = 89.7924
+offset_bottom = 39.8993
+scale = Vector2(1.21346, 1.21346)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "?"
+
+[node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/PlaceholderItem"]
+visible = false
+layout_mode = 0
+offset_left = 4.70932
+offset_top = 29.3863
+offset_right = 44.7093
+offset_bottom = 44.3863
+theme_override_styles/panel = SubResource("StyleBoxFlat_ag53l")
+
+[node name="pricelabel" type="Label" parent="ViewportOverlay/HUD/ShopBorder/PlaceholderItem"]
+visible = false
+layout_mode = 0
+offset_left = 10.9884
+offset_top = 27.9869
+offset_right = 88.9884
+offset_bottom = 75.9869
+scale = Vector2(0.373452, 0.373452)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "30G"
+horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="ViewportOverlay"]
+z_index = 10
 material = SubResource("ShaderMaterial_t3oht")
 offset_left = -3.0
-offset_top = 4.0
+offset_top = -3.0
 offset_right = 1149.0
-offset_bottom = 652.0
+offset_bottom = 645.0
 scale = Vector2(2.2482, 2.2482)
+mouse_filter = 2
 script = ExtResource("3_5quch")
+
+[node name="DITHERTESTSPRITE_IGNORE" type="Sprite2D" parent="ViewportOverlay/ColorRect"]
+visible = false
+position = Vector2(151.663, 99.8354)
+scale = Vector2(0.4448, 0.4448)
+texture = ExtResource("4_es7q3")
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 5)
 fov = 70.0
 script = ExtResource("2_0lvke")
+
+[connection signal="pressed" from="ViewportOverlay/HUD/DescriptionPanel/button" to="ViewportOverlay/HUD/DescriptionPanel" method="OnButtonPressed"]
+[connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="OpenDescriptionPanel"]
+[connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="HideDescriptionPanel"]

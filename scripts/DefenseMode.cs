@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Linq;
+
 
 public partial class DefenseMode : Node3D
 {
@@ -27,6 +30,7 @@ public partial class DefenseMode : Node3D
 	}
 
 	//initializing functions
+
 	public void CallVariousNodes(){
 
 		playerNode = GetNode<Player>("World/PlayerNodes/Player");
@@ -36,7 +40,6 @@ public partial class DefenseMode : Node3D
 		mainCamera = GetNode<Camera>("MainCamera");
 
 		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -132,7 +135,7 @@ public partial class DefenseMode : Node3D
 
 		var light = towerLightNode.GetNode("SpotLight3D") as SpotLight3D;
 		light.SpotAngle = 23.0f * towerLightNode.focalLength;
-        light.LightEnergy = 0.5f / towerLightNode.focalLength;
+		light.LightEnergy = 0.5f / towerLightNode.focalLength;
 
 		if (result.Count > 0){
 			towerLightNode.Position = new Vector3(((Vector3)result["position"]).X, 0, ((Vector3)result["position"]).Z);
