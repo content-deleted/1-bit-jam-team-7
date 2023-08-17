@@ -9,6 +9,7 @@ public partial class Tower : Node3D
 
 	public int maxHealth;
 	public int currentHealth;
+    public ShopItem.towerInfo info;
 	public override void _Ready()
 	{
 		light = GetNode("light") as OmniLight3D;

@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class ShopController : Panel
 {
@@ -54,31 +56,45 @@ public partial class ShopController : Panel
             Hide();
         }
 
-         if(towerPlacing) {
-            if(DefenseMode.mouseOnField) {
-                towerPlacementTest.GlobalPosition = DefenseMode.mouseFieldPos;
-                if(!towerPlacementTest.hitbox.HasOverlappingAreas()) {
-                    towerPlacementTest.Show();
-                } else {
-                    towerPlacementTest.Hide();
-                }
+        if(towerPlacementTest != null && DefenseMode.mouseOnField) {
+            towerPlacementTest.GlobalPosition = DefenseMode.mouseFieldPos;
+        }
+        if(towerPlacing) {
+            if(DefenseMode.mouseOnField && !towerPlacementTest.hitbox.HasOverlappingAreas()) {
+                towerPlacementTest.Show();
             } else {
                 towerPlacementTest.Hide();
             }
-         }
+        }
 	}
 
 	public override void _Input(InputEvent @event){
-        if(towerPlacing && towerPlacementTest.Visible) {
-            if(@event is InputEventMouseButton inputEventMouse && inputEventMouse.Pressed) {
+        if(@event is InputEventMouseButton inputEventMouse && inputEventMouse.Pressed) {
+            if(towerPlacing && towerPlacementTest.Visible) {
                 if(inputEventMouse.ButtonIndex == MouseButton.Left){
                     TowerController.TryPlaceTower(currentTower, towerPlacementTest.GlobalPosition);
                 }
                 if(inputEventMouse.ButtonIndex == MouseButton.Right){
                     towerPlacing = false;
                 }
+            } else {
+                if(towerPlacementTest != null && inputEventMouse.ButtonIndex == MouseButton.Left) {
+                    var areas = towerPlacementTest.hitbox.GetOverlappingAreas();
+                    var tower = areas.Select(a => a.GetParentOrNull<Tower>()).Where(t => t != null).FirstOrDefault();
+                    if(tower != null) {
+                        CurrentlyViewingTower = tower;
+                        DescriptionPanel.ShowPanel(GetViewport().GetMousePosition(), tower.info.name, "Placeholder, put stats here", true, " Sell ", SellCurrentlyViewingTower);
+                    }
+                }
             }
         }
+    }
+
+    public Tower CurrentlyViewingTower;
+
+    public void SellCurrentlyViewingTower() {
+        CurrentlyViewingTower.QueueFree();
+        DescriptionPanel.HidePanel();
     }
 
     public void updateOpening() {
