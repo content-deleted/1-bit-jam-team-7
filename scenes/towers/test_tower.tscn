@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjv3wb6518j1m"]
+
+[ext_resource type="Script" path="res://scripts/Tower.cs" id="1_7tlct"]
+[ext_resource type="Texture2D" uid="uid://boxeq7scrfbjr" path="res://scripts/towerbig.png" id="2_b7v5i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bnnqh"]
+radius = 0.2
+
+[node name="TestTower" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05543, 0, 0)
+script = ExtResource("1_7tlct")
+
+[node name="sprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.369384, 0)
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = ExtResource("2_b7v5i")
+
+[node name="hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("SphereShape3D_bnnqh")
+
+[node name="light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457398, 0)
+omni_range = 0.818

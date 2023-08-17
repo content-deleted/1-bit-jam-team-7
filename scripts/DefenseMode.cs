@@ -16,18 +16,20 @@ public partial class DefenseMode : Node3D
 	public double waveCountDownTimer;
 
 	double waveTimer; 
-    private bool _waveState;
+	private bool _waveState;
 	public bool waveState {
-        get { return _waveState; }
-        set { 
-            _waveState = value;
-            if(value) {
-                ShopController.Close();
-            } else {
-                ShopController.Open();
-            }
-        }
-    }
+		get { return _waveState; }
+		set { 
+			_waveState = value;
+			if(value) {
+				ShopController.Close();
+				towerLightNode.Show();
+			} else {
+				ShopController.Open();
+				towerLightNode.Hide();
+			}
+		}
+	}
 
 	//game Node references
 
@@ -42,9 +44,8 @@ public partial class DefenseMode : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        waveState = false;
 		CallVariousNodes();
-
+		waveState = false;
 	}
 
 	//initializing functions
@@ -66,22 +67,41 @@ public partial class DefenseMode : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-
+		UpdateMouseFieldPos();
 		MovePlayer(delta);
-		MoveTowerLight();
 
 		if(waveState){
-
+			MoveTowerLight();
 			Wave(delta);
-
 		} else if (!waveState){
-
 			Sunrise(delta);
-
 		}
-
 	}
-//wave State functions
+
+	public static Vector3 mouseFieldPos = new Vector3();
+
+	public static bool mouseOnField = false;
+
+	// TODO: just get y plane intersection, no need for ray casting
+	public void UpdateMouseFieldPos() {
+		Vector3 from = mainCamera.ProjectRayOrigin(GetViewport().GetMousePosition());
+		Vector3 to = from + mainCamera.ProjectRayNormal(GetViewport().GetMousePosition()) * (float)towerLightNode.RayLength;
+
+		PhysicsDirectSpaceState3D spaceState = GetWorld3D().DirectSpaceState;
+
+		PhysicsRayQueryParameters3D query = PhysicsRayQueryParameters3D.Create(from, to);
+
+		Godot.Collections.Dictionary result = spaceState.IntersectRay(query);
+
+		if (result.Count > 0) {
+			mouseFieldPos = new Vector3(((Vector3)result["position"]).X, 0, ((Vector3)result["position"]).Z); 
+			mouseOnField = true;
+		} else {
+			mouseOnField = false;
+		}
+	}
+
+	#region Wave State Functions
 
 	public void StartWave(){
 
@@ -140,8 +160,9 @@ public partial class DefenseMode : Node3D
 
 	}
 
+	#endregion
 
-//player Input functions
+	#region Player Input Functions
 
 	public void MovePlayer(double delta) // this goes in Process because it's delta dependent (frame independent)
 	{
@@ -210,22 +231,14 @@ public partial class DefenseMode : Node3D
 	}
 
 	public void MoveTowerLight() {
-
-		Vector3 from = mainCamera.ProjectRayOrigin(GetViewport().GetMousePosition());
-		Vector3 to = from + mainCamera.ProjectRayNormal(GetViewport().GetMousePosition()) * (float)towerLightNode.RayLength;
-
-		PhysicsDirectSpaceState3D spaceState = GetWorld3D().DirectSpaceState;
-
-		PhysicsRayQueryParameters3D query = PhysicsRayQueryParameters3D.Create(from, to);
-
-		Godot.Collections.Dictionary result = spaceState.IntersectRay(query);
-
 		var light = towerLightNode.GetNode("SpotLight3D") as SpotLight3D;
 		light.SpotAngle = 23.0f * towerLightNode.focalLength;
 		light.LightEnergy = 0.75f / towerLightNode.focalLength;
-
-		if (result.Count > 0){
-			towerLightNode.Position = new Vector3(((Vector3)result["position"]).X, 0, ((Vector3)result["position"]).Z);
+		towerLightNode.Position = mouseFieldPos;
+		if(mouseOnField) {
+			towerLightNode.Show();
+		} else {
+			towerLightNode.Hide();
 		}
 	}
 
@@ -264,5 +277,6 @@ public partial class DefenseMode : Node3D
 		}		
 	
 	}
+	#endregion
 
 }

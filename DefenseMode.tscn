@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=37 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
+[ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
 [ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="12_ddmq2"]
 [ext_resource type="Script" path="res://scripts/ShopItem.cs" id="13_2xch8"]
@@ -210,6 +211,9 @@ texture = ExtResource("2_k4i8a")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
 omni_range = 0.818
+
+[node name="TowerController" type="Node3D" parent="World"]
+script = ExtResource("10_tyw5t")
 
 [node name="ViewportOverlay" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -420,3 +424,4 @@ script = ExtResource("2_0lvke")
 [connection signal="pressed" from="ViewportOverlay/HUD/DescriptionPanel/button" to="ViewportOverlay/HUD/DescriptionPanel" method="OnButtonPressed"]
 [connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="OpenDescriptionPanel"]
 [connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="HideDescriptionPanel"]
+[connection signal="pressed" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="SelectTower"]
