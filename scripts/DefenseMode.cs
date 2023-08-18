@@ -41,17 +41,17 @@ public partial class DefenseMode : Node3D
 		set { 
 			_waveState = value;
 			if(value) {
-                onWaveStartEventHandler?.Invoke();
 				towerLightNode.Show();
 				ShopController.Close();
                 DescriptionPanel.HidePanel();
                 StartRoundButton.Hide();
+                onWaveStartEventHandler?.Invoke();
 			} else {
-                onWaveEndEventHandler?.Invoke();
 				ShopController.Open();
 				towerLightNode.Hide();
                 DescriptionPanel.HidePanel();
                 StartRoundButton.Show();
+                onWaveEndEventHandler?.Invoke();
 			}
 		}
 	}
@@ -111,7 +111,6 @@ public partial class DefenseMode : Node3D
 
 	public static bool mouseOnField = false;
 
-	// TODO: just get y plane intersection, no need for ray casting
 	public void UpdateMouseFieldPos_old() {
 		Vector3 from = mainCamera.ProjectRayOrigin(GetViewport().GetMousePosition());
 		Vector3 to = from + mainCamera.ProjectRayNormal(GetViewport().GetMousePosition()) * (float)towerLightNode.RayLength;

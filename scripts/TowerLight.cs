@@ -70,6 +70,7 @@ public partial class TowerLight : Node3D
 					continue;
 
 				}
+                GD.Print("Test");
 
 				Enemy enemy = (Enemy)enemyArea.GetParent();
 

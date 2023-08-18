@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=63 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -33,7 +33,8 @@
 [ext_resource type="Resource" uid="uid://bt0yks33fsv3n" path="res://dialogue/TowerDialogue.tres" id="23_ynq8v"]
 [ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/LineProviders/TextLineProvider.cs" id="24_g6cjt"]
 [ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/InMemoryVariableStorage.cs" id="25_pg5xe"]
-[ext_resource type="PackedScene" uid="uid://b230rcu43va40" path="res://addons/YarnSpinner-Godot/Prefabs/OptionListView.tscn" id="29_dvxm6"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/OptionListView.cs" id="29_dnlj0"]
+[ext_resource type="PackedScene" uid="uid://bkgjbmr4jpndd" path="res://addons/YarnSpinner-Godot/Prefabs/OptionView.tscn" id="30_x6m7g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
 
@@ -156,6 +157,17 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xawdr"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f18ee"]
 content_margin_left = 32.0
 content_margin_top = 32.0
 content_margin_right = 32.0
@@ -678,6 +690,7 @@ spot_angle = 13.03
 
 [node name="Area3D" type="Area3D" parent="World/PlayerNodes/TowerLight" groups=["powerSource"]]
 collision_layer = 513
+collision_mask = 3
 metadata/Power = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/TowerLight/Area3D"]
@@ -1059,7 +1072,6 @@ text = "32"
 horizontal_alignment = 2
 
 [node name="DialogueRunner" type="Control" parent="ViewportOverlay/HUD" node_paths=PackedStringArray("_variableStorage", "lineProvider")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1169,12 +1181,49 @@ theme_override_font_sizes/font_size = 40
 text = "continue"
 icon_alignment = 1
 
-[node name="OptionListView" parent="ViewportOverlay/HUD/DialogueRunner" instance=ExtResource("29_dvxm6")]
+[node name="OptionListView" type="Control" parent="ViewportOverlay/HUD/DialogueRunner" node_paths=PackedStringArray("optionGroup", "lastLineText")]
 layout_mode = 1
-offset_left = 376.0
-offset_top = 416.0
-offset_right = 376.0
-offset_bottom = 416.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 358.0
+offset_top = 602.0
+offset_right = 358.0
+offset_bottom = 602.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("29_dnlj0")
+optionGroup = NodePath("Background/VBoxContainer")
+optionViewPrefab = ExtResource("30_x6m7g")
+lastLineText = NodePath("Background/VBoxContainer/Line Text")
+
+[node name="Background" type="PanelContainer" parent="ViewportOverlay/HUD/DialogueRunner/OptionListView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.975
+anchor_right = 0.95
+anchor_bottom = 0.975
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f18ee")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ViewportOverlay/HUD/DialogueRunner/OptionListView/Background"]
+layout_mode = 2
+
+[node name="Line Text" type="RichTextLabel" parent="ViewportOverlay/HUD/DialogueRunner/OptionListView/Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+theme_override_font_sizes/italics_font_size = 36
+theme_override_font_sizes/bold_italics_font_size = 36
+theme_override_font_sizes/mono_font_size = 36
+bbcode_enabled = true
+text = "[center]Here's a big long line of dialogue, ready to be shown to the player.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
 
 [node name="StartRoundButton" type="Button" parent="ViewportOverlay/HUD"]
 layout_mode = 0
