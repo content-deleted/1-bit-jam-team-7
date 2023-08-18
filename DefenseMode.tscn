@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
 [ext_resource type="Texture2D" uid="uid://cxyp0dm0lh3g2" path="res://gfx/Alic_neutral_sprite.png" id="10_2beq3"]
 [ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
+[ext_resource type="Texture2D" uid="uid://c63jq3mvt3mac" path="res://gfx/Alic_blink2_sprite.png" id="11_c58m1"]
 [ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="11_gnr4i"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
 [ext_resource type="Texture2D" uid="uid://bwd2uvmgbehhf" path="res://gfx/shit_wrench.png" id="11_sppul"]
@@ -80,6 +81,56 @@ radius = 13.572
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_obv64"]
 radius = 9.651
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xva0v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2beq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_c58m1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag53l"]
 bg_color = Color(0.996078, 0.996078, 0.996078, 1)
@@ -717,11 +768,13 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/Player/TowerInteractionRange"]
 shape = SubResource("SphereShape3D_obv64")
 
-[node name="PlayerSprite" type="Sprite3D" parent="World/PlayerNodes/Player"]
-transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0.247006, 0)
+[node name="PlayerSprite" type="AnimatedSprite3D" parent="World/PlayerNodes/Player"]
+transform = Transform3D(-0.25, 0, 0, 0, -0.25, 0, 0, 0, -0.25, 0, 0.287402, 0)
 billboard = 1
 texture_filter = 0
-texture = ExtResource("10_2beq3")
+sprite_frames = SubResource("SpriteFrames_xva0v")
+animation = &"idle"
+frame_progress = 0.479726
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
 omni_range = 1.0
