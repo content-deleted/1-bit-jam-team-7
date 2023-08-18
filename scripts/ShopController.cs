@@ -100,7 +100,7 @@ public partial class ShopController : Panel
                 if(inputEventMouse.ButtonIndex == MouseButton.Right){
                     towerPlacing = false;
                 }
-            } else {
+            } else if(!towerPlacing)  {
                 if(towerPlacementTest != null && inputEventMouse.ButtonIndex == MouseButton.Left) {
                     var areas = towerPlacementTest.hitbox.GetOverlappingAreas();
                     var tower = areas.Select(a => a.GetParentOrNull<Tower>()).Where(t => t != null).FirstOrDefault();
@@ -109,10 +109,10 @@ public partial class ShopController : Panel
                         var mousePos = GetViewport().GetMousePosition();
                         var screenSize = GetViewport().GetVisibleRect().Size;
                         var relative = mousePos / screenSize;
-                        if(relative.Y > 0.5) {
-                            mousePos.Y -= screenSize.Y / 2.25f;
+                        if(relative.Y > 0.7) {
+                            mousePos.Y -= screenSize.Y / 10f;
                         }
-                        DescriptionPanel.ShowPanel(mousePos, tower.info.name, "Placeholder, put stats here", true, " Sell ", SellCurrentlyViewingTower);
+                        DescriptionPanel.ShowPanel(mousePos, tower.info.name, $"Power: {tower.GetTotalPower()}", true, " Sell ", SellCurrentlyViewingTower);
                     }
                 }
             }

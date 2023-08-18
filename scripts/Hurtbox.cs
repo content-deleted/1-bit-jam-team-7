@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Hurtbox : Area3D
 {
@@ -10,4 +12,10 @@ public partial class Hurtbox : Area3D
 	{
 		EmitSignal(SignalName.OnDamageTaken, amount);
 	}
+
+    public float GetTotalPower () {
+        var areas = GetOverlappingAreas().Where(x => x.IsInGroup("powerSource"));
+        var power = areas.Sum(x => (float)x.GetMeta("Power", 1f) * (0.5f + 1.0f / x.GlobalPosition.DistanceTo(GlobalPosition)));
+        return power;
+    }
 }

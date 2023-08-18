@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=48 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -56,11 +56,17 @@ size = Vector3(20, 0.1, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7axem"]
 size = Vector3(20, 0.1, 20)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wowa7"]
+radius = 2.6
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8c5aw"]
 height = 0.3
-radius = 0.35
+radius = 0.6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wlefu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m77sp"]
+radius = 13.572
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag53l"]
 bg_color = Color(0.996078, 0.996078, 0.996078, 1)
@@ -143,7 +149,7 @@ shader_parameter/primaryColor = Color(0.933333, 0.929412, 0.87451, 1)
 shader_parameter/secondaryColor = Color(0.172549, 0.156863, 0.0509804, 1)
 shader_parameter/threshold = 0.5
 shader_parameter/u_dither_size = 2.0
-shader_parameter/dither_range = Vector2(0.3, 0.6)
+shader_parameter/dither_range = Vector2(0.2, 0.6)
 shader_parameter/u_dither_tex = ExtResource("4_xdur2")
 
 [node name="DefenseMode" type="Node3D"]
@@ -591,13 +597,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68, 0)
 script = ExtResource("1_l6emr")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0251108, -0.036046)
-omni_range = 2.5
+[node name="BaseLightHitbox" type="Area3D" parent="World/PlayerNodes/Base" groups=["powerSource"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385823, -0.036046)
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/Base/BaseLightHitbox"]
+shape = SubResource("SphereShape3D_wowa7")
+
+[node name="baselight" type="OmniLight3D" parent="World/PlayerNodes/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385823, -0.036046)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89675, -0.072092)
-omni_range = 2.5
 
 [node name="TowerSprite" type="Sprite3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.684241, 0)
@@ -608,6 +620,7 @@ texture = ExtResource("7_hs6jn")
 
 [node name="Area3D" type="Area3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.616092, 0)
+collision_layer = 257
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/Base/Area3D"]
@@ -623,7 +636,9 @@ light_indirect_energy = 0.269
 spot_range = 5.85
 spot_angle = 13.03
 
-[node name="Area3D" type="Area3D" parent="World/PlayerNodes/TowerLight"]
+[node name="Area3D" type="Area3D" parent="World/PlayerNodes/TowerLight" groups=["powerSource"]]
+collision_layer = 513
+metadata/Power = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/TowerLight/Area3D"]
 shape = SubResource("SphereShape3D_wlefu")
@@ -632,9 +647,18 @@ shape = SubResource("SphereShape3D_wlefu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15619, 0, 0)
 script = ExtResource("2_rhjw6")
 
+[node name="Area3D" type="Area3D" parent="World/PlayerNodes/Player" groups=["powerSource"]]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.15, 0)
+collision_layer = 513
+metadata/power = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/Player/Area3D"]
+shape = SubResource("SphereShape3D_m77sp")
+
 [node name="PlayerSprite" type="Sprite3D" parent="World/PlayerNodes/Player"]
 transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0.247006, 0)
 billboard = 1
+texture_filter = 0
 texture = ExtResource("10_2beq3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
@@ -1001,9 +1025,13 @@ transform = Transform3D(1, 0, 0, 0, 0.588547, 0.808463, 0, -0.808463, 0.588547, 
 fov = 70.0
 script = ExtResource("2_0lvke")
 
+[connection signal="area_entered" from="World/PlayerNodes/Base/BaseLightHitbox" to="World/PlayerNodes/TowerLight" method="OnArea3DEntered"]
+[connection signal="area_exited" from="World/PlayerNodes/Base/BaseLightHitbox" to="World/PlayerNodes/TowerLight" method="OnArea3DExited"]
 [connection signal="area_entered" from="World/PlayerNodes/Base/Area3D" to="World/PlayerNodes/Base" method="OnArea3DEntered"]
 [connection signal="area_entered" from="World/PlayerNodes/TowerLight/Area3D" to="World/PlayerNodes/TowerLight" method="OnArea3DEntered"]
 [connection signal="area_exited" from="World/PlayerNodes/TowerLight/Area3D" to="World/PlayerNodes/TowerLight" method="OnArea3DExited"]
+[connection signal="area_entered" from="World/PlayerNodes/Player/Area3D" to="World/PlayerNodes/TowerLight" method="OnArea3DEntered"]
+[connection signal="area_exited" from="World/PlayerNodes/Player/Area3D" to="World/PlayerNodes/TowerLight" method="OnArea3DExited"]
 [connection signal="pressed" from="ViewportOverlay/HUD/DescriptionPanel/button" to="ViewportOverlay/HUD/DescriptionPanel" method="OnButtonPressed"]
 [connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="OpenDescriptionPanel"]
 [connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="HideDescriptionPanel"]

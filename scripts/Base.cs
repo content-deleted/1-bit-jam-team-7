@@ -20,7 +20,7 @@ public partial class Base : Node3D
 		towerSprite = (Sprite3D)GetNode("TowerSprite");
 		mainCamera = (Camera)GetNode("//root/DefenseMode/MainCamera");
 		enemyControllerNode = (EnemyController)GetNode("//root/DefenseMode/World/Level/EnemySpawn");
-		baseLight = (OmniLight3D)GetChild(0);
+		baseLight = (OmniLight3D)GetNode("baselight");
 
 	}
 

@@ -31,13 +31,14 @@ shape = SubResource("SphereShape3D_6cebn")
 transform = Transform3D(0.198555, 0, 0, 0, 0.198555, 0, 0, 0, 0.198555, 0, 0.369384, 0)
 billboard = 2
 shaded = true
+double_sided = false
 texture_filter = 0
 texture = ExtResource("3_00824")
 
 [node name="hitbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
 collision_layer = 256
-collision_mask = 256
+collision_mask = 768
 script = ExtResource("4_hfxw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
