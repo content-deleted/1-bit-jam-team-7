@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d11lvrfdbc0kt"]
+[gd_scene load_steps=7 format=3 uid="uid://d11lvrfdbc0kt"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_e0nnm"]
-[ext_resource type="Script" path="res://scripts/Charger.cs" id="2_an6cr"]
 [ext_resource type="Texture2D" uid="uid://r2bdnj4l2c5h" path="res://gfx/foolsbird.png" id="3_awaow"]
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_114m7"]
 [ext_resource type="Script" path="res://scripts/FoolsBird.cs" id="5_nxuq0"]
@@ -15,12 +14,12 @@ radius = 0.15
 [node name="FoolsBird" type="Node3D"]
 script = ExtResource("1_e0nnm")
 
-[node name="range" type="Area3D" parent="."]
+[node name="range" type="Area3D" parent="." groups=["powerSource"]]
 transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.369384, 0)
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-script = ExtResource("2_an6cr")
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+metadata/Power = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
 transform = Transform3D(86.1806, 0, 0, 0, 86.1806, 0, 0, 0, 86.1806, 0, -31.8338, 0)

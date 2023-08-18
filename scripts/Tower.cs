@@ -7,10 +7,13 @@ public partial class Tower : Node3D
 {
 	public OmniLight3D light;
 	public Sprite3D sprite;
-	public Area3D hitbox;
+	public Hurtbox hitbox;
 
 	public int maxHealth;
     private int _currentHealth;
+
+    [Export]
+    public bool isPowerSource = false;
 
 	public int currentHealth {
         get => _currentHealth;
@@ -28,8 +31,10 @@ public partial class Tower : Node3D
 	{
 		light = GetNode("light") as OmniLight3D;
 		sprite = GetNode("sprite") as Sprite3D;
-		hitbox = GetNode("hitbox") as Area3D;
+		hitbox = GetNode("hitbox") as Hurtbox;
 	}
+
+    public float GetTotalPower () => isPowerSource ? 0 : hitbox.GetTotalPower();
 
     public void TakeDamage(int dmg) => currentHealth -= dmg;
 }

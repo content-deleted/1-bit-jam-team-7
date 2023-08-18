@@ -30,9 +30,12 @@ public partial class ShopItem : Button
             // not very efficent but do I care?
             if(ShopController.towerPlacementTest != null) ShopController.towerPlacementTest.QueueFree();
             ShopController.towerPlacementTest = info.prefab.Instantiate() as Tower;
-            // make it so that it cant be targeted
-            ShopController.towerPlacementTest.GetNode<Hurtbox>("hitbox").Monitorable = false;
+        
             TowerController.controller.AddChild(ShopController.towerPlacementTest);
+            
+             // make it so that it cant be targeted
+            ShopController.towerPlacementTest.hitbox.Monitorable = false;
+            ShopController.towerPlacementTest.hitbox.CollisionMask = 1 << 8;
         }
 	}
 	
