@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjv3wb6518j1m"]
+[gd_scene load_steps=8 format=3 uid="uid://cvcl5sfhitxal"]
 
-[ext_resource type="Script" path="res://scripts/Tower.cs" id="1_7tlct"]
-[ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="2_21tk0"]
-[ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="3_o4ldm"]
-[ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="3_wodq4"]
-[ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_k66hf"]
+[ext_resource type="Script" path="res://scripts/Tower.cs" id="1_cmm2c"]
+[ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="2_w2k1e"]
+[ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="3_ikxjn"]
+[ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_hfxw8"]
+[ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_tytj4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6cebn"]
 radius = 1.5
@@ -12,16 +12,15 @@ radius = 1.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_bnnqh"]
 radius = 0.2
 
-[node name="TestTower" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05543, 0, 0)
-script = ExtResource("1_7tlct")
+[node name="TowerMatapacos" type="Node3D"]
+script = ExtResource("1_cmm2c")
 
 [node name="range" type="Area3D" parent="."]
 transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.369384, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("2_21tk0")
+script = ExtResource("2_w2k1e")
 rate = 800.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
@@ -33,22 +32,24 @@ transform = Transform3D(0.0928358, 0, 0, 0, 0.0928358, 0, 0, 0, 0.0928358, 0, 0.
 billboard = 2
 shaded = true
 texture_filter = 0
-texture = ExtResource("3_wodq4")
+texture = ExtResource("3_ikxjn")
 
 [node name="hitbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
 collision_layer = 256
 collision_mask = 256
-script = ExtResource("3_o4ldm")
+script = ExtResource("4_hfxw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
 shape = SubResource("SphereShape3D_bnnqh")
 
 [node name="light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457398, 0)
-omni_range = 0.818
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0674843, 0.0738608, 0.00705051)
+light_energy = 8.735
+light_size = 0.23
+omni_range = 1.0
 
 [node name="brain" type="Node3D" parent="."]
-script = ExtResource("5_k66hf")
+script = ExtResource("5_tytj4")
 
 [connection signal="OnDamageTaken" from="hitbox" to="." method="TakeDamage"]

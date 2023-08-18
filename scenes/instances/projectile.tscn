@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpwrwihoyxgdw"]
+
+[ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="1_wi0ln"]
+[ext_resource type="Script" path="res://scripts/Projectile.cs" id="2_dav5j"]
+
+[node name="Projectile" type="Sprite3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.96657, 0)
+billboard = 1
+shaded = true
+double_sided = false
+texture = ExtResource("1_wi0ln")
+script = ExtResource("2_dav5j")

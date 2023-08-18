@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=39 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
 [ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
+[ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="11_gnr4i"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
 [ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="12_ddmq2"]
 [ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="12_ff2pb"]
@@ -118,8 +119,8 @@ border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3oht"]
 shader = ExtResource("13_mgh0l")
-shader_parameter/primaryColor = Color(0.937255, 1, 0.929412, 1)
-shader_parameter/secondaryColor = Color(0, 0, 0, 1)
+shader_parameter/primaryColor = Color(0.933333, 0.929412, 0.87451, 1)
+shader_parameter/secondaryColor = Color(0.172549, 0.156863, 0.0509804, 1)
 shader_parameter/threshold = 0.5
 shader_parameter/u_dither_size = 2.0
 shader_parameter/dither_range = Vector2(0.3, 0.6)
@@ -577,6 +578,7 @@ texture = ExtResource("7_hs6jn")
 
 [node name="Area3D" type="Area3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.616092, 0)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/Base/Area3D"]
 shape = SubResource("CylinderShape3D_8c5aw")
@@ -610,6 +612,9 @@ omni_range = 0.818
 
 [node name="TowerController" type="Node3D" parent="World"]
 script = ExtResource("10_tyw5t")
+
+[node name="ProjectilePool" type="Node3D" parent="World"]
+script = ExtResource("11_gnr4i")
 
 [node name="ViewportOverlay" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -806,6 +811,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="goldlabel" type="Label" parent="ViewportOverlay/HUD/Info"]
+layout_mode = 0
 offset_left = 930.0
 offset_top = 5.0
 offset_right = 1064.0
@@ -835,6 +841,7 @@ text = "32G"
 horizontal_alignment = 2
 
 [node name="scorelabel" type="Label" parent="ViewportOverlay/HUD/Info"]
+layout_mode = 0
 offset_left = 916.0
 offset_top = 51.0
 offset_right = 1083.0
@@ -849,6 +856,7 @@ text = "SCORE"
 horizontal_alignment = 2
 
 [node name="score" type="Label" parent="ViewportOverlay/HUD/Info"]
+layout_mode = 0
 offset_left = 908.0
 offset_top = 77.0
 offset_right = 1123.0
@@ -880,7 +888,7 @@ scale = Vector2(0.4448, 0.4448)
 texture = ExtResource("4_es7q3")
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 5)
+transform = Transform3D(1, 0, 0, 0, 0.588547, 0.808463, 0, -0.808463, 0.588547, 0, 3.72684, 5)
 fov = 70.0
 script = ExtResource("2_0lvke")
 

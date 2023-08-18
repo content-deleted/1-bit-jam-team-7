@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boxeq7scrfbjr"
-path.s3tc="res://.godot/imported/towerbig.png-8b263c8fa725ee8307a86cc437d2ec4f.s3tc.ctex"
+path.s3tc="res://.godot/imported/towerbig_bad.png-305459dc4c89c2a12d91b68c9306ad49.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scripts/towerbig.png"
-dest_files=["res://.godot/imported/towerbig.png-8b263c8fa725ee8307a86cc437d2ec4f.s3tc.ctex"]
+source_file="res://gfx/towerbig_bad.png"
+dest_files=["res://.godot/imported/towerbig_bad.png-305459dc4c89c2a12d91b68c9306ad49.s3tc.ctex"]
 
 [params]
 

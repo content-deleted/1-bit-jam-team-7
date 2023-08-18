@@ -25,8 +25,13 @@ public partial class ShopController : Panel
         get => _towerPlacing;
         set {
            _towerPlacing = value;
-           if(!value && towerPlacementTest != null) {
-             towerPlacementTest.Hide();
+           if(towerPlacementTest != null) {
+             if(!value) {
+                towerPlacementTest.Hide();
+                //towerPlacementTest.GetNode<CollisionShape3D>("hitbox/CollisionShape3D").SetDeferred(CollisionShape3D.PropertyName.Disabled, true);
+             } else {
+                //towerPlacementTest.GetNode<CollisionShape3D>("hitbox/CollisionShape3D").SetDeferred(CollisionShape3D.PropertyName.Disabled, false);
+             }
            }
         }
     }
