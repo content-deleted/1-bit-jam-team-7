@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=42 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -21,6 +21,9 @@
 [ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="12_ff2pb"]
 [ext_resource type="Script" path="res://scripts/ShopItem.cs" id="13_2xch8"]
 [ext_resource type="Shader" path="res://1bitdither.gdshader" id="13_mgh0l"]
+[ext_resource type="Texture2D" uid="uid://mf70dns8x0jq" path="res://gfx/foolsbirdicon.png" id="16_3vyea"]
+[ext_resource type="Texture2D" uid="uid://dw3edxx2blmrq" path="res://gfx/goodboyicon.png" id="18_sxcno"]
+[ext_resource type="Texture2D" uid="uid://c4cyr1aw7hqkv" path="res://gfx/flaminggoicon.png" id="19_u0sms"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
 
@@ -93,6 +96,10 @@ expand_margin_right = 200.0
 texture = ExtResource("3_c4xbn")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jo2"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 2
 border_width_top = 2
@@ -727,7 +734,7 @@ scale = Vector2(0.154014, 0.277284)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("12_ff2pb")
 theme_override_font_sizes/font_size = 100
-text = "Shop"
+text = "SHOP"
 
 [node name="ShopItem" type="Button" parent="ViewportOverlay/HUD/ShopBorder"]
 layout_mode = 0
@@ -740,6 +747,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_x6jo2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
 shortcut_feedback = false
 shortcut_in_tooltip = false
+icon = ExtResource("16_3vyea")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("13_2xch8")
 
 [node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/ShopItem"]
@@ -763,13 +773,89 @@ theme_override_font_sizes/font_size = 32
 text = "30G"
 horizontal_alignment = 1
 
+[node name="ShopItem2" type="Button" parent="ViewportOverlay/HUD/ShopBorder"]
+layout_mode = 0
+offset_left = -115.586
+offset_top = 4.40794
+offset_right = -84.586
+offset_bottom = 35.4079
+scale = Vector2(0.963744, 0.963744)
+theme_override_styles/normal = SubResource("StyleBoxFlat_x6jo2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("18_sxcno")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("13_2xch8")
+type = 1
+
+[node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/ShopItem2"]
+layout_mode = 0
+offset_left = 4.57379
+offset_top = 24.9016
+offset_right = 44.5738
+offset_bottom = 39.9016
+scale = Vector2(0.70392, 0.70392)
+theme_override_styles/panel = SubResource("StyleBoxFlat_j6wyq")
+
+[node name="pricelabel" type="Label" parent="ViewportOverlay/HUD/ShopBorder/ShopItem2/Panel"]
+layout_mode = 0
+offset_left = 4.96227
+offset_top = -1.24057
+offset_right = 82.9623
+offset_bottom = 46.7594
+scale = Vector2(0.373452, 0.373452)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "30G"
+horizontal_alignment = 1
+
+[node name="ShopItem3" type="Button" parent="ViewportOverlay/HUD/ShopBorder"]
+layout_mode = 0
+offset_left = -79.3429
+offset_top = 4.40794
+offset_right = -48.3429
+offset_bottom = 35.4079
+scale = Vector2(0.963744, 0.963744)
+theme_override_styles/normal = SubResource("StyleBoxFlat_x6jo2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("19_u0sms")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("13_2xch8")
+type = 2
+
+[node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/ShopItem3"]
+layout_mode = 0
+offset_left = 4.57379
+offset_top = 24.9016
+offset_right = 44.5738
+offset_bottom = 39.9016
+scale = Vector2(0.70392, 0.70392)
+theme_override_styles/panel = SubResource("StyleBoxFlat_j6wyq")
+
+[node name="pricelabel" type="Label" parent="ViewportOverlay/HUD/ShopBorder/ShopItem3/Panel"]
+layout_mode = 0
+offset_left = 4.96227
+offset_top = -1.24057
+offset_right = 82.9623
+offset_bottom = 46.7594
+scale = Vector2(0.373452, 0.373452)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "30G"
+horizontal_alignment = 1
+
 [node name="PlaceholderItem" type="Panel" parent="ViewportOverlay/HUD/ShopBorder"]
 layout_mode = 0
-offset_left = -118.525
-offset_top = 4.40794
-offset_right = -78.5247
-offset_bottom = 44.4079
-scale = Vector2(0.649377, 0.728467)
+offset_left = -41.6305
+offset_top = 3.4284
+offset_right = -1.63023
+offset_bottom = 43.4284
+scale = Vector2(0.719655, 0.807304)
 theme_override_styles/panel = SubResource("StyleBoxFlat_wa0f5")
 
 [node name="InnerPlaceholder" type="Label" parent="ViewportOverlay/HUD/ShopBorder/PlaceholderItem"]
@@ -899,3 +985,9 @@ script = ExtResource("2_0lvke")
 [connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="OpenDescriptionPanel"]
 [connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="HideDescriptionPanel"]
 [connection signal="pressed" from="ViewportOverlay/HUD/ShopBorder/ShopItem" to="ViewportOverlay/HUD/ShopBorder/ShopItem" method="SelectTower"]
+[connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem2" to="ViewportOverlay/HUD/ShopBorder/ShopItem2" method="OpenDescriptionPanel"]
+[connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem2" to="ViewportOverlay/HUD/ShopBorder/ShopItem2" method="HideDescriptionPanel"]
+[connection signal="pressed" from="ViewportOverlay/HUD/ShopBorder/ShopItem2" to="ViewportOverlay/HUD/ShopBorder/ShopItem2" method="SelectTower"]
+[connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="OpenDescriptionPanel"]
+[connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="HideDescriptionPanel"]
+[connection signal="pressed" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="SelectTower"]

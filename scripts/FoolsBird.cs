@@ -7,7 +7,6 @@ public partial class FoolsBird : Node3D
 	public override void _Ready()
 	{
         tower = GetParent<Tower>();
-        
 	}
 
 	public override void _Process(double delta)

@@ -6,10 +6,13 @@ using System.Collections.Generic;
 public partial class ShopItem : Button
 {
 	public towerInfo info;
+
+    [Export]
+    public int type;
 	public override void _Ready()
 	{
-		// placeholder
-		info = towerTypes[0];
+		info = towerTypes[type];
+        GetNode<Label>("Panel/pricelabel").Text = $"{info.cost}G";
 	}
 
 	public void OpenDescriptionPanel() {
@@ -49,9 +52,25 @@ public partial class ShopItem : Button
 			name = "Fool's Bird",
 			description = "Cast's light about itself in a 1-space radius. Charges adjacent towers.",
 			flavor = "\"I swear it moves when I'm not looking.\"",
-			cost = 20,
-			maxHealth = 20,
+			cost = 40,
+			maxHealth = 5,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FoolsBird.tscn")
+		},
+        new towerInfo { 
+			name = "Matapacos",
+			description = "Fires a single shot at a fixed rate while powered",
+			flavor = "\"Alicanto's best friend, and a miner's worst nightmare.\"",
+			cost = 10,
+			maxHealth = 20,
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/Matapacos.tscn")
+		},
+        new towerInfo { 
+			name = "Flaming-Go",
+			description = "Casts a beam of light forward that does constant damage while enemies are in contact with it.",
+			flavor = "\"The threatened Chilean Flaming-Go has evolved an incendeary tactic to defend itself.\"",
+			cost = 30,
+			maxHealth = 20,
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FlamingGo.tscn")
 		},
 	};
 }
