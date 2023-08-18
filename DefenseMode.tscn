@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=46 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="3_5quch"]
 [ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="3_720i0"]
 [ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="3_c4xbn"]
+[ext_resource type="Texture2D" uid="uid://2hpu8xv55emu" path="res://scenes/star_bg.png" id="3_j70dd"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="4_es7q3"]
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
@@ -27,10 +28,22 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_tystq"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j7j7q"]
+panorama = ExtResource("3_j70dd")
+filter = false
+
+[sub_resource type="Sky" id="Sky_5cvxo"]
+sky_material = SubResource("PanoramaSkyMaterial_j7j7q")
+
 [sub_resource type="Environment" id="Environment_401co"]
-background_mode = 1
+background_mode = 2
 background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.0
+background_energy_multiplier = 0.4
+sky = SubResource("Sky_5cvxo")
+sky_custom_fov = 78.7
+sky_rotation = Vector3(0, -1.75406, 0)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 1
@@ -147,6 +160,12 @@ physics_material_override = SubResource("PhysicsMaterial_ewno6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Environment/StaticBody3D"]
 material_override = ExtResource("2_s6oau")
+
+[node name="FloorCurved" type="MeshInstance3D" parent="World/Environment"]
+transform = Transform3D(68.8913, 0, 0, 0, 6.8817, 0, 0, 0, 68.8913, 0, -4.1247, 0)
+material_override = ExtResource("2_s6oau")
+mesh = SubResource("SphereMesh_tystq")
+skeleton = NodePath("../Floor")
 
 [node name="Floor" type="StaticBody3D" parent="World/Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)

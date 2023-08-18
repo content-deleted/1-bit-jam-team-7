@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1qoy4nrg18q1"
-path.s3tc="res://.godot/imported/bayer16tile2.png-340ec50b12e9e5225601e80d9304afe1.s3tc.ctex"
+uid="uid://dom6gbpgxrgbh"
+path.s3tc="res://.godot/imported/starbg.png-c431a4ca1926e601bc2f4844b8beb316.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://gfx/dither/bayer16tile2.png"
-dest_files=["res://.godot/imported/bayer16tile2.png-340ec50b12e9e5225601e80d9304afe1.s3tc.ctex"]
+source_file="res://scenes/starbg.png"
+dest_files=["res://.godot/imported/starbg.png-c431a4ca1926e601bc2f4844b8beb316.s3tc.ctex"]
 
 [params]
 
