@@ -157,7 +157,7 @@ public partial class DefenseMode : Node3D
 
 		waveCountDownTimer = waveCountDown;
 
-		enemyControllerNode.enemyCount = 5; // progression handled here later
+		enemyControllerNode.enemyCount = 3; // progression handled here later
 
 		waveState = true;	
 
@@ -298,12 +298,14 @@ public partial class DefenseMode : Node3D
 
 			towerLightNode.focalLength -= 0.1f;
 			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 5f);
+            towerLightNode.SetMeta("Power", 1f/towerLightNode.focalLength);
 
 
 		} else if (@event is InputEventMouseButton inputEventMouse2 && inputEventMouse2.Pressed && inputEventMouse2.ButtonIndex == MouseButton.WheelUp){
 
 			towerLightNode.focalLength += 0.1f;
 			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 5f);
+            towerLightNode.SetMeta("Power", 1f/towerLightNode.focalLength);
 
 			
 		} else if (@event is InputEventKey inputEventKey && inputEventKey.Pressed){ // single key press
