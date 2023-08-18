@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
-[ext_resource type="Texture2D" uid="uid://cxyp0dm0lh3g2" path="res://EnemyPaths/Alic_neutral_sprite.png" id="10_2beq3"]
+[ext_resource type="Texture2D" uid="uid://cxyp0dm0lh3g2" path="res://gfx/Alic_neutral_sprite.png" id="10_2beq3"]
 [ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
 [ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="11_gnr4i"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
