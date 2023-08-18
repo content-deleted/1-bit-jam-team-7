@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_gp6j6"]
 [ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="2_uykxt"]
-[ext_resource type="Texture2D" uid="uid://vx1bw420m60i" path="res://gfx/thunderbird.png" id="3_0yhue"]
+[ext_resource type="Texture2D" uid="uid://byssjd7nmjc4k" path="res://gfx/flaminggo.png" id="3_2yaeo"]
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_e0dpv"]
 [ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_q2fdl"]
 
@@ -32,7 +32,7 @@ transform = Transform3D(0.179302, 0, 0, 0, 0.179302, 0, 0, 0, 0.179302, 0, 0.317
 billboard = 2
 shaded = true
 texture_filter = 0
-texture = ExtResource("3_0yhue")
+texture = ExtResource("3_2yaeo")
 
 [node name="hitbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
