@@ -15,6 +15,8 @@ public partial class Enemy : PathFollow3D
 	public int damage = 18;
 
 	[Export]
+	public int speed = 40;
+	[Export]
 	public int gold = 20;
 	[Export]
 	public int score = 20;
@@ -32,7 +34,7 @@ public partial class Enemy : PathFollow3D
 
 	public override void _Process(double delta)
 	{
-		this.ProgressRatio += (float)delta / 40;
+		this.Progress += (float)delta * speed;
 		
 	}
 

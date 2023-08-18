@@ -15,7 +15,6 @@ public partial class Hurtbox : Area3D
 
     public float GetTotalPower () {
         var areas = GetOverlappingAreas().Where(x => x.IsInGroup("powerSource"));
-        GD.Print("cout"+areas?.Count());
         var power = areas.Sum(x => (float)x.GetMeta("Power", 1f) * (0.5f + 1.0f / x.GlobalPosition.DistanceTo(GlobalPosition)));
         return power;
     }

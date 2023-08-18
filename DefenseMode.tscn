@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="2_0lvke"]
-[ext_resource type="Texture2D" uid="uid://1d5qyux4x7vq" path="res://gfx/player.png" id="2_k4i8a"]
 [ext_resource type="Script" path="res://scripts/Player.cs" id="2_rhjw6"]
 [ext_resource type="Material" uid="uid://cvu2ag2lecokv" path="res://gfx/materials/baseMaterial.tres" id="2_s6oau"]
 [ext_resource type="Script" path="res://scripts/TowerLight.cs" id="2_ty0mf"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
+[ext_resource type="Texture2D" uid="uid://cxyp0dm0lh3g2" path="res://EnemyPaths/Alic_neutral_sprite.png" id="10_2beq3"]
 [ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
 [ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="11_gnr4i"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
@@ -61,7 +61,7 @@ radius = 2.6
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8c5aw"]
 height = 0.3
-radius = 0.35
+radius = 0.6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wlefu"]
 
@@ -149,7 +149,7 @@ shader_parameter/primaryColor = Color(0.933333, 0.929412, 0.87451, 1)
 shader_parameter/secondaryColor = Color(0.172549, 0.156863, 0.0509804, 1)
 shader_parameter/threshold = 0.5
 shader_parameter/u_dither_size = 2.0
-shader_parameter/dither_range = Vector2(0.3, 0.6)
+shader_parameter/dither_range = Vector2(0.2, 0.6)
 shader_parameter/u_dither_tex = ExtResource("4_xdur2")
 
 [node name="DefenseMode" type="Node3D"]
@@ -607,11 +607,12 @@ shape = SubResource("SphereShape3D_wowa7")
 
 [node name="baselight" type="OmniLight3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385823, -0.036046)
-omni_range = 2.5
-metadata/Power = 1.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="World/PlayerNodes/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89675, -0.072092)
 
 [node name="TowerSprite" type="Sprite3D" parent="World/PlayerNodes/Base"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.684241, 0)
 billboard = 1
 shaded = true
 texture_filter = 0
@@ -619,6 +620,7 @@ texture = ExtResource("7_hs6jn")
 
 [node name="Area3D" type="Area3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.616092, 0)
+collision_layer = 257
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/PlayerNodes/Base/Area3D"]
@@ -654,9 +656,10 @@ metadata/power = 1.0
 shape = SubResource("SphereShape3D_m77sp")
 
 [node name="PlayerSprite" type="Sprite3D" parent="World/PlayerNodes/Player"]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.15, 0)
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0.247006, 0)
 billboard = 1
-texture = ExtResource("2_k4i8a")
+texture_filter = 0
+texture = ExtResource("10_2beq3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
 omni_range = 1.0

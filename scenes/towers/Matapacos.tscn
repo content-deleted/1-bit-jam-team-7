@@ -31,6 +31,7 @@ shape = SubResource("SphereShape3D_6cebn")
 transform = Transform3D(0.198555, 0, 0, 0, 0.198555, 0, 0, 0, 0.198555, 0, 0.369384, 0)
 billboard = 2
 shaded = true
+double_sided = false
 texture_filter = 0
 texture = ExtResource("3_00824")
 
