@@ -23,6 +23,7 @@ public partial class Enemy : PathFollow3D
 
 	AnimatedSprite3D spriteAnimation;
 	EnemyController enemyControllerNode;
+    Hurtbox hurtbox;
 
 	public override void _Ready()
 	{
@@ -30,6 +31,7 @@ public partial class Enemy : PathFollow3D
 		spriteAnimation = (AnimatedSprite3D)GetChild(0);
 		spriteAnimation.Play("walk");
 
+        hurtbox = GetNode("hitbox") as Hurtbox;
 	}
 
 	public override void _Process(double delta)
@@ -44,6 +46,7 @@ public partial class Enemy : PathFollow3D
 		if (cur <= 0)
 		{
 			enemyControllerNode.enemies.Remove(this);
+            hurtbox.targetable = false;
 			this.QueueFree();
 
 			// give drops

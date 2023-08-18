@@ -15,6 +15,7 @@ public partial class Projectile : Sprite3D
 
         if(!Node.IsInstanceValid(target) || target.IsQueuedForDeletion()) {
             ReturnToPool();
+            return;
         }
 
 		if(progress >= 1.0) {

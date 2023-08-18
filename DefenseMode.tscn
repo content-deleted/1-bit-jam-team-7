@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=61 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
-[ext_resource type="Texture2D" uid="uid://cxyp0dm0lh3g2" path="res://EnemyPaths/Alic_neutral_sprite.png" id="10_2beq3"]
+[ext_resource type="Texture2D" path="res://EnemyPaths/Alic_neutral_sprite.png" id="10_2beq3"]
 [ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
 [ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="11_gnr4i"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
@@ -165,6 +165,23 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vw4rw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 2
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jywo8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3oht"]
 shader = ExtResource("13_mgh0l")
@@ -1042,6 +1059,7 @@ text = "32"
 horizontal_alignment = 2
 
 [node name="DialogueRunner" type="Control" parent="ViewportOverlay/HUD" node_paths=PackedStringArray("_variableStorage", "lineProvider")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1158,6 +1176,18 @@ offset_top = 416.0
 offset_right = 376.0
 offset_bottom = 416.0
 
+[node name="StartRoundButton" type="Button" parent="ViewportOverlay/HUD"]
+layout_mode = 0
+offset_left = 1594.0
+offset_top = 972.0
+offset_right = 1852.0
+offset_bottom = 1041.0
+theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_vw4rw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jywo8")
+text = "Start Wave"
+
 [node name="ColorRect" type="ColorRect" parent="ViewportOverlay"]
 z_index = 10
 material = SubResource("ShaderMaterial_t3oht")
@@ -1199,3 +1229,4 @@ script = ExtResource("2_0lvke")
 [connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="OpenDescriptionPanel"]
 [connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="HideDescriptionPanel"]
 [connection signal="pressed" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="SelectTower"]
+[connection signal="pressed" from="ViewportOverlay/HUD/StartRoundButton" to="." method="StartWave"]

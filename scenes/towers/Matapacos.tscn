@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvcl5sfhitxal"]
+[gd_scene load_steps=9 format=3 uid="uid://cvcl5sfhitxal"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_cmm2c"]
 [ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="2_w2k1e"]
+[ext_resource type="Texture2D" uid="uid://ceo5jb8l6s1xw" path="res://gfx/goodboydown.png" id="3_1lr14"]
 [ext_resource type="Texture2D" uid="uid://dvl7jy00l27" path="res://gfx/goodboy.png" id="3_00824"]
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_hfxw8"]
 [ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_tytj4"]
@@ -14,6 +15,8 @@ radius = 0.3
 
 [node name="TowerMatapacos" type="Node3D"]
 script = ExtResource("1_cmm2c")
+mainSprite = ExtResource("3_00824")
+downSprite = ExtResource("3_1lr14")
 
 [node name="range" type="Area3D" parent="."]
 transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.63998, 0)

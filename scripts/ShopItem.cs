@@ -35,7 +35,7 @@ public partial class ShopItem : Button
             
              // make it so that it cant be targeted
             ShopController.towerPlacementTest.hitbox.Monitorable = false;
-            ShopController.towerPlacementTest.hitbox.CollisionMask = 1 << 8;
+            ShopController.towerPlacementTest.hitbox.CollisionMask = (1 << 8) | (1 << 19);
         }
 	}
 	
