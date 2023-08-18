@@ -27,6 +27,8 @@ public partial class ShopItem : Button
             // not very efficent but do I care?
             if(ShopController.towerPlacementTest != null) ShopController.towerPlacementTest.QueueFree();
             ShopController.towerPlacementTest = info.prefab.Instantiate() as Tower;
+            // make it so that it cant be targeted
+            ShopController.towerPlacementTest.GetNode<Hurtbox>("hitbox").Monitorable = false;
             TowerController.controller.AddChild(ShopController.towerPlacementTest);
         }
 	}
@@ -49,7 +51,7 @@ public partial class ShopItem : Button
 			flavor = "\"I swear it moves when I'm not looking.\"",
 			cost = 20,
 			maxHealth = 20,
-            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/test_tower.tscn")
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FoolsBird.tscn")
 		},
 	};
 }

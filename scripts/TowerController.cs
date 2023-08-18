@@ -19,7 +19,7 @@ public partial class TowerController : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        
+
 	}
 
     public static void PlaceTower(ShopItem.towerInfo tower, Vector3 pos) {

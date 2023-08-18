@@ -18,15 +18,15 @@ public partial class DefenseMode : Node3D
 	double waveTimer; 
 	private bool _waveState;
 
-    private static int _score;
-    public static int score {
-        get=> _score;
-        set {
-            _score = value;
-            scoreLabel.Text = value.ToString();
-        }
-    }
-    public static Label scoreLabel;
+	private static int _score;
+	public static int score {
+		get=> _score;
+		set {
+			_score = value;
+			scoreLabel.Text = value.ToString();
+		}
+	}
+	public static Label scoreLabel;
 
 	public bool waveState {
 		get { return _waveState; }
@@ -34,10 +34,12 @@ public partial class DefenseMode : Node3D
 			_waveState = value;
 			if(value) {
 				towerLightNode.Show();
-                ShopController.Close();
+				ShopController.Close();
+                DescriptionPanel.HidePanel();
 			} else {
 				ShopController.Open();
 				towerLightNode.Hide();
+                DescriptionPanel.HidePanel();
 			}
 		}
 	}
@@ -57,7 +59,7 @@ public partial class DefenseMode : Node3D
 	{
 		CallVariousNodes();
 		waveState = false;
-        score = 0;
+		score = 0;
 	}
 
 	//initializing functions
@@ -74,7 +76,7 @@ public partial class DefenseMode : Node3D
 
 		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
 
-        scoreLabel = GetNode<Label>("ViewportOverlay/HUD/Info/score");
+		scoreLabel = GetNode<Label>("ViewportOverlay/HUD/Info/score");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -126,7 +128,7 @@ public partial class DefenseMode : Node3D
 			if(Math.Abs(vec.X) < 9.5 && Math.Abs(vec.Z) < 9.5) {
 				mouseFieldPos = (Vector3)pos;
 				mouseOnField = true;
-                return;
+				return;
 			}
 		} 
 
