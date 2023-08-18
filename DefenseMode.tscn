@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://scripts/TowerLight.cs" id="2_ty0mf"]
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="3_5quch"]
 [ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="3_720i0"]
+[ext_resource type="Texture2D" uid="uid://dom6gbpgxrgbh" path="res://scenes/starbg.png" id="3_b33c0"]
 [ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="3_c4xbn"]
-[ext_resource type="Texture2D" uid="uid://2hpu8xv55emu" path="res://scenes/star_bg.png" id="3_j70dd"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="4_es7q3"]
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
@@ -31,8 +31,7 @@
 [sub_resource type="SphereMesh" id="SphereMesh_tystq"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j7j7q"]
-panorama = ExtResource("3_j70dd")
-filter = false
+panorama = ExtResource("3_b33c0")
 
 [sub_resource type="Sky" id="Sky_5cvxo"]
 sky_material = SubResource("PanoramaSkyMaterial_j7j7q")
@@ -40,12 +39,13 @@ sky_material = SubResource("PanoramaSkyMaterial_j7j7q")
 [sub_resource type="Environment" id="Environment_401co"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.4
+background_energy_multiplier = 2.8
 sky = SubResource("Sky_5cvxo")
-sky_custom_fov = 78.7
-sky_rotation = Vector3(0, -1.75406, 0)
+sky_custom_fov = 89.2
+sky_rotation = Vector3(0, -2.33874, 0)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.55
 reflected_light_source = 1
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_blhxc"]
@@ -612,7 +612,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385823, -0.036046)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89675, -0.072092)
 
 [node name="TowerSprite" type="Sprite3D" parent="World/PlayerNodes/Base"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.684241, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.768762, 0)
 billboard = 1
 shaded = true
 texture_filter = 0

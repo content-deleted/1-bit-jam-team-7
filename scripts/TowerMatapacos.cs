@@ -16,6 +16,9 @@ public partial class TowerMatapacos : Node3D
         shooter.EnableShooting = tower.isOnline;
         if(!tower.isOnline) {
             tower.Hide();
+        } else {
+            // may need to make this faster
+            shooter.rateMult = tower.GetTotalPower();
         }
         // if(tower.isOnline && tower.light.LightColor.A != 1f) {
         //     tower.light.LightColor = new Color(tower.light.LightColor, 1);

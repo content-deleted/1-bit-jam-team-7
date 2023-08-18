@@ -30,7 +30,7 @@ radius = 3.0
 [node name="PathFollow3D" type="PathFollow3D"]
 transform = Transform3D(-0.195076, 0, -0.980788, 0, 1, 0, 0.980788, 0, -0.195076, 0, 0, 0)
 script = ExtResource("1_07w66")
-speed = 1
+speed = 2
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(-0.0975381, 0, 0.490394, 0, 0.5, 0, -0.490394, 0, -0.0975381, 0, 0.259982, 0)
@@ -41,11 +41,13 @@ animation = &"walk"
 frame_progress = 0.48773
 
 [node name="LightArea" type="Area3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225693, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LightArea"]
 shape = SubResource("SphereShape3D_2t7wg")
 
 [node name="hitbox" type="Area3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363591, 0)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("3_gwf7q")
@@ -54,6 +56,7 @@ script = ExtResource("3_gwf7q")
 shape = SubResource("SphereShape3D_2t7wg")
 
 [node name="range" type="Area3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250554, 0)
 collision_layer = 0
 collision_mask = 256
 monitorable = false
