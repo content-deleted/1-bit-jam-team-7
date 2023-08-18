@@ -37,7 +37,9 @@ radius = 3.0
 [node name="PathFollow3D" type="PathFollow3D"]
 transform = Transform3D(-0.195076, 0, -0.980788, 0, 1, 0, 0.980788, 0, -0.195076, 0, 0, 0)
 script = ExtResource("1_07w66")
-speed = 2
+speed = 1
+gold = 5
+score = 1
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(-0.0975381, 0, 0.490394, 0, 0.5, 0, -0.490394, 0, -0.0975381, 0, 0.259982, 0)
@@ -62,7 +64,6 @@ collision_layer = 0
 collision_mask = 256
 monitorable = false
 script = ExtResource("4_6hurj")
-rate = 1000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
 shape = SubResource("SphereShape3D_i7332")
