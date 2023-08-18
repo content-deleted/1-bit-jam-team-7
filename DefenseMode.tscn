@@ -615,7 +615,7 @@ billboard = 1
 texture = ExtResource("2_k4i8a")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
-omni_range = 0.818
+omni_range = 1.0
 
 [node name="TowerController" type="Node3D" parent="World"]
 script = ExtResource("10_tyw5t")
