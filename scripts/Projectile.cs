@@ -13,7 +13,11 @@ public partial class Projectile : Sprite3D
 	{
 		if(!Visible) return;
 
-		if(progress >= 1.0 || target.GetParent().IsQueuedForDeletion()) {
+        if(!Node.IsInstanceValid(target) || target.IsQueuedForDeletion()) {
+            ReturnToPool();
+        }
+
+		if(progress >= 1.0) {
 			callback?.Invoke();
 			ReturnToPool();
 		}

@@ -91,7 +91,7 @@ public partial class Camera : Camera3D
 
 		}
 
-		this.LookAt(new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+		this.LookAt(new Vector3(0, 1, 0), new Vector3(0, 1, 0));
 
 	}
 }

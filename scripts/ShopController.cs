@@ -112,7 +112,9 @@ public partial class ShopController : Panel
                         if(relative.Y > 0.7) {
                             mousePos.Y -= screenSize.Y / 10f;
                         }
-                        DescriptionPanel.ShowPanel(mousePos, tower.info.name, $"Power: {tower.GetTotalPower()}", true, " Sell ", SellCurrentlyViewingTower);
+                        // Todo: maybe print the power being providce?
+                        var powerText = tower.isPowerSource ? "Power Source" : "Power: " + tower.GetTotalPower();
+                        DescriptionPanel.ShowPanel(mousePos, tower.info.name, powerText, true, " Sell ", SellCurrentlyViewingTower);
                     }
                 }
             }

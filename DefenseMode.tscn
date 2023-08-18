@@ -168,7 +168,7 @@ physics_material_override = SubResource("PhysicsMaterial_ewno6")
 material_override = ExtResource("2_s6oau")
 
 [node name="FloorCurved" type="MeshInstance3D" parent="World/Environment"]
-transform = Transform3D(68.8913, 0, 0, 0, 6.8817, 0, 0, 0, 68.8913, 0, -4.1247, 0)
+transform = Transform3D(56.4954, 0, 0, 0, 1.3142, 0, 0, 0, 56.4954, 0, -4.1247, 0)
 material_override = ExtResource("2_s6oau")
 mesh = SubResource("SphereMesh_tystq")
 skeleton = NodePath("../Floor")
@@ -1021,8 +1021,8 @@ scale = Vector2(0.4448, 0.4448)
 texture = ExtResource("4_es7q3")
 
 [node name="MainCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.588547, 0.808463, 0, -0.808463, 0.588547, 0, 3.72684, 5)
-fov = 70.0
+transform = Transform3D(1, 0, 0, 0, 0.588547, 0.808463, 0, -0.808463, 0.588547, 0, 6.45505, 9.5105)
+fov = 35.0
 script = ExtResource("2_0lvke")
 
 [connection signal="area_entered" from="World/PlayerNodes/Base/BaseLightHitbox" to="World/PlayerNodes/TowerLight" method="OnArea3DEntered"]
