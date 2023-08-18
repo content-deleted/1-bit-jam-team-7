@@ -18,4 +18,6 @@ public partial class Hurtbox : Area3D
         var power = areas.Sum(x => (float)x.GetMeta("Power", 1f) * (0.5f + 1.0f / x.GlobalPosition.DistanceTo(GlobalPosition)));
         return power;
     }
+
+    public bool targetable = true;
 }

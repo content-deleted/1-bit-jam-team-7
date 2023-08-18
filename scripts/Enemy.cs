@@ -3,7 +3,7 @@ using System;
 
 public partial class Enemy : PathFollow3D
 {
-	private int _health = 10;
+	private int _health = 3;
 	public int health {
 		get => _health;
 		set {
@@ -12,7 +12,7 @@ public partial class Enemy : PathFollow3D
 		}
 	}
 
-	public int damage = 18;
+	public int damage = 1;
 
 	[Export]
 	public int speed = 40;
@@ -23,6 +23,7 @@ public partial class Enemy : PathFollow3D
 
 	AnimatedSprite3D spriteAnimation;
 	EnemyController enemyControllerNode;
+    Hurtbox hurtbox;
 
 	public override void _Ready()
 	{
@@ -30,6 +31,7 @@ public partial class Enemy : PathFollow3D
 		spriteAnimation = (AnimatedSprite3D)GetChild(0);
 		spriteAnimation.Play("walk");
 
+        hurtbox = GetNode("hitbox") as Hurtbox;
 	}
 
 	public override void _Process(double delta)
@@ -38,12 +40,13 @@ public partial class Enemy : PathFollow3D
 		
 	}
 
-    public void TakeDamage(int dmg) => health -= dmg;
+	public void TakeDamage(int dmg) => health -= dmg;
 
 	private void HandleHealth(int cur, int prev) {
 		if (cur <= 0)
 		{
 			enemyControllerNode.enemies.Remove(this);
+            hurtbox.targetable = false;
 			this.QueueFree();
 
 			// give drops
