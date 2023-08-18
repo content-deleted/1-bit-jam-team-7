@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_hfxw8"]
 [ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_tytj4"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_6cebn"]
-radius = 1.5
+[sub_resource type="SphereShape3D" id="SphereShape3D_64tyg"]
+radius = 2.807
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bnnqh"]
 radius = 0.3
@@ -16,7 +16,7 @@ radius = 0.3
 script = ExtResource("1_cmm2c")
 
 [node name="range" type="Area3D" parent="."]
-transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.369384, 0)
+transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.63998, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -24,8 +24,8 @@ script = ExtResource("2_w2k1e")
 rate = 800.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
-transform = Transform3D(86.1806, 0, 0, 0, 86.1806, 0, 0, 0, 86.1806, 0, -31.8338, 0)
-shape = SubResource("SphereShape3D_6cebn")
+transform = Transform3D(86.1806, 0, 0, 0, 86.1806, 0, 0, 0, 86.1806, 0, 0, 0)
+shape = SubResource("SphereShape3D_64tyg")
 
 [node name="sprite" type="Sprite3D" parent="."]
 transform = Transform3D(0.198555, 0, 0, 0, 0.198555, 0, 0, 0, 0.198555, 0, 0.369384, 0)

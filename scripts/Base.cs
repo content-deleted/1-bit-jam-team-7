@@ -32,8 +32,7 @@ public partial class Base : Node3D
 
 	}
 
-	public void OnArea3DEntered(Area3D area){
-
+	public void OnArea3DEntered(Area3D area) {
 		if (area.IsInGroup("Enemy")){
 
 			var enemy = (Enemy)area.GetParent();

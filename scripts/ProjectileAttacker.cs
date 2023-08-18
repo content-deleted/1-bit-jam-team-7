@@ -9,6 +9,8 @@ public partial class ProjectileAttacker : Area3D
 	[Export]
     public float rate = 2000; // rate in ms
 
+    public float rateMult = 1;
+
     [Export]
     public int damage = 1; // the damage of a single shot
 
@@ -23,7 +25,7 @@ public partial class ProjectileAttacker : Area3D
 	{
         if(!EnableShooting) return;
 
-        timer += (float)delta * 1000f;
+        timer += rateMult * (float)delta * 1000f;
         if(timer > rate) {
             timer = 0;
             CheckForTargets();
