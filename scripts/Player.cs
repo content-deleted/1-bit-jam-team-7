@@ -103,6 +103,9 @@ public partial class Player : Node3D
                     }
                 }
             } else {
+                if(runner.IsDialogueRunning) {
+                    runner.Stop();
+                }
                 interactionSprite.Hide();
             }
         }

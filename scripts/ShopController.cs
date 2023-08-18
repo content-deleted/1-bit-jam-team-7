@@ -117,6 +117,9 @@ public partial class ShopController : Panel
                         DescriptionPanel.ShowPanel(mousePos, tower.info.name, powerText, true, " Sell ", SellCurrentlyViewingTower);
                     }
                 }
+                if(inputEventMouse.ButtonIndex == MouseButton.Right){
+                    DescriptionPanel.HidePanel();
+                }
             }
         }
     }
