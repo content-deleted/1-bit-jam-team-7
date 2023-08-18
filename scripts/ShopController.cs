@@ -54,8 +54,8 @@ public partial class ShopController : Panel
         GlobalPosition -= new Vector2(0, offscreenDistance);
 
         goldLabel = GetParent().GetNode("Info/gold") as Label;
-        // TODO: REMOVE DEBUG
-        gold = 999;
+        // TODO: starting gold only works for map 1
+        gold = 45;
 	}
     
     float openness = 0;

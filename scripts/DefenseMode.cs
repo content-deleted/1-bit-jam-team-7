@@ -157,7 +157,7 @@ public partial class DefenseMode : Node3D
 
 		waveCountDownTimer = waveCountDown;
 
-		enemyControllerNode.enemyCount = 3; // progression handled here later
+		enemyControllerNode.enemyCount = 8; // progression handled here later
 
 		waveState = true;	
 
