@@ -48,6 +48,8 @@ public partial class ShopItem : Button
 		public int cost;
 		public int maxHealth;
         public PackedScene prefab;
+        public string dialogueName;
+        public int dialogueCount;
 	}
 
 	public towerInfo[] towerTypes = {
@@ -57,7 +59,9 @@ public partial class ShopItem : Button
 			flavor = "\"I swear it moves when I'm not looking.\"",
 			cost = 40,
 			maxHealth = 5,
-            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FoolsBird.tscn")
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FoolsBird.tscn"),
+            dialogueName = "foolsbird",
+            dialogueCount = 1,
 		},
         new towerInfo { 
 			name = "Matapacos",
@@ -65,7 +69,9 @@ public partial class ShopItem : Button
 			flavor = "\"Alicanto's best friend, and a miner's worst nightmare.\"",
 			cost = 10,
 			maxHealth = 20,
-            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/Matapacos.tscn")
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/Matapacos.tscn"),
+            dialogueName = "matapacos",
+            dialogueCount = 1,
 		},
         new towerInfo { 
 			name = "Flaming-Go",
@@ -73,7 +79,9 @@ public partial class ShopItem : Button
 			flavor = "\"The threatened Chilean Flaming-Go has evolved an incendeary tactic to defend itself.\"",
 			cost = 30,
 			maxHealth = 20,
-            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FlamingGo.tscn")
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FlamingGo.tscn"),
+            dialogueName = "flaminggo",
+            dialogueCount = 1,
 		},
 	};
 }

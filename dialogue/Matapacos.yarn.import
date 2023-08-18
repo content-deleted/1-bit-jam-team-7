@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.YarnSpinner-Godot.YarnScript"
+type="Resource"
+uid="uid://dgwkwtkw6wyt0"
+path="res://.godot/imported/Matapacos.yarn-fead2948a5aac714d1500c82c14c2ec3.tres"
+
+[deps]
+
+source_file="res://dialogue/Matapacos.yarn"
+dest_files=["res://.godot/imported/Matapacos.yarn-fead2948a5aac714d1500c82c14c2ec3.tres"]
+
+[params]
+

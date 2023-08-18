@@ -16,7 +16,7 @@ public partial class DefenseMode : Node3D
 	public double waveCountDownTimer;
 
 	double waveTimer; 
-	private bool _waveState;
+	private static bool _waveState;
 
 	private static int _score;
 	public static int score {
@@ -28,7 +28,7 @@ public partial class DefenseMode : Node3D
 	}
 	public static Label scoreLabel;
 
-	public bool waveState {
+	public static bool waveState {
 		get { return _waveState; }
 		set { 
 			_waveState = value;
@@ -47,7 +47,7 @@ public partial class DefenseMode : Node3D
 	//game Node references
 
 	Player playerNode;
-	TowerLight towerLightNode;
+	static TowerLight towerLightNode;
 	Camera mainCamera;
 	EnemyController enemyControllerNode;
 	WorldEnvironment worldEnvironmentNode;
@@ -198,8 +198,13 @@ public partial class DefenseMode : Node3D
 
 	#region Player Input Functions
 
+    // easy way for interupting the fix animation
+    public static bool playerMoved = false;
+    // used for disabling moving while talking
+    public static bool playerCanMove = true;
 	public void MovePlayer(double delta) // this goes in Process because it's delta dependent (frame independent)
 	{
+        if(!playerCanMove) return;
 
 		playerNode.playerSpeed = playerNode.playerDefaultSpeed;
 
@@ -226,10 +231,12 @@ public partial class DefenseMode : Node3D
 		if(Input.IsActionPressed("MovePlayerUp") && !Input.IsActionPressed("MovePlayerDown")){
 
 			playerNode.playerDirection.Z = -1;
+            playerMoved = true;
 
 		} else if (Input.IsActionPressed("MovePlayerDown") && !Input.IsActionPressed("MovePlayerUp")){
 
 			playerNode.playerDirection.Z = 1;
+            playerMoved = true;
 
 		} else {
 
@@ -241,10 +248,12 @@ public partial class DefenseMode : Node3D
 			playerNode.playerDirection.X = -1;
 			playerNode.playerSprite.FlipH = false;
 			playerNode.playerSprite.Position = new Vector3(0.005f, 0.15f, 0);
+            playerMoved = true;
 		} else if (Input.IsActionPressed("MovePlayerRight") && !Input.IsActionPressed("MovePlayerLeft")){
 			playerNode.playerDirection.X = 1;
 			playerNode.playerSprite.FlipH = true;
 			playerNode.playerSprite.Position = new Vector3(-0.005f, 0.15f, 0);
+            playerMoved = true;
 		} else {
 			playerNode.playerDirection.X = 0;
 		}

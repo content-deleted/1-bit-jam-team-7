@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.YarnSpinner-Godot.YarnScript"
+type="Resource"
+uid="uid://dhey7t5ds7s1p"
+path="res://.godot/imported/FoolsBird.yarn-ebeb0e710e04fc58c5b54abe31428569.tres"
+
+[deps]
+
+source_file="res://dialogue/FoolsBird.yarn"
+dest_files=["res://.godot/imported/FoolsBird.yarn-ebeb0e710e04fc58c5b54abe31428569.tres"]
+
+[params]
+

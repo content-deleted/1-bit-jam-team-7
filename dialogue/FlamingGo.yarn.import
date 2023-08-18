@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.YarnSpinner-Godot.YarnScript"
+type="Resource"
+uid="uid://dpmphqp2krb30"
+path="res://.godot/imported/FlamingGo.yarn-50f4126a29b75c1a67462d243fb53abe.tres"
+
+[deps]
+
+source_file="res://dialogue/FlamingGo.yarn"
+dest_files=["res://.godot/imported/FlamingGo.yarn-50f4126a29b75c1a67462d243fb53abe.tres"]
+
+[params]
+

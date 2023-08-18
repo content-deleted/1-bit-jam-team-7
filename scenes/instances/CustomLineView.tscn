@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://coddfs0ig6q0y"]
+
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/LineView.cs" id="1_gro13"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/DialogueAdvanceInput.cs" id="2_yc1we"]
+[ext_resource type="Texture2D" uid="uid://ccf3iwtc7f7us" path="res://addons/YarnSpinner-Godot/Textures/Divider.svg" id="3_ubfub"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xawdr"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="LineView" type="Control" node_paths=PackedStringArray("_lineText", "_continueButton", "_characterNameText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gro13")
+_lineText = NodePath("Background/VBoxContainer/Line Text")
+_useFadeEffect = true
+_useTypewriterEffect = true
+_typewriterEffectSpeed = 24.0
+_continueButton = NodePath("Continue Button")
+_characterNameText = NodePath("Background/VBoxContainer/Character Name")
+
+[node name="DialogueAdvanceInput" type="Node" parent="." node_paths=PackedStringArray("dialogueView")]
+script = ExtResource("2_yc1we")
+dialogueView = NodePath("..")
+continueActionType = 2
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.455
+anchor_right = 0.76
+anchor_bottom = 0.97
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xawdr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+
+[node name="Character Name" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Character Name"
+horizontal_alignment = 1
+
+[node name="Divider" type="TextureRect" parent="Background/VBoxContainer"]
+texture_filter = 5
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_ubfub")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Line Text" type="RichTextLabel" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 42
+theme_override_font_sizes/bold_font_size = 42
+theme_override_font_sizes/italics_font_size = 42
+theme_override_font_sizes/bold_italics_font_size = 42
+theme_override_font_sizes/mono_font_size = 42
+bbcode_enabled = true
+text = "[center]Here's a big long line of dialogue, ready to be shown to the player.[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+
+[node name="Continue Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 609.0
+offset_top = -61.0
+offset_right = 642.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.37048, 1.37048)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "V"
+icon_alignment = 1

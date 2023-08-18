@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkjtt7vyvqbra"]
+
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/DialogueRunner.cs" id="1_ag4g8"]
+[ext_resource type="Resource" uid="uid://ckixuaqeep47s" path="res://addons/YarnSpinner-Godot/Samples~/3D/Dialogue/SimpleYarn YarnProject.tres" id="2_o58pp"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/LineProviders/TextLineProvider.cs" id="3_sbljn"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/InMemoryVariableStorage.cs" id="4_c0g0a"]
+[ext_resource type="PackedScene" uid="uid://hq3anudf4mek" path="res://addons/YarnSpinner-Godot/Prefabs/LineView.tscn" id="5_d6cmr"]
+[ext_resource type="PackedScene" uid="uid://b230rcu43va40" path="res://addons/YarnSpinner-Godot/Prefabs/OptionListView.tscn" id="6_khnb3"]
+
+[node name="DialogueRunner" type="Control" node_paths=PackedStringArray("_variableStorage", "lineProvider")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ag4g8")
+yarnProject = ExtResource("2_o58pp")
+_variableStorage = NodePath("")
+views = [NodePath("LineView"), NodePath("OptionListView")]
+startNode = "SimpleYarn"
+lineProvider = NodePath("")
+verboseLogging = false
+
+[node name="TextLineProvider" type="Node" parent="."]
+script = ExtResource("3_sbljn")
+
+[node name="InMemoryVariableStorage" type="Node" parent="."]
+script = ExtResource("4_c0g0a")
+
+[node name="LineView" parent="." node_paths=PackedStringArray("_lineText", "_continueButton", "_characterNameText") instance=ExtResource("5_d6cmr")]
+layout_mode = 1
+_lineText = NodePath("")
+_continueButton = NodePath("")
+_characterNameText = NodePath("")
+
+[node name="OptionListView" parent="." node_paths=PackedStringArray("optionGroup", "lastLineText") instance=ExtResource("6_khnb3")]
+layout_mode = 1
+optionGroup = NodePath("")
+lastLineText = NodePath("")

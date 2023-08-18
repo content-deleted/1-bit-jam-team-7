@@ -60,7 +60,7 @@ public partial class EnemyController : Path3D
 
 		} else {
 			
-			if (defenseMode.waveCountDownTimer <= 0 && defenseMode.waveState && enemyCount > 0){
+			if (defenseMode.waveCountDownTimer <= 0 && DefenseMode.waveState && enemyCount > 0){
 
 				SpawnEnemy();
 				enemyTimer = enemyTime;
