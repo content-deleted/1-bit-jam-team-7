@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=63 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
 [ext_resource type="Texture2D" uid="uid://c63jq3mvt3mac" path="res://gfx/Alic_blink2_sprite.png" id="11_c58m1"]
 [ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="11_gnr4i"]
-[ext_resource type="Texture2D" uid="uid://c7e3xih20w7im" path="res://gfx/Alic_blink_sprite.png" id="11_ie7aj"]
 [ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
 [ext_resource type="Texture2D" uid="uid://bwd2uvmgbehhf" path="res://gfx/shit_wrench.png" id="11_sppul"]
 [ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="12_ddmq2"]
@@ -123,12 +122,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("10_2beq3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_c58m1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_ie7aj")
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_c58m1")
