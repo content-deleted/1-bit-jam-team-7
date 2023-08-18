@@ -3,7 +3,7 @@ using System;
 
 public partial class Enemy : PathFollow3D
 {
-	private int _health = 10;
+	private int _health = 3;
 	public int health {
 		get => _health;
 		set {
@@ -12,7 +12,7 @@ public partial class Enemy : PathFollow3D
 		}
 	}
 
-	public int damage = 18;
+	public int damage = 1;
 
 	[Export]
 	public int speed = 40;
@@ -38,7 +38,7 @@ public partial class Enemy : PathFollow3D
 		
 	}
 
-    public void TakeDamage(int dmg) => health -= dmg;
+	public void TakeDamage(int dmg) => health -= dmg;
 
 	private void HandleHealth(int cur, int prev) {
 		if (cur <= 0)

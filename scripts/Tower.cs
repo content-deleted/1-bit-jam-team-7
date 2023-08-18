@@ -10,21 +10,21 @@ public partial class Tower : Node3D
 	public Hurtbox hitbox;
 
 	public int maxHealth;
-    private int _currentHealth;
+	private int _currentHealth;
 
-    [Export]
-    public bool isPowerSource = false;
+	[Export]
+	public bool isPowerSource = false;
 
 	public int currentHealth {
-        get => _currentHealth;
-        set { 
-            _currentHealth = value;
-            // check the health and disable if its below threshold
-        }
-    }
+		get => _currentHealth;
+		set { 
+			_currentHealth = value;
+			// check the health and disable if its below threshold
+		}
+	}
 
-    // This will also take into account the energy
-    public bool isOnline => currentHealth > 0;
+	// This will also take into account the energy
+	public bool isOnline => currentHealth > 0;
 
 	public ShopItem.towerInfo info;
 	public override void _Ready()
@@ -34,7 +34,7 @@ public partial class Tower : Node3D
 		hitbox = GetNode("hitbox") as Hurtbox;
 	}
 
-    public float GetTotalPower () => isPowerSource ? 0 : hitbox.GetTotalPower();
+	public float GetTotalPower () => isPowerSource ? 0 : hitbox.GetTotalPower();
 
-    public void TakeDamage(int dmg) => currentHealth -= dmg;
+	public void TakeDamage(int dmg) => currentHealth -= dmg;
 }

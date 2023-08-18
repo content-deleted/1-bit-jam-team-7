@@ -35,11 +35,11 @@ public partial class DefenseMode : Node3D
 			if(value) {
 				towerLightNode.Show();
 				ShopController.Close();
-                DescriptionPanel.HidePanel();
+				DescriptionPanel.HidePanel();
 			} else {
 				ShopController.Open();
 				towerLightNode.Hide();
-                DescriptionPanel.HidePanel();
+				DescriptionPanel.HidePanel();
 			}
 		}
 	}
@@ -143,7 +143,7 @@ public partial class DefenseMode : Node3D
 
 		waveCountDownTimer = waveCountDown;
 
-		enemyControllerNode.enemyCount = 5; // progression handled here later
+		enemyControllerNode.enemyCount = 3; // progression handled here later
 
 		waveState = true;	
 
