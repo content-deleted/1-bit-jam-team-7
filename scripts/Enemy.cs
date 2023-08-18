@@ -19,16 +19,21 @@ public partial class Enemy : PathFollow3D
 	[Export]
 	public int score = 20;
 
+	AnimatedSprite3D spriteAnimation;
 	EnemyController enemyControllerNode;
 
 	public override void _Ready()
 	{
 		enemyControllerNode = (EnemyController)GetNode("/root/DefenseMode/World/Level/EnemySpawn");
+		spriteAnimation = (AnimatedSprite3D)GetChild(0);
+		spriteAnimation.Play("walk");
+
 	}
 
 	public override void _Process(double delta)
 	{
 		this.ProgressRatio += (float)delta / 40;
+		
 	}
 
     public void TakeDamage(int dmg) => health -= dmg;
