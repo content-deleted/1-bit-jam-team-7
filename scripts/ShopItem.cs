@@ -35,7 +35,7 @@ public partial class ShopItem : Button
             
              // make it so that it cant be targeted
             ShopController.towerPlacementTest.hitbox.Monitorable = false;
-            ShopController.towerPlacementTest.hitbox.CollisionMask = 1 << 8;
+            ShopController.towerPlacementTest.hitbox.CollisionMask = (1 << 8) | (1 << 19);
         }
 	}
 	
@@ -57,11 +57,11 @@ public partial class ShopItem : Button
 			name = "Fool's Bird",
 			description = "Cast's light about itself in a 1-space radius. Charges adjacent towers.",
 			flavor = "\"I swear it moves when I'm not looking.\"",
-			cost = 20,
+			cost = 30,
 			maxHealth = 5,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FoolsBird.tscn"),
             dialogueName = "foolsbird",
-            dialogueCount = 1,
+            dialogueCount = 3,
 		},
         new towerInfo { 
 			name = "Matapacos",
@@ -71,7 +71,7 @@ public partial class ShopItem : Button
 			maxHealth = 10,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/Matapacos.tscn"),
             dialogueName = "matapacos",
-            dialogueCount = 1,
+            dialogueCount = 4,
 		},
         new towerInfo { 
 			name = "Flaming-Go",
@@ -81,7 +81,7 @@ public partial class ShopItem : Button
 			maxHealth = 10,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FlamingGo.tscn"),
             dialogueName = "flaminggo",
-            dialogueCount = 1,
+            dialogueCount = 3,
 		},
 	};
 }

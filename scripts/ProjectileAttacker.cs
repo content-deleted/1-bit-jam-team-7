@@ -33,7 +33,7 @@ public partial class ProjectileAttacker : Area3D
 	}
 
     public void CheckForTargets() {
-        var areas = GetOverlappingAreas().Select(x=> x as Hurtbox).Where(x => x != null);
+        var areas = GetOverlappingAreas().Select(x=> x as Hurtbox).Where(x => x != null && x.targetable);
         if(areas.Count() != 0) {
             var target = areas.FirstOrDefault();
             if(target != null) {

@@ -19,6 +19,12 @@ public partial class DefenseMode : Node3D
 	private static bool _waveState;
 
 	private static int _score;
+    
+    public delegate void OnWaveEvent();
+
+    public static OnWaveEvent onWaveStartEventHandler;
+    
+    public static OnWaveEvent onWaveEndEventHandler;
 	public static int score {
 		get=> _score;
 		set {
@@ -28,18 +34,24 @@ public partial class DefenseMode : Node3D
 	}
 	public static Label scoreLabel;
 
+    public static Button StartRoundButton;
+
 	public static bool waveState {
 		get { return _waveState; }
 		set { 
 			_waveState = value;
 			if(value) {
+                onWaveStartEventHandler?.Invoke();
 				towerLightNode.Show();
 				ShopController.Close();
-				DescriptionPanel.HidePanel();
+                DescriptionPanel.HidePanel();
+                StartRoundButton.Hide();
 			} else {
+                onWaveEndEventHandler?.Invoke();
 				ShopController.Open();
 				towerLightNode.Hide();
-				DescriptionPanel.HidePanel();
+                DescriptionPanel.HidePanel();
+                StartRoundButton.Show();
 			}
 		}
 	}
@@ -77,6 +89,8 @@ public partial class DefenseMode : Node3D
 		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
 
 		scoreLabel = GetNode<Label>("ViewportOverlay/HUD/Info/score");
+
+        StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -143,7 +157,7 @@ public partial class DefenseMode : Node3D
 
 		waveCountDownTimer = waveCountDown;
 
-		enemyControllerNode.enemyCount = 3; // progression handled here later
+		enemyControllerNode.enemyCount = 8; // progression handled here later
 
 		waveState = true;	
 
@@ -284,12 +298,14 @@ public partial class DefenseMode : Node3D
 
 			towerLightNode.focalLength -= 0.1f;
 			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 5f);
+            towerLightNode.SetMeta("Power", 1f/towerLightNode.focalLength);
 
 
 		} else if (@event is InputEventMouseButton inputEventMouse2 && inputEventMouse2.Pressed && inputEventMouse2.ButtonIndex == MouseButton.WheelUp){
 
 			towerLightNode.focalLength += 0.1f;
 			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 5f);
+            towerLightNode.SetMeta("Power", 1f/towerLightNode.focalLength);
 
 			
 		} else if (@event is InputEventKey inputEventKey && inputEventKey.Pressed){ // single key press

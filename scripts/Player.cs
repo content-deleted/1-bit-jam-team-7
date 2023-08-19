@@ -23,7 +23,7 @@ public partial class Player : Node3D
     [Export]
     public float repairTime = 0.1f; // time to add one health
 
-	public Sprite3D playerSprite;
+	public AnimatedSprite3D playerSprite;
 	public Camera mainCamera;
     private Area3D towerInteractionRange;
     private Sprite3D interactionSprite;
@@ -34,7 +34,8 @@ public partial class Player : Node3D
 
 	public override void _Ready()
 	{
-		playerSprite = GetNode<Sprite3D>("PlayerSprite");
+		playerSprite = GetNode<AnimatedSprite3D>("PlayerSprite");
+        playerSprite.Play("idle");
 		mainCamera = GetNode<Camera>("//root/DefenseMode/MainCamera");
         towerInteractionRange = GetNode<Area3D>("TowerInteractionRange");
         interactionSprite =  GetNode<Sprite3D>("InteractionSprite");
@@ -103,6 +104,9 @@ public partial class Player : Node3D
                     }
                 }
             } else {
+                if(runner.IsDialogueRunning) {
+                    runner.Stop();
+                }
                 interactionSprite.Hide();
             }
         }

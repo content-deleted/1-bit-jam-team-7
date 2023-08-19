@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctjk82d2au2nc"]
+[gd_scene load_steps=9 format=3 uid="uid://ctjk82d2au2nc"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_gp6j6"]
 [ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="2_uykxt"]
 [ext_resource type="Texture2D" uid="uid://byssjd7nmjc4k" path="res://gfx/flaminggo.png" id="3_2yaeo"]
+[ext_resource type="Texture2D" uid="uid://bn81qah8uwkvj" path="res://gfx/flaminggodown.png" id="3_r2gsh"]
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_e0dpv"]
 [ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_q2fdl"]
 
@@ -14,6 +15,8 @@ radius = 0.3
 
 [node name="FlamingGo" type="Node3D"]
 script = ExtResource("1_gp6j6")
+mainSprite = ExtResource("3_2yaeo")
+downSprite = ExtResource("3_r2gsh")
 
 [node name="range" type="Area3D" parent="."]
 transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.369384, 0)
