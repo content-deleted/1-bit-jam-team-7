@@ -56,6 +56,7 @@ public partial class DefenseMode : Node3D
 				toggleRangeButton.Hide();
                 onWaveStartEventHandler?.Invoke();
 				towerController.ToggleTowerRange();
+				PaletteController.SetNewPallete(sunsetColor, black);
 			} else {
 				ShopController.Open();
 				towerLightNode.Hide();
@@ -63,6 +64,7 @@ public partial class DefenseMode : Node3D
                 StartRoundButton.Show();
 				toggleRangeButton.Show();
                 onWaveEndEventHandler?.Invoke();
+				PaletteController.SetNewPallete(sunriseColor, black);
 			}
 		}
 	}
@@ -75,6 +77,12 @@ public partial class DefenseMode : Node3D
 	EnemyController enemyControllerNode;
 	WorldEnvironment worldEnvironmentNode;
 	static TowerController towerController;
+
+	// color pallete colors for sunrise and sunset
+
+	static Color black = new Color(0, 0, 0, 1);
+	static Color sunriseColor = new Color(1, 0.95f, 0.85f, 1);
+	static Color sunsetColor = new Color(0.85f, 0.85f, 1f, 1);
 	
 
 
@@ -106,6 +114,7 @@ public partial class DefenseMode : Node3D
 
         toggleRangeButton = GetNode<Button>("ViewportOverlay/HUD/ToggleVisual");
 		StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -118,6 +127,7 @@ public partial class DefenseMode : Node3D
 			MoveTowerLight();
 			Wave(delta);
 		} else if (!waveState){
+			
 			Sunrise(delta);
 		}
 	}
@@ -232,6 +242,8 @@ public partial class DefenseMode : Node3D
 		worldEnvironmentNode.Environment.AmbientLightEnergy += (float)delta;
 
 		worldEnvironmentNode.Environment.AmbientLightEnergy = Mathf.Clamp(worldEnvironmentNode.Environment.AmbientLightEnergy, 0.0f, 1f);
+
+
 
 	}
 

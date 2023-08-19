@@ -468,7 +468,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -8.23967, -0.288749, 8.08383)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
 surface_material_override/0 = ExtResource("2_l6v42")
@@ -1283,6 +1283,7 @@ autowrap_mode = 0
 shortcut_keys_enabled = false
 
 [node name="ToggleVisual" type="Button" parent="ViewportOverlay/HUD"]
+layout_mode = 0
 offset_left = 1098.0
 offset_top = 9.0
 offset_right = 1255.0
