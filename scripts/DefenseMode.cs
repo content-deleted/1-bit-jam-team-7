@@ -37,6 +37,7 @@ public partial class DefenseMode : Node3D
 	private static bool _waveState;
 
 	private static int _score;
+	public static bool showRange = false;
     
     public delegate void OnWaveEvent();
 
@@ -241,10 +242,21 @@ public partial class DefenseMode : Node3D
 				maxGoldPrev += (enemyControllerNode.totalEnemiesLastWave * 5);
 				MSD -= 0.1f;
 				enemyControllerNode.enemyTime = 1/((maxGoldPrev / 15) / (3 * MSD));
+				enemyControllerNode.bigEnemyTime = enemyControllerNode.enemyTime * 5;
                 enemyControllerNode.enemyCount = enemyControllerNode.totalEnemiesLastWave + 3 * (wave-1);
 				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
+
+				if (wave % 5 == 0){
+
+					enemyControllerNode.bigEnemyCount = wave / 5;
+					enemyControllerNode.bigEnemyTimer = enemyControllerNode.bigEnemyTime;
+
+				}
+
                 break;
         }
+
+
 
         //GD.Print("Wave # is " + wave);
 		//GD.Print("Wave Stats are: \nMSD: " + MSD + "\nenemies per second: " + 1/enemyControllerNode.enemyTime + "\nenemyCount: " + enemyControllerNode.enemyCount + "\nmaxGoldLastTurn: " + maxGoldPrev);

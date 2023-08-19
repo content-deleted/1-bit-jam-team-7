@@ -5,10 +5,12 @@ using Yarn.Compiler;
 
 public partial class TowerController : Node3D
 {
-	
+
     public static TowerController controller;
 	public override void _Ready()
 	{
+
+
         if(controller != null && IsInstanceValid(controller)) {
 			QueueFree();
 			return;
@@ -32,7 +34,7 @@ public partial class TowerController : Node3D
 		tow.range = tower.range;
 
 		((TorusMesh)tow.rangeMesh.Mesh).OuterRadius = tow.range;
-        ((TorusMesh)tow.rangeMesh.Mesh).InnerRadius = tow.range - 0.2f;
+        ((TorusMesh)tow.rangeMesh.Mesh).InnerRadius = tow.range - 0.02f;
 		((SphereShape3D)tow.rangeCollider.Shape).Radius = tow.range;
 		tow.rangeMesh.Show();
 	
@@ -41,7 +43,9 @@ public partial class TowerController : Node3D
 	public void ToggleTowerRange(){
 
 		foreach(Tower tower in controller.GetChildren()){
-			tower.rangeMesh.Visible = !tower.rangeMesh.Visible;
+
+			tower.rangeMesh.Visible = DefenseMode.showRange;
+			
 		}
 
 	}
