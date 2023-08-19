@@ -16,7 +16,9 @@ public partial class TowerLight : Node3D
 	Area3D lightArea;
 
 	double damageTimer;
-	double damageTime = 1; 
+
+	// HACK: value of 10 is a hack, see TODO below for enemy.health adj in AOEDamage
+	double damageTime = 10; 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -73,6 +75,7 @@ public partial class TowerLight : Node3D
 
 				Enemy enemy = (Enemy)enemyArea.GetParent();
 
+				// TODO: Would prefer to keep damageTime to 1 and reduce this but as is with (int) the lowest this value can go is 1 so it needs to stay at 5
 				enemy.health -= (int)(5 /focalLength);
 
 			}
