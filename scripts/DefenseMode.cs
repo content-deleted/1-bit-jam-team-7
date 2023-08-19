@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Linq;
 
 
@@ -11,6 +12,12 @@ public partial class DefenseMode : Node3D
 
 	int wave;
 	int waveAmount;
+
+	// The maximum possible gold obtained from previous waves
+	int maxGoldPrev;
+
+	// Matapacos Standardized Difficulty - See Alicento Towers doc for more detail
+	float MSD; 
 
 	double waveCountDown = 5;
 	public double waveCountDownTimer;
@@ -164,9 +171,32 @@ public partial class DefenseMode : Node3D
 
 		waveCountDownTimer = waveCountDown;
 
-		enemyControllerNode.enemyCount = 8; // progression handled here later
+		// Determines enemy count per wave
+		switch(wave)
+		{
+			case 1:
+				//TODO: connect this with shopcontroller's starting gold
+				maxGoldPrev = 60;
+                enemyControllerNode.enemyTime = 1;
+                enemyControllerNode.enemyCount = 3;
+				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
+				MSD = 1.3f;
+                break;
+			default:
+				// enemyTime must be set b4 enemyCount is updated to use previous wave's count
 
-		waveState = true;	
+				maxGoldPrev += (enemyControllerNode.totalEnemiesLastWave * 5);
+				MSD -= 0.1f;
+				enemyControllerNode.enemyTime = 1/((maxGoldPrev / 15) / (3 * MSD));
+                enemyControllerNode.enemyCount = enemyControllerNode.totalEnemiesLastWave + 3 * (wave-1);
+				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
+                break;
+        }
+
+        //GD.Print("Wave # is " + wave);
+		//GD.Print("Wave Stats are: \nMSD: " + MSD + "\nenemies per second: " + 1/enemyControllerNode.enemyTime + "\nenemyCount: " + enemyControllerNode.enemyCount + "\nmaxGoldLastTurn: " + maxGoldPrev);
+
+        waveState = true;	
 
 	}
 

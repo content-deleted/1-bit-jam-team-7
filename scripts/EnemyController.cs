@@ -18,10 +18,11 @@ public partial class EnemyController : Path3D
 	//enemy spawn var
 
 	public int enemyCount = 0;
+	public int totalEnemiesLastWave;
 
 
 	double enemyTimer;
-	double enemyTime = 2;
+	public double enemyTime;
 
 	DefenseMode defenseMode;
 	Base playerBase;

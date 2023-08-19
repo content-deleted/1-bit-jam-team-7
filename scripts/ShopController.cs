@@ -20,6 +20,9 @@ public partial class ShopController : Panel
 
     public static ShopController controller;
 
+    // starting gold
+    public int startingGold = 60;
+
     private static bool _towerPlacing = false;
     public static bool towerPlacing {
         get => _towerPlacing;
@@ -54,8 +57,7 @@ public partial class ShopController : Panel
         GlobalPosition -= new Vector2(0, offscreenDistance);
 
         goldLabel = GetParent().GetNode("Info/gold") as Label;
-        // TODO: starting gold only works for map 1
-        gold = 45;
+        gold = startingGold;
 	}
     
     float openness = 0;
