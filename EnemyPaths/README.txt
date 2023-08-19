@@ -1,5 +1,9 @@
 loopingPath.tres: designed as an early stage. Whole path is visable from the default camera angle, and is curvey. However: it does self-intersect.
 
+spikeyPath_behindCamera.tres: designed as an earlygame stage. This path begins visable on the default camera angle before deliberately going out of sight unless the player rotates the camera. Hopefully this familearizes them with that concept.
+
+wigglyLabryinthPath.tres: designed as an earlygame stage. Building on spikeyPath's introduction to the path going out of sight, this path starts out of the player's default view. The whole thing is also not totally visable at any one camera view. Even so, it's a pretty long, single path and so isn't too tough.
+
 starPath.tres: designed as a lategame stage. Lots of self-intersection, and impossible to see the whole thing at once. Saving grace is that it's long.
 
 circularPath.tres: designed as a lategame stage. No intersection, but impossible to see all at once and very short.
