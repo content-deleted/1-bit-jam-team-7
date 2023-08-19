@@ -92,7 +92,7 @@ public partial class ShopController : Panel
         if(@event is InputEventMouseButton inputEventMouse && inputEventMouse.Pressed) {
             if(towerPlacing && towerPlacementTest.Visible) {
                 if(inputEventMouse.ButtonIndex == MouseButton.Left){
-                    if(currentTower.cost < gold) {
+                    if(currentTower.cost <= gold) {
                         TowerController.PlaceTower(currentTower, towerPlacementTest.GlobalPosition);
                         gold-= currentTower.cost;
                     }

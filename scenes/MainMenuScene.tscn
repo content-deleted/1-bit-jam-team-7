@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c53rj07d48lx3"]
 
-[ext_resource type="Script" path="res://MainMenuScene.cs" id="1_oqbt3"]
+[ext_resource type="Script" path="res://scripts/MainMenuScene.cs" id="1_oqbt3"]
 [ext_resource type="Shader" path="res://1bitdither.gdshader" id="2_p71q4"]
 [ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="3_nq485"]
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="4_j0gi1"]
@@ -62,9 +62,9 @@ theme_override_font_sizes/font_size = 96
 text = "Lights Start a Riot"
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_3ajew")
+layout_mode = 0
 offset_left = -3.0
 offset_top = -3.0
 offset_right = 854.0

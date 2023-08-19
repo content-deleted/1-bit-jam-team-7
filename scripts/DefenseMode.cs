@@ -273,6 +273,12 @@ public partial class DefenseMode : Node3D
 
 		Vector3 playerMove = playerNode.playerDirection.Normalized() * playerNode.playerSpeed * (float)delta;
 
+        if(playerMove == Vector3.Zero) {
+            playerNode.playerSprite.Play("idle");
+        } else {
+            playerNode.playerSprite.Play("walk");
+        }
+
 		Vector3 cameraRelativeMove = playerNode.CameraRelativeMove(playerMove);
 
 		playerNode.Translate(cameraRelativeMove);

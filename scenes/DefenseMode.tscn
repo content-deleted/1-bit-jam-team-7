@@ -1,48 +1,50 @@
-[gd_scene load_steps=63 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=67 format=3 uid="uid://ch5lqbfm0ojq6"]
 
-[ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_4m6pl"]
-[ext_resource type="Script" path="res://scripts/Base.cs" id="1_l6emr"]
-[ext_resource type="Script" path="res://scripts/Camera.cs" id="2_0lvke"]
-[ext_resource type="Script" path="res://scripts/Player.cs" id="2_rhjw6"]
-[ext_resource type="Material" uid="uid://cvu2ag2lecokv" path="res://gfx/materials/baseMaterial.tres" id="2_s6oau"]
-[ext_resource type="Script" path="res://scripts/TowerLight.cs" id="2_ty0mf"]
-[ext_resource type="Script" path="res://scripts/PaletteController.cs" id="3_5quch"]
-[ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="3_720i0"]
-[ext_resource type="Texture2D" uid="uid://dom6gbpgxrgbh" path="res://scenes/starbg.png" id="3_b33c0"]
-[ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="3_c4xbn"]
-[ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="4_es7q3"]
-[ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_xdur2"]
-[ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_hs6jn"]
-[ext_resource type="Script" path="res://scripts/EnemyController.cs" id="8_afdgi"]
-[ext_resource type="Texture2D" uid="uid://cxyp0dm0lh3g2" path="res://gfx/Alic_neutral_sprite.png" id="10_2beq3"]
-[ext_resource type="Script" path="res://scripts/TowerController.cs" id="10_tyw5t"]
-[ext_resource type="Texture2D" uid="uid://c63jq3mvt3mac" path="res://gfx/Alic_blink2_sprite.png" id="11_c58m1"]
-[ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="11_gnr4i"]
-[ext_resource type="Script" path="res://scripts/ShopController.cs" id="11_qa5lt"]
-[ext_resource type="Texture2D" uid="uid://bwd2uvmgbehhf" path="res://gfx/shit_wrench.png" id="11_sppul"]
-[ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="12_ddmq2"]
-[ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="12_ff2pb"]
-[ext_resource type="Script" path="res://scripts/ShopItem.cs" id="13_2xch8"]
-[ext_resource type="Shader" path="res://1bitdither.gdshader" id="13_mgh0l"]
-[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/LineView.cs" id="14_jn5vf"]
-[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/DialogueAdvanceInput.cs" id="15_tdvjt"]
-[ext_resource type="Texture2D" uid="uid://mf70dns8x0jq" path="res://gfx/foolsbirdicon.png" id="16_3vyea"]
-[ext_resource type="Texture2D" uid="uid://ccf3iwtc7f7us" path="res://addons/YarnSpinner-Godot/Textures/Divider.svg" id="16_p3jnb"]
-[ext_resource type="Texture2D" uid="uid://dw3edxx2blmrq" path="res://gfx/goodboyicon.png" id="18_sxcno"]
-[ext_resource type="Texture2D" uid="uid://c4cyr1aw7hqkv" path="res://gfx/flaminggoicon.png" id="19_u0sms"]
-[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/DialogueRunner.cs" id="22_ycu8y"]
-[ext_resource type="Resource" uid="uid://bt0yks33fsv3n" path="res://dialogue/TowerDialogue.tres" id="23_ynq8v"]
-[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/LineProviders/TextLineProvider.cs" id="24_g6cjt"]
-[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/InMemoryVariableStorage.cs" id="25_pg5xe"]
-[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/OptionListView.cs" id="29_dnlj0"]
-[ext_resource type="PackedScene" uid="uid://bkgjbmr4jpndd" path="res://addons/YarnSpinner-Godot/Prefabs/OptionView.tscn" id="30_x6m7g"]
+[ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_kau7u"]
+[ext_resource type="Material" uid="uid://cvu2ag2lecokv" path="res://gfx/materials/baseMaterial.tres" id="2_l6v42"]
+[ext_resource type="Texture2D" uid="uid://dom6gbpgxrgbh" path="res://gfx/starbg.png" id="3_p6s8r"]
+[ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="4_7wkmv"]
+[ext_resource type="Script" path="res://scripts/EnemyController.cs" id="5_yko82"]
+[ext_resource type="Script" path="res://scripts/Base.cs" id="6_as3sn"]
+[ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_yee1w"]
+[ext_resource type="Script" path="res://scripts/TowerLight.cs" id="8_iq72x"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="9_tasxs"]
+[ext_resource type="Texture2D" uid="uid://cxyp0dm0lh3g2" path="res://gfx/Alic_neutral_sprite.png" id="10_7q4j2"]
+[ext_resource type="Texture2D" uid="uid://c63jq3mvt3mac" path="res://gfx/Alic_blink2_sprite.png" id="11_4ampx"]
+[ext_resource type="Texture2D" uid="uid://disgjp3ri5e7e" path="res://gfx/Alic_walk_1.png" id="12_dqwjj"]
+[ext_resource type="Texture2D" uid="uid://pvhbkemy1m1" path="res://gfx/Alic_walk_3.png" id="13_sprwt"]
+[ext_resource type="Texture2D" uid="uid://bwd2uvmgbehhf" path="res://gfx/shit_wrench.png" id="14_stiby"]
+[ext_resource type="Script" path="res://scripts/TowerController.cs" id="15_ivrdb"]
+[ext_resource type="Script" path="res://scripts/ProjectilePool.cs" id="16_oy8y7"]
+[ext_resource type="Script" path="res://scripts/DescriptionPanel.cs" id="17_anshc"]
+[ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="18_ckqcj"]
+[ext_resource type="Script" path="res://scripts/ShopController.cs" id="19_dd8dq"]
+[ext_resource type="Texture2D" uid="uid://cii12oj3n13o1" path="res://gfx/LampLight.png" id="20_mt3ie"]
+[ext_resource type="Texture2D" uid="uid://mf70dns8x0jq" path="res://gfx/foolsbirdicon.png" id="21_mlkqw"]
+[ext_resource type="Script" path="res://scripts/ShopItem.cs" id="22_qqvbj"]
+[ext_resource type="Texture2D" uid="uid://dw3edxx2blmrq" path="res://gfx/goodboyicon.png" id="23_l4nfh"]
+[ext_resource type="Texture2D" uid="uid://c4cyr1aw7hqkv" path="res://gfx/flaminggoicon.png" id="24_yykub"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/DialogueRunner.cs" id="25_2qsuc"]
+[ext_resource type="Resource" uid="uid://bt0yks33fsv3n" path="res://dialogue/TowerDialogue.tres" id="26_fa66j"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/LineProviders/TextLineProvider.cs" id="27_4lonr"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/InMemoryVariableStorage.cs" id="28_fevj8"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/LineView.cs" id="29_c3f0o"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/DialogueAdvanceInput.cs" id="30_vdgmr"]
+[ext_resource type="Texture2D" uid="uid://ccf3iwtc7f7us" path="res://addons/YarnSpinner-Godot/Textures/Divider.svg" id="31_nh7fi"]
+[ext_resource type="Script" path="res://addons/YarnSpinner-Godot/Runtime/Views/OptionListView.cs" id="32_dg7rm"]
+[ext_resource type="PackedScene" uid="uid://bkgjbmr4jpndd" path="res://addons/YarnSpinner-Godot/Prefabs/OptionView.tscn" id="33_j4ubp"]
+[ext_resource type="Shader" path="res://1bitdither.gdshader" id="34_a50or"]
+[ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="35_j44qo"]
+[ext_resource type="Script" path="res://scripts/PaletteController.cs" id="36_byfir"]
+[ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="37_bhh8d"]
+[ext_resource type="Script" path="res://scripts/Camera.cs" id="38_fqcg4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_tystq"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_j7j7q"]
-panorama = ExtResource("3_b33c0")
+panorama = ExtResource("3_p6s8r")
 
 [sub_resource type="Sky" id="Sky_5cvxo"]
 sky_material = SubResource("PanoramaSkyMaterial_j7j7q")
@@ -86,49 +88,45 @@ radius = 9.651
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
+"texture": ExtResource("10_7q4j2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_2beq3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_2beq3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_2beq3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_2beq3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_2beq3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_c58m1")
+"texture": ExtResource("11_4ampx")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_dqwjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_sprwt")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -176,7 +174,7 @@ expand_margin_left = 200.0
 expand_margin_right = 200.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2u6vo"]
-texture = ExtResource("3_c4xbn")
+texture = ExtResource("20_mt3ie")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jo2"]
 content_margin_left = 0.0
@@ -247,16 +245,16 @@ shadow_offset = Vector2(2, 2)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jywo8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t3oht"]
-shader = ExtResource("13_mgh0l")
+shader = ExtResource("34_a50or")
 shader_parameter/primaryColor = Color(0.933333, 0.929412, 0.87451, 1)
 shader_parameter/secondaryColor = Color(0.172549, 0.156863, 0.0509804, 1)
 shader_parameter/threshold = 0.5
 shader_parameter/u_dither_size = 2.0
 shader_parameter/dither_range = Vector2(0.2, 0.6)
-shader_parameter/u_dither_tex = ExtResource("4_xdur2")
+shader_parameter/u_dither_tex = ExtResource("35_j44qo")
 
 [node name="DefenseMode" type="Node3D"]
-script = ExtResource("1_4m6pl")
+script = ExtResource("1_kau7u")
 
 [node name="World" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0984263, 0)
@@ -268,11 +266,11 @@ visible = false
 physics_material_override = SubResource("PhysicsMaterial_ewno6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Environment/StaticBody3D"]
-material_override = ExtResource("2_s6oau")
+material_override = ExtResource("2_l6v42")
 
 [node name="FloorCurved" type="MeshInstance3D" parent="World/Environment"]
 transform = Transform3D(56.4954, 0, 0, 0, 1.3142, 0, 0, 0, 56.4954, 0, -4.1247, 0)
-material_override = ExtResource("2_s6oau")
+material_override = ExtResource("2_l6v42")
 mesh = SubResource("SphereMesh_tystq")
 skeleton = NodePath("../Floor")
 
@@ -296,97 +294,97 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5, 0, -5)
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="Quarter2" type="Node3D" parent="World/Level/FloorPlane"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, -5)
@@ -395,97 +393,97 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, -5)
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter2"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="Quarter3" type="Node3D" parent="World/Level/FloorPlane"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5, 0, 5)
@@ -494,97 +492,97 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5, 0, 5)
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter3"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="Quarter4" type="Node3D" parent="World/Level/FloorPlane"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 5)
@@ -593,112 +591,112 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5, 0, 5)
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment2" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment3" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment4" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment5" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment6" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment7" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment8" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, -2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment9" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment10" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment11" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment12" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 2.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment13" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment14" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment15" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="FloorSegment16" type="MeshInstance3D" parent="World/Level/FloorPlane/Quarter4"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 7.5, 0, 7.5)
 mesh = SubResource("BoxMesh_xek2j")
 skeleton = NodePath("../../..")
-surface_material_override/0 = ExtResource("2_s6oau")
+surface_material_override/0 = ExtResource("2_l6v42")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Level"]
 shape = SubResource("BoxShape3D_7axem")
 
 [node name="EnemySpawn" type="Path3D" parent="World/Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
-curve = ExtResource("3_720i0")
-script = ExtResource("8_afdgi")
+curve = ExtResource("4_7wkmv")
+script = ExtResource("5_yko82")
 
 [node name="PlayerNodes" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984263, 0)
 
 [node name="Base" type="Node3D" parent="World/PlayerNodes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68, 0)
-script = ExtResource("1_l6emr")
+script = ExtResource("6_as3sn")
 
 [node name="BaseLightHitbox" type="Area3D" parent="World/PlayerNodes/Base" groups=["powerSource"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385823, -0.036046)
@@ -719,7 +717,7 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.768762, 0)
 billboard = 1
 shaded = true
 texture_filter = 0
-texture = ExtResource("7_hs6jn")
+texture = ExtResource("7_yee1w")
 
 [node name="Area3D" type="Area3D" parent="World/PlayerNodes/Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.616092, 0)
@@ -730,7 +728,7 @@ collision_mask = 3
 shape = SubResource("CylinderShape3D_8c5aw")
 
 [node name="TowerLight" type="Node3D" parent="World/PlayerNodes"]
-script = ExtResource("2_ty0mf")
+script = ExtResource("8_iq72x")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="World/PlayerNodes/TowerLight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.80871, 0)
@@ -749,7 +747,7 @@ shape = SubResource("SphereShape3D_wlefu")
 
 [node name="Player" type="Node3D" parent="World/PlayerNodes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15619, 0, 0)
-script = ExtResource("2_rhjw6")
+script = ExtResource("9_tasxs")
 
 [node name="Area3D" type="Area3D" parent="World/PlayerNodes/Player" groups=["powerSource"]]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.15, 0)
@@ -769,12 +767,13 @@ monitorable = false
 shape = SubResource("SphereShape3D_obv64")
 
 [node name="PlayerSprite" type="AnimatedSprite3D" parent="World/PlayerNodes/Player"]
-transform = Transform3D(-0.25, 0, 0, 0, -0.25, 0, 0, 0, -0.25, 0, 0.287402, 0)
+transform = Transform3D(-0.25, 0, 0, 0, -0.25, 0, 0, 0, -0.25, 0, 0.227876, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_xva0v")
-animation = &"idle"
-frame_progress = 0.479726
+animation = &"walk"
+frame = 1
+frame_progress = 0.13256
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
 omni_range = 1.0
@@ -782,13 +781,13 @@ omni_range = 1.0
 [node name="InteractionSprite" type="Sprite3D" parent="World/PlayerNodes/Player"]
 transform = Transform3D(0.362756, 0, 0, 0, 0.362756, 0, 0, 0, 0.362756, 0, 0.777181, 0)
 billboard = 1
-texture = ExtResource("11_sppul")
+texture = ExtResource("14_stiby")
 
 [node name="TowerController" type="Node3D" parent="World"]
-script = ExtResource("10_tyw5t")
+script = ExtResource("15_ivrdb")
 
 [node name="ProjectilePool" type="Node3D" parent="World"]
-script = ExtResource("11_gnr4i")
+script = ExtResource("16_oy8y7")
 
 [node name="ViewportOverlay" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -812,7 +811,7 @@ offset_right = 233.0
 offset_bottom = 219.0
 scale = Vector2(1.45883, 1.63651)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ag53l")
-script = ExtResource("12_ddmq2")
+script = ExtResource("17_anshc")
 
 [node name="button" type="Button" parent="ViewportOverlay/HUD/DescriptionPanel"]
 visible = false
@@ -837,7 +836,7 @@ offset_right = 339.427
 offset_bottom = 56.4995
 scale = Vector2(0.34135, 0.34135)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 60
 text = "Tower Name"
 horizontal_alignment = 1
@@ -863,7 +862,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/line_spacing = 5
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 40
 text = "This is a tower yeayay I love towers fuck yeah fuck yeah hehahhahah
 
@@ -879,7 +878,7 @@ offset_right = 460.0
 offset_bottom = 45.0
 scale = Vector2(2.04177, 2.04177)
 theme_override_styles/panel = SubResource("StyleBoxFlat_qdecf")
-script = ExtResource("11_qa5lt")
+script = ExtResource("19_dd8dq")
 
 [node name="Shoplabelbg" type="Panel" parent="ViewportOverlay/HUD/ShopBorder"]
 layout_mode = 0
@@ -899,7 +898,7 @@ offset_right = 79.8015
 offset_bottom = 57.3443
 scale = Vector2(0.154014, 0.277284)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 100
 text = "SHOP"
 
@@ -914,10 +913,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_x6jo2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-icon = ExtResource("16_3vyea")
+icon = ExtResource("21_mlkqw")
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("13_2xch8")
+script = ExtResource("22_qqvbj")
 
 [node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/ShopItem"]
 layout_mode = 0
@@ -951,10 +950,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_x6jo2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-icon = ExtResource("18_sxcno")
+icon = ExtResource("23_l4nfh")
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("13_2xch8")
+script = ExtResource("22_qqvbj")
 type = 1
 
 [node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/ShopItem2"]
@@ -989,10 +988,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_x6jo2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xy53r")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-icon = ExtResource("19_u0sms")
+icon = ExtResource("24_yykub")
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("13_2xch8")
+script = ExtResource("22_qqvbj")
 type = 2
 
 [node name="Panel" type="Panel" parent="ViewportOverlay/HUD/ShopBorder/ShopItem3"]
@@ -1074,7 +1073,7 @@ scale = Vector2(0.452271, 0.452271)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 60
 text = "GOLD"
 horizontal_alignment = 2
@@ -1089,7 +1088,7 @@ scale = Vector2(0.389911, 0.389911)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 60
 text = "32G"
 horizontal_alignment = 2
@@ -1104,7 +1103,7 @@ scale = Vector2(0.452271, 0.452271)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 60
 text = "SCORE"
 horizontal_alignment = 2
@@ -1119,7 +1118,7 @@ scale = Vector2(0.389911, 0.389911)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 18
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 60
 text = "32"
 horizontal_alignment = 2
@@ -1131,8 +1130,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("22_ycu8y")
-yarnProject = ExtResource("23_ynq8v")
+script = ExtResource("25_2qsuc")
+yarnProject = ExtResource("26_fa66j")
 _variableStorage = NodePath("InMemoryVariableStorage")
 views = [NodePath("LineView"), NodePath("OptionListView")]
 startNode = "SimpleYarn"
@@ -1141,10 +1140,10 @@ lineProvider = NodePath("TextLineProvider")
 verboseLogging = false
 
 [node name="TextLineProvider" type="Node" parent="ViewportOverlay/HUD/DialogueRunner"]
-script = ExtResource("24_g6cjt")
+script = ExtResource("27_4lonr")
 
 [node name="InMemoryVariableStorage" type="Node" parent="ViewportOverlay/HUD/DialogueRunner"]
-script = ExtResource("25_pg5xe")
+script = ExtResource("28_fevj8")
 
 [node name="LineView" type="Control" parent="ViewportOverlay/HUD/DialogueRunner" node_paths=PackedStringArray("_lineText", "_continueButton", "_characterNameText")]
 layout_mode = 1
@@ -1157,7 +1156,7 @@ offset_right = 328.0
 offset_bottom = 1011.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("14_jn5vf")
+script = ExtResource("29_c3f0o")
 _lineText = NodePath("Background/VBoxContainer/Line Text")
 _useFadeEffect = true
 fadeInTime = 0.308
@@ -1168,7 +1167,7 @@ _continueButton = NodePath("Continue Button")
 _characterNameText = NodePath("Background/VBoxContainer/Character Name")
 
 [node name="DialogueAdvanceInput" type="Node" parent="ViewportOverlay/HUD/DialogueRunner/LineView" node_paths=PackedStringArray("dialogueView")]
-script = ExtResource("15_tdvjt")
+script = ExtResource("30_vdgmr")
 dialogueView = NodePath("..")
 continueActionType = 2
 continueActionKeyCode = 0
@@ -1198,7 +1197,7 @@ horizontal_alignment = 1
 texture_filter = 5
 layout_mode = 2
 size_flags_vertical = 0
-texture = ExtResource("16_p3jnb")
+texture = ExtResource("31_nh7fi")
 expand_mode = 2
 stretch_mode = 3
 
@@ -1245,9 +1244,9 @@ offset_right = 358.0
 offset_bottom = 602.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("29_dnlj0")
+script = ExtResource("32_dg7rm")
 optionGroup = NodePath("Background/VBoxContainer")
-optionViewPrefab = ExtResource("30_x6m7g")
+optionViewPrefab = ExtResource("33_j4ubp")
 lastLineText = NodePath("Background/VBoxContainer/Line Text")
 
 [node name="Background" type="PanelContainer" parent="ViewportOverlay/HUD/DialogueRunner/OptionListView"]
@@ -1284,7 +1283,7 @@ offset_left = 1594.0
 offset_top = 972.0
 offset_right = 1852.0
 offset_bottom = 1041.0
-theme_override_fonts/font = ExtResource("12_ff2pb")
+theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_vw4rw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jywo8")
@@ -1299,18 +1298,18 @@ offset_right = 1149.0
 offset_bottom = 645.0
 scale = Vector2(2.2482, 2.2482)
 mouse_filter = 2
-script = ExtResource("3_5quch")
+script = ExtResource("36_byfir")
 
 [node name="DITHERTESTSPRITE_IGNORE" type="Sprite2D" parent="ViewportOverlay/ColorRect"]
 visible = false
 position = Vector2(151.663, 99.8354)
 scale = Vector2(0.4448, 0.4448)
-texture = ExtResource("4_es7q3")
+texture = ExtResource("37_bhh8d")
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.588547, 0.808463, 0, -0.808463, 0.588547, 0, 6.45505, 9.5105)
 fov = 35.0
-script = ExtResource("2_0lvke")
+script = ExtResource("38_fqcg4")
 
 [connection signal="area_entered" from="World/PlayerNodes/Base/BaseLightHitbox" to="World/PlayerNodes/TowerLight" method="OnArea3DEntered"]
 [connection signal="area_exited" from="World/PlayerNodes/Base/BaseLightHitbox" to="World/PlayerNodes/TowerLight" method="OnArea3DExited"]

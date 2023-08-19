@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvcl5sfhitxal"]
+[gd_scene load_steps=10 format=3 uid="uid://cvcl5sfhitxal"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_cmm2c"]
 [ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="2_w2k1e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dvl7jy00l27" path="res://gfx/goodboy.png" id="3_00824"]
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_hfxw8"]
 [ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_tytj4"]
+[ext_resource type="PackedScene" uid="uid://nlhqamn16da1" path="res://scenes/instances/on_fire_particles.tscn" id="7_322qf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_64tyg"]
 radius = 2.807
@@ -55,5 +56,7 @@ omni_range = 0.0
 
 [node name="brain" type="Node3D" parent="."]
 script = ExtResource("5_tytj4")
+
+[node name="OnFireParticles" parent="." instance=ExtResource("7_322qf")]
 
 [connection signal="OnDamageTaken" from="hitbox" to="." method="TakeDamage"]

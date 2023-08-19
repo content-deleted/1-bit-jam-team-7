@@ -8,6 +8,7 @@ public partial class Tower : Node3D
 	public OmniLight3D light;
 	public Sprite3D sprite;
 	public Hurtbox hitbox;
+    private GpuParticles3D fireParticles;
 
 	public int maxHealth;
 	private int _currentHealth;
@@ -34,6 +35,8 @@ public partial class Tower : Node3D
                 hitbox.targetable = false;
                 sprite.Texture = downSprite;
             }
+            // Quarter health catch fire
+            fireParticles.Emitting = currentHealth < maxHealth / 4;
         }
     }
 
@@ -46,6 +49,7 @@ public partial class Tower : Node3D
 		light = GetNode("light") as OmniLight3D;
 		sprite = GetNode("sprite") as Sprite3D;
 		hitbox = GetNode("hitbox") as Hurtbox;
+		fireParticles = GetNode("OnFireParticles") as GpuParticles3D;
 
         DefenseMode.onWaveEndEventHandler += () => currentHealth = maxHealth;
 	}

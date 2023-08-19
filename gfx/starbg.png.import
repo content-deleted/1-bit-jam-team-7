@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2hpu8xv55emu"
-path.s3tc="res://.godot/imported/star_bg.png-b6948224ed69677bc907d3cd243fef04.s3tc.ctex"
+uid="uid://dom6gbpgxrgbh"
+path.s3tc="res://.godot/imported/starbg.png-661694961fc77b836074e581c721e412.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/star_bg.png"
-dest_files=["res://.godot/imported/star_bg.png-b6948224ed69677bc907d3cd243fef04.s3tc.ctex"]
+source_file="res://gfx/starbg.png"
+dest_files=["res://.godot/imported/starbg.png-661694961fc77b836074e581c721e412.s3tc.ctex"]
 
 [params]
 

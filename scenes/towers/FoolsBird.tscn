@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d11lvrfdbc0kt"]
+[gd_scene load_steps=9 format=3 uid="uid://d11lvrfdbc0kt"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_e0nnm"]
 [ext_resource type="Texture2D" uid="uid://r2bdnj4l2c5h" path="res://gfx/foolsbird.png" id="3_awaow"]
 [ext_resource type="Texture2D" uid="uid://ch44wktn6ipei" path="res://gfx/foolsbirddown.png" id="3_oexhj"]
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_114m7"]
 [ext_resource type="Script" path="res://scripts/FoolsBird.cs" id="5_nxuq0"]
+[ext_resource type="PackedScene" uid="uid://nlhqamn16da1" path="res://scenes/instances/on_fire_particles.tscn" id="6_pnxxv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6cebn"]
 radius = 2.5
@@ -56,5 +57,7 @@ omni_attenuation = 0.0150928
 
 [node name="brain" type="Node3D" parent="."]
 script = ExtResource("5_nxuq0")
+
+[node name="OnFireParticles" parent="." instance=ExtResource("6_pnxxv")]
 
 [connection signal="OnDamageTaken" from="hitbox" to="." method="TakeDamage"]
