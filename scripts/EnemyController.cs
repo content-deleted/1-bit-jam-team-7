@@ -17,6 +17,7 @@ public partial class EnemyController : StaticBody3D
 	//enemy spawn var
 
 	public int enemyCount = 0;
+	public int bigEnemyCount = 0;
 	public int totalEnemiesLastWave;
 
     public int enemyHealthBonus = 0;
@@ -26,11 +27,15 @@ public partial class EnemyController : StaticBody3D
 	double enemyTimer;
 	public double enemyTime;
 
+	public double bigEnemyTimer;
+	public double bigEnemyTime;
+
 	DefenseMode defenseMode;
 	Base playerBase;
 	public List<Path3D> enemyPaths = new List<Path3D>();
 
 	PackedScene testEnemy;
+	PackedScene bigEnemy;
 	PackedScene pathLight;
 
 	List<PathFollow3D> pathLights = new List<PathFollow3D>();
@@ -42,6 +47,7 @@ public partial class EnemyController : StaticBody3D
 
 		defenseMode = (DefenseMode)GetNode("/root/DefenseMode");
 		testEnemy = GD.Load<PackedScene>("res://scenes/enemies/TestEnemy.tscn");
+		bigEnemy = GD.Load<PackedScene>("res://scenes/enemies/BigEnemy.tscn");
 		playerBase = (Base)GetNode("//root/DefenseMode/World/PlayerNodes/Base");
 		pathLight = GD.Load<PackedScene>("res://scenes/PathLight.tscn");
 
@@ -70,6 +76,7 @@ public partial class EnemyController : StaticBody3D
 		if (enemyTimer > 0){
 
 			enemyTimer -= delta;
+			bigEnemyTimer -= delta;
 
 		} else {
 
@@ -77,21 +84,31 @@ public partial class EnemyController : StaticBody3D
 
 				Path3D enemyPath = enemyPaths[randE.Next(enemyPaths.Count)];
 
-				SpawnEnemy(enemyPath);
+				SpawnEnemy(enemyPath, testEnemy);
+				enemyCount--;
 				enemyTimer = enemyTime;
 
 			}
+
+			if (bigEnemyTimer <= 0 && DefenseMode.waveState && bigEnemyCount > 0){
+
+				Path3D enemyPath = enemyPaths[randE.Next(enemyPaths.Count)];
+
+				SpawnEnemy(enemyPath, bigEnemy);
+				bigEnemyCount--;
+				bigEnemyTimer = bigEnemyTime;
+
+			}
+
 		}
 
 	}
 
-	public void SpawnEnemy(Path3D enemyPath){
+	public void SpawnEnemy(Path3D enemyPath, PackedScene enemyType){
 
-		var enemy = (PathFollow3D)testEnemy.Instantiate();
+		var enemy = (PathFollow3D)enemyType.Instantiate();
 		enemies.Add(enemy);
 		enemyPath.AddChild(enemy);
-		
-		enemyCount--;
 
 	}
 

@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://dk6f4td534k3o"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.cs" id="1_siyno"]
+[ext_resource type="Texture2D" uid="uid://4p5uen6of7pa" path="res://gfx/riot_walk_1.png" id="2_nxexg"]
+[ext_resource type="Texture2D" uid="uid://dngglld8pvj25" path="res://gfx/riot_walk_2.png" id="3_gb80f"]
+[ext_resource type="Texture2D" uid="uid://c6dm3duaflg4m" path="res://gfx/riot_walk_3.png" id="4_uuxgp"]
+[ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="5_vcp15"]
+[ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="6_fwwt6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kosbu"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nxexg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gb80f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uuxgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gb80f")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2t7wg"]
+radius = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i7332"]
+radius = 3.0
+
+[node name="PathFollow3D" type="PathFollow3D"]
+transform = Transform3D(-0.195076, 0, -0.980788, 0, 1, 0, 0.980788, 0, -0.195076, 0, 0, 0)
+script = ExtResource("1_siyno")
+speed = 1
+gold = 10
+score = 50
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.195076, 0, 0.980788, 0, 1, 0, -0.980788, 0, -0.195076, 0, 0.259982, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_kosbu")
+animation = &"walk"
+frame_progress = 0.624704
+
+[node name="hitbox" type="Area3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363591, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_vcp15")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("SphereShape3D_2t7wg")
+
+[node name="range" type="Area3D" parent="." groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.250554, 0)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("6_fwwt6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
+shape = SubResource("SphereShape3D_i7332")
+
+[connection signal="OnDamageTaken" from="hitbox" to="." method="TakeDamage"]
