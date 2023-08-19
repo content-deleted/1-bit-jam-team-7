@@ -6,10 +6,19 @@ using System.Linq;
 
 public partial class DefenseMode : Node3D
 {
+    public static LevelSelect.levelInfo levelInfo;
 
 	// wave control variables
+    private static int _wave;
+    public static int wave {
+		get=> _wave;
+		set {
+			_wave = value;
+			waveLabel.Text = value.ToString();
+		}
+	}
+	public static Label waveLabel;
 
-	int wave;
 	int waveAmount;
 
 	double waveCountDown = 5;
@@ -63,6 +72,7 @@ public partial class DefenseMode : Node3D
 	Camera mainCamera;
 	EnemyController enemyControllerNode;
 	WorldEnvironment worldEnvironmentNode;
+    Area3D towerLightArea;
 	
 
 
@@ -82,6 +92,8 @@ public partial class DefenseMode : Node3D
 
 		towerLightNode = GetNode<TowerLight>("World/PlayerNodes/TowerLight");
 
+        towerLightArea = towerLightNode.GetNode<Area3D>("Area3D");
+
 		mainCamera = GetNode<Camera>("MainCamera");
 
 		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
@@ -89,6 +101,8 @@ public partial class DefenseMode : Node3D
 		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
 
 		scoreLabel = GetNode<Label>("ViewportOverlay/HUD/Info/score");
+
+        waveLabel = GetNode<Label>("ViewportOverlay/HUD/Info/wave");
 
         StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
 	}
@@ -303,14 +317,14 @@ public partial class DefenseMode : Node3D
 
 			towerLightNode.focalLength -= 0.1f;
 			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 5f);
-            towerLightNode.SetMeta("Power", 1f/towerLightNode.focalLength);
+            towerLightArea.SetMeta("Power", 1f/towerLightNode.focalLength);
 
 
 		} else if (@event is InputEventMouseButton inputEventMouse2 && inputEventMouse2.Pressed && inputEventMouse2.ButtonIndex == MouseButton.WheelUp){
 
 			towerLightNode.focalLength += 0.1f;
 			towerLightNode.focalLength = Mathf.Clamp(towerLightNode.focalLength, 0.5f, 5f);
-            towerLightNode.SetMeta("Power", 1f/towerLightNode.focalLength);
+            towerLightArea.SetMeta("Power", 1f/towerLightNode.focalLength);
 
 			
 		} else if (@event is InputEventKey inputEventKey && inputEventKey.Pressed){ // single key press

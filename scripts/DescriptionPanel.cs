@@ -11,7 +11,7 @@ public partial class DescriptionPanel : Panel
 
 	public override void _Ready()
 	{
-		if(singleton != null) {
+		if(singleton != null && IsInstanceValid(singleton)) {
 			QueueFree();
 			return;
 		}

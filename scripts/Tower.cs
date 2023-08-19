@@ -50,9 +50,15 @@ public partial class Tower : Node3D
 		sprite = GetNode("sprite") as Sprite3D;
 		hitbox = GetNode("hitbox") as Hurtbox;
 		fireParticles = GetNode("OnFireParticles") as GpuParticles3D;
-
-        DefenseMode.onWaveEndEventHandler += () => currentHealth = maxHealth;
+        DefenseMode.onWaveEndEventHandler += HealToFull;
+        TreeExiting += Deconstructor;
 	}
+
+    public void Deconstructor() {
+        DefenseMode.onWaveEndEventHandler -= HealToFull;
+    }
+
+    public void HealToFull() => currentHealth = maxHealth;
 
 	public float GetTotalPower () => isPowerSource ? 0 : hitbox.GetTotalPower();
 

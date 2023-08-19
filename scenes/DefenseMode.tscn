@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=68 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_kau7u"]
 [ext_resource type="Material" uid="uid://cvu2ag2lecokv" path="res://gfx/materials/baseMaterial.tres" id="2_l6v42"]
@@ -215,6 +215,10 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2i5y5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f18ee"]
 content_margin_left = 32.0
@@ -1059,16 +1063,19 @@ horizontal_alignment = 1
 
 [node name="Info" type="Control" parent="ViewportOverlay/HUD"]
 anchors_preset = 0
-offset_left = 912.0
-offset_right = 952.0
-offset_bottom = 40.0
+offset_left = 1694.0
+offset_top = 9.0
+offset_right = 1734.0
+offset_bottom = 49.0
+scale = Vector2(0.79217, 0.79217)
 
 [node name="goldlabel" type="Label" parent="ViewportOverlay/HUD/Info"]
+visible = false
 layout_mode = 0
-offset_left = 930.0
-offset_top = 5.0
-offset_right = 1064.0
-offset_bottom = 91.0
+offset_left = 864.0
+offset_top = 7.0
+offset_right = 998.0
+offset_bottom = 93.0
 scale = Vector2(0.452271, 0.452271)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1078,22 +1085,49 @@ theme_override_font_sizes/font_size = 60
 text = "GOLD"
 horizontal_alignment = 2
 
+[node name="wave" type="Label" parent="ViewportOverlay/HUD/Info"]
+offset_left = 48.0
+offset_top = 93.0
+offset_right = 263.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("18_ckqcj")
+theme_override_font_sizes/font_size = 60
+text = "Wave 1"
+horizontal_alignment = 2
+
+[node name="score" type="Label" parent="ViewportOverlay/HUD/Info"]
+layout_mode = 0
+offset_left = -53.0
+offset_top = 192.0
+offset_right = 265.0
+offset_bottom = 278.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("18_ckqcj")
+theme_override_font_sizes/font_size = 60
+text = "Score 203"
+horizontal_alignment = 2
+
 [node name="gold" type="Label" parent="ViewportOverlay/HUD/Info"]
 layout_mode = 0
-offset_left = 908.0
-offset_top = 29.0
-offset_right = 1123.0
-offset_bottom = 115.0
-scale = Vector2(0.389911, 0.389911)
+offset_left = -46.0
+offset_top = 4.0
+offset_right = 268.0
+offset_bottom = 90.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("18_ckqcj")
 theme_override_font_sizes/font_size = 60
-text = "32G"
+text = "GOLD 32"
 horizontal_alignment = 2
 
 [node name="scorelabel" type="Label" parent="ViewportOverlay/HUD/Info"]
+visible = false
 layout_mode = 0
 offset_left = 916.0
 offset_top = 51.0
@@ -1108,22 +1142,8 @@ theme_override_font_sizes/font_size = 60
 text = "SCORE"
 horizontal_alignment = 2
 
-[node name="score" type="Label" parent="ViewportOverlay/HUD/Info"]
-layout_mode = 0
-offset_left = 908.0
-offset_top = 77.0
-offset_right = 1123.0
-offset_bottom = 163.0
-scale = Vector2(0.389911, 0.389911)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 18
-theme_override_fonts/font = ExtResource("18_ckqcj")
-theme_override_font_sizes/font_size = 60
-text = "32"
-horizontal_alignment = 2
-
 [node name="DialogueRunner" type="Control" parent="ViewportOverlay/HUD" node_paths=PackedStringArray("_variableStorage", "lineProvider")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1151,9 +1171,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 328.0
-offset_top = 1011.0
+offset_top = 986.0
 offset_right = 328.0
-offset_bottom = 1011.0
+offset_bottom = 986.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("29_c3f0o")
@@ -1175,11 +1195,11 @@ continueActionName = "dialogue_advance"
 
 [node name="Background" type="PanelContainer" parent="ViewportOverlay/HUD/DialogueRunner/LineView"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.455
-anchor_right = 0.76
-anchor_bottom = 0.97
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -260.0
+offset_right = 1264.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_xawdr")
 
@@ -1189,6 +1209,7 @@ layout_mode = 2
 
 [node name="Character Name" type="Label" parent="ViewportOverlay/HUD/DialogueRunner/LineView/Background/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "Character Name"
 horizontal_alignment = 1
@@ -1218,19 +1239,20 @@ shortcut_keys_enabled = false
 
 [node name="Continue Button" type="Button" parent="ViewportOverlay/HUD/DialogueRunner/LineView"]
 layout_mode = 2
-offset_left = 533.0
-offset_top = -5.0
-offset_right = 710.0
-offset_bottom = 58.0
+offset_left = 1163.0
+offset_top = -65.0
+offset_right = 1241.0
+offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.12947, 1.12947)
+scale = Vector2(0.952392, 0.952392)
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "continue"
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxFlat_2i5y5")
+text = "→"
 icon_alignment = 1
 
 [node name="OptionListView" type="Control" parent="ViewportOverlay/HUD/DialogueRunner" node_paths=PackedStringArray("optionGroup", "lastLineText")]
@@ -1291,14 +1313,16 @@ text = "Start Wave"
 
 [node name="ColorRect" type="ColorRect" parent="ViewportOverlay"]
 z_index = 10
+z_as_relative = false
 material = SubResource("ShaderMaterial_t3oht")
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 1149.0
-offset_bottom = 645.0
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 1112.0
+offset_bottom = 616.0
 scale = Vector2(2.2482, 2.2482)
 mouse_filter = 2
 script = ExtResource("36_byfir")
+metadata/_edit_use_anchors_ = true
 
 [node name="DITHERTESTSPRITE_IGNORE" type="Sprite2D" parent="ViewportOverlay/ColorRect"]
 visible = false

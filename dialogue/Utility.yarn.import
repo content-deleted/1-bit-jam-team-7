@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.YarnSpinner-Godot.YarnScript"
+type="Resource"
+uid="uid://1jbrwrf2d3sk"
+path="res://.godot/imported/Utility.yarn-9d671ee5ac6a98e329f9b8610bacf51d.tres"
+
+[deps]
+
+source_file="res://dialogue/Utility.yarn"
+dest_files=["res://.godot/imported/Utility.yarn-9d671ee5ac6a98e329f9b8610bacf51d.tres"]
+
+[params]
+

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8hc33iqytxhp"]
+
+[ext_resource type="Script" path="res://scripts/LevelSelect.cs" id="1_ajmvn"]
+[ext_resource type="Shader" path="res://1bitdither.gdshader" id="2_747ym"]
+[ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="2_qwr83"]
+[ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="3_ceh1y"]
+[ext_resource type="Script" path="res://scripts/PaletteController.cs" id="4_d870m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ajew"]
+shader = ExtResource("2_747ym")
+shader_parameter/primaryColor = Color(0.933333, 0.929412, 0.87451, 1)
+shader_parameter/secondaryColor = Color(0.172549, 0.156863, 0.0509804, 1)
+shader_parameter/threshold = 0.5
+shader_parameter/u_dither_size = 2.0
+shader_parameter/dither_range = Vector2(0.2, 0.6)
+shader_parameter/u_dither_tex = ExtResource("3_ceh1y")
+
+[node name="Base" type="Node3D"]
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ajmvn")
+
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 4.99997
+offset_right = 2003.0
+offset_bottom = 234.0
+rotation = 0.10386
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_qwr83")
+theme_override_font_sizes/font_size = 96
+text = "SELECT YOUR LEVEL"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Menu"]
+
+[node name="ColorRect" type="ColorRect" parent="Menu/CanvasLayer"]
+z_index = 10
+material = SubResource("ShaderMaterial_3ajew")
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 854.0
+offset_bottom = 479.0
+scale = Vector2(2.2482, 2.2482)
+mouse_filter = 2
+script = ExtResource("4_d870m")

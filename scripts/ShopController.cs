@@ -44,7 +44,7 @@ public partial class ShopController : Panel
 
 	public override void _Ready()
 	{
-        if(controller != null) {
+        if(controller != null && IsInstanceValid(controller)) {
 			QueueFree();
 			return;
 		}

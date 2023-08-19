@@ -16,7 +16,7 @@ public partial class ProjectilePool : Node3D
 	public static ProjectilePool pool;
 	public override void _Ready()
 	{
-		if(pool != null) {
+		if(pool != null && IsInstanceValid(pool)) {
 			QueueFree();
 			return;
 		}

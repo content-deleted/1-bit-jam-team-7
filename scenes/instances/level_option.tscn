@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvx21dgxtvrqm"]
+
+[ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="1_ijema"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5ajp"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_offset = Vector2(10, 10)
+
+[node name="LevelOption" type="Button"]
+offset_left = 78.0
+offset_top = 156.0
+offset_right = 1118.0
+offset_bottom = 402.0
+scale = Vector2(0.642301, 0.642301)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5ajp")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 20.0
+offset_right = 1029.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("1_ijema")
+theme_override_font_sizes/font_size = 70
+text = "Test Title"
+horizontal_alignment = 1
+
+[node name="body" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 83.0
+offset_right = 1012.0
+offset_bottom = 227.0
+theme_override_font_sizes/font_size = 32
+text = "This path begins visable on the default camera angle before deliberately going out of sight unless the player rotates the camera. Hopefully this familiarizes them with that concept"
+autowrap_mode = 3

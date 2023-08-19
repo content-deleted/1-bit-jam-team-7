@@ -5,9 +5,11 @@ using System.Linq;
 
 public partial class DirectionalAOE : Area3D
 {
-
 	[Export]
     public float rate = 800; // rate in ms
+
+    [Export]
+    public float powerScaling = 0.5f;
 
     public float rateMult = 1;
 
@@ -20,10 +22,17 @@ public partial class DirectionalAOE : Area3D
 
     private Area3D aoeArea;
     private GpuParticles3D particles;
+    private Vector3 sizeArea;
+    private Vector3 sizeParticles;
+
+    private Tower tower;
     public override void _Ready()
 	{
         aoeArea = GetNode<Area3D>("damage");
+        sizeArea = aoeArea.Scale * powerScaling;
         particles = GetNode<GpuParticles3D>("particles");
+        sizeParticles = particles.Scale * powerScaling;
+        tower = GetParent() as Tower;
     }
 
     Hurtbox target;
@@ -37,6 +46,7 @@ public partial class DirectionalAOE : Area3D
                 return;
             }
             FaceTarget();
+            UpdateAreaFromPower();
             particles.Emitting = true;
 
             timer += rateMult * (float)delta * 1000f;
@@ -49,6 +59,13 @@ public partial class DirectionalAOE : Area3D
             CheckForTargets();
         }
 	}
+
+    public void UpdateAreaFromPower() {
+        var power = tower.GetTotalPower();
+        power = power > 0 ? power : 0.0001f;
+        particles.Scale = sizeParticles * power;
+        aoeArea.Scale = sizeArea * power;
+    }
 
     public void FaceTarget() {
         LookAt(target.GlobalPosition);

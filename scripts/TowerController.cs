@@ -9,7 +9,7 @@ public partial class TowerController : Node3D
     public static TowerController controller;
 	public override void _Ready()
 	{
-        if(controller != null) {
+        if(controller != null && IsInstanceValid(controller)) {
 			QueueFree();
 			return;
 		}

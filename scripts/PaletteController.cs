@@ -7,7 +7,7 @@ public partial class PaletteController : ColorRect
 	public override void _Ready()
 	{
 		// Singleton
-		if(controller != null) {
+		if(controller != null && IsInstanceValid(controller)) {
 			QueueFree();
 			return;
 		}
