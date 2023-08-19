@@ -30,7 +30,10 @@ public partial class ShopItem : Button
             // not very efficent but do I care?
             if(ShopController.towerPlacementTest != null) ShopController.towerPlacementTest.QueueFree();
             ShopController.towerPlacementTest = info.prefab.Instantiate() as Tower;
-        
+			
+      	  	((TorusMesh)ShopController.towerPlacementTest.rangeMesh.Mesh).OuterRadius = info.range;
+        	((TorusMesh)ShopController.towerPlacementTest.rangeMesh.Mesh).InnerRadius = info.range - 0.2f;
+			ShopController.towerPlacementTest.rangeMesh.Show();
             TowerController.controller.AddChild(ShopController.towerPlacementTest);
             
              // make it so that it cant be targeted
@@ -47,6 +50,7 @@ public partial class ShopItem : Button
 		public string flavor;
 		public int cost;
 		public int maxHealth;
+		public float range;
         public PackedScene prefab;
         public string dialogueName;
         public int dialogueCount;
@@ -59,6 +63,7 @@ public partial class ShopItem : Button
 			flavor = "\"I swear it moves when I'm not looking.\"",
 			cost = 30,
 			maxHealth = 5,
+			range = 2.5f,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FoolsBird.tscn"),
             dialogueName = "foolsbird",
             dialogueCount = 3,
@@ -69,6 +74,7 @@ public partial class ShopItem : Button
 			flavor = "\"Alicanto's best friend, and a miner's worst nightmare.\"",
 			cost = 15,
 			maxHealth = 10,
+			range = 2,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/Matapacos.tscn"),
             dialogueName = "matapacos",
             dialogueCount = 4,
@@ -79,9 +85,22 @@ public partial class ShopItem : Button
 			flavor = "\"The threatened Chilean Flaming-Go has evolved an incendeary tactic to defend itself.\"",
 			cost = 30,
 			maxHealth = 10,
+			range = 1.5f,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FlamingGo.tscn"),
             dialogueName = "flaminggo",
             dialogueCount = 3,
 		},
+		/*
+        new towerInfo { 
+			name = "DiscoDuck",
+			description = "Makes a nifty effect that cycles through different colors. And bragging rights.",
+			flavor = "\"This here funky dude is ready to get his groove on!\"",
+			cost = 1976,
+			maxHealth = 10,
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/Discoduck.tscn"),
+            dialogueName = "discoduck",
+            dialogueCount = 4,
+		},
+		*/
 	};
 }

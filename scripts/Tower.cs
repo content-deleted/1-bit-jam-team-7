@@ -11,6 +11,7 @@ public partial class Tower : Node3D
     private GpuParticles3D fireParticles;
 
 	public int maxHealth;
+    public float range;
 	private int _currentHealth;
 
 	[Export]
@@ -21,6 +22,12 @@ public partial class Tower : Node3D
 
     [Export]
     public CompressedTexture2D downSprite;
+
+    [Export]
+    public CollisionShape3D rangeCollider;
+
+    [Export]
+    public MeshInstance3D rangeMesh;
 
 	public int currentHealth {
         get => _currentHealth;
@@ -63,4 +70,12 @@ public partial class Tower : Node3D
 	public float GetTotalPower () => isPowerSource ? 0 : hitbox.GetTotalPower();
 
 	public void TakeDamage(int dmg) => currentHealth -= dmg;
+
+    public void DrawRange() {
+
+
+
+    }
+
+
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvcl5sfhitxal"]
+[gd_scene load_steps=12 format=3 uid="uid://cvcl5sfhitxal"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_cmm2c"]
 [ext_resource type="Script" path="res://scripts/ProjectileAttacker.cs" id="2_w2k1e"]
@@ -8,16 +8,25 @@
 [ext_resource type="Script" path="res://scripts/TowerMatapacos.cs" id="5_tytj4"]
 [ext_resource type="PackedScene" uid="uid://nlhqamn16da1" path="res://scenes/instances/on_fire_particles.tscn" id="7_322qf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70f31"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_6iqen"]
+inner_radius = 9.5
+outer_radius = 10.0
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_64tyg"]
 radius = 2.807
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bnnqh"]
 radius = 0.3
 
-[node name="TowerMatapacos" type="Node3D"]
+[node name="TowerMatapacos" type="Node3D" node_paths=PackedStringArray("rangeCollider", "rangeMesh")]
 script = ExtResource("1_cmm2c")
 mainSprite = ExtResource("3_00824")
 downSprite = ExtResource("3_1lr14")
+rangeCollider = NodePath("range/RangeCollider")
+rangeMesh = NodePath("range/RangeVisual")
 
 [node name="range" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63998, 0)
@@ -27,11 +36,19 @@ monitorable = false
 script = ExtResource("2_w2k1e")
 rate = 1000.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
+[node name="RangeVisual" type="MeshInstance3D" parent="range"]
+transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, -0.334595, 0)
+visible = false
+layers = 16
+material_override = SubResource("StandardMaterial3D_70f31")
+mesh = SubResource("TorusMesh_6iqen")
+skeleton = NodePath("../RangeCollider")
+
+[node name="RangeCollider" type="CollisionShape3D" parent="range"]
 shape = SubResource("SphereShape3D_64tyg")
 
 [node name="sprite" type="Sprite3D" parent="."]
-transform = Transform3D(0.198555, 0, 0, 0, 0.198555, 0, 0, 0, 0.198555, 0, 0.28, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.38, 0)
 billboard = 2
 shaded = true
 double_sided = false

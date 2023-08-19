@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctjk82d2au2nc"]
+[gd_scene load_steps=18 format=3 uid="uid://ctjk82d2au2nc"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_gp6j6"]
 [ext_resource type="Texture2D" uid="uid://byssjd7nmjc4k" path="res://gfx/flaminggo.png" id="3_2yaeo"]
@@ -7,8 +7,15 @@
 [ext_resource type="Script" path="res://scripts/Hurtbox.cs" id="4_e0dpv"]
 [ext_resource type="PackedScene" uid="uid://nlhqamn16da1" path="res://scenes/instances/on_fire_particles.tscn" id="7_y0o3b"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eit5g"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_quacd"]
+inner_radius = 9.5
+outer_radius = 10.0
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_6cebn"]
-radius = 3.2
+radius = 10.0
 
 [sub_resource type="Curve" id="Curve_iqkri"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.703252, 0.663158), 1.04979, 1.04979, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -48,29 +55,37 @@ material = SubResource("StandardMaterial3D_ur62l")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2c2lx"]
-height = 2.94997
+height = 3.59642
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bnnqh"]
 radius = 0.3
 
-[node name="FlamingGo" type="Node3D"]
+[node name="FlamingGo" type="Node3D" node_paths=PackedStringArray("rangeCollider", "rangeMesh")]
 script = ExtResource("1_gp6j6")
 mainSprite = ExtResource("3_2yaeo")
 downSprite = ExtResource("3_r2gsh")
+rangeCollider = NodePath("range/rangeCollider")
+rangeMesh = NodePath("range/RangeVisual")
 
 [node name="range" type="Area3D" parent="."]
-transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.369384, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.369384, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("4_8wfsi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
-transform = Transform3D(86.1806, 0, 0, 0, 86.1806, 0, 0, 0, 86.1806, 0, -31.8338, 0)
+[node name="RangeVisual" type="MeshInstance3D" parent="range"]
+transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, -0.334595, 0)
+visible = false
+layers = 16
+material_override = SubResource("StandardMaterial3D_eit5g")
+mesh = SubResource("TorusMesh_quacd")
+
+[node name="rangeCollider" type="CollisionShape3D" parent="range"]
 shape = SubResource("SphereShape3D_6cebn")
 
 [node name="particles" type="GPUParticles3D" parent="range"]
-transform = Transform3D(-3.6579, -8.22312, -1.35896e-06, -8.22312, 3.6579, -1.24166e-06, 1.68681e-06, 7.37006e-07, -9, 0, 28.9258, -0.00660309)
+transform = Transform3D(-0.048772, -0.109642, -1.81195e-08, -0.109642, 0.048772, -1.65555e-08, 2.24908e-08, 9.82672e-09, -0.12, 0, 0.327229, -0.00660309)
 sorting_offset = 2.0
 cast_shadow = 0
 gi_mode = 0
@@ -83,13 +98,13 @@ process_material = SubResource("ParticleProcessMaterial_pfo2v")
 draw_pass_1 = SubResource("QuadMesh_460hk")
 
 [node name="damage" type="Area3D" parent="range"]
-transform = Transform3D(-86.1809, -7.53399e-06, 5.25979e-08, 0, -0.60165, -86.1788, 7.53417e-06, -86.1788, 0.60165, 0, 20.9997, 0)
+transform = Transform3D(-1, 2.16005e-12, 6.09686e-10, -6.09687e-10, -0.006974, -0.999976, 2.089e-12, -0.999976, 0.006974, 0, 0, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="range/damage"]
-transform = Transform3D(1, 0, 1.11022e-16, 0, 1, 0, -1.11022e-16, 0, 1, -1.88314e-08, 1.48761, -0.0425853)
+transform = Transform3D(1, -1.73472e-18, -3.43233e-16, -6.50521e-19, 1, 0, 3.57843e-16, 0, 1, 0.00300406, 1.77188, -0.409943)
 shape = SubResource("CylinderShape3D_2c2lx")
 
 [node name="sprite" type="Sprite3D" parent="."]

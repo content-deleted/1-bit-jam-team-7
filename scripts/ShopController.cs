@@ -14,11 +14,14 @@ public partial class ShopController : Panel
         get => _gold;
         set {
             _gold = value;
-            controller.goldLabel.Text = _gold+"G";
+            controller.goldLabel.Text = "Gold: "+_gold;
         }
     }
 
     public static ShopController controller;
+
+    // starting gold
+    public int startingGold = 60;
 
     private static bool _towerPlacing = false;
     public static bool towerPlacing {
@@ -54,8 +57,7 @@ public partial class ShopController : Panel
         GlobalPosition -= new Vector2(0, offscreenDistance);
 
         goldLabel = GetParent().GetNode("Info/gold") as Label;
-        // TODO: starting gold only works for map 1
-        gold = 45;
+        gold = startingGold;
 	}
     
     float openness = 0;

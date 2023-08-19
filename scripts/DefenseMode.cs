@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Linq;
 
 
@@ -14,12 +15,18 @@ public partial class DefenseMode : Node3D
 		get=> _wave;
 		set {
 			_wave = value;
-			waveLabel.Text = value.ToString();
+			waveLabel.Text =  "Wave: " + value;
 		}
 	}
 	public static Label waveLabel;
 
 	int waveAmount;
+
+	// The maximum possible gold obtained from previous waves
+	int maxGoldPrev;
+
+	// Matapacos Standardized Difficulty - See Alicento Towers doc for more detail
+	float MSD; 
 
 	double waveCountDown = 5;
 	public double waveCountDownTimer;
@@ -38,11 +45,12 @@ public partial class DefenseMode : Node3D
 		get=> _score;
 		set {
 			_score = value;
-			scoreLabel.Text = value.ToString();
+			scoreLabel.Text = "Score: " + value;
 		}
 	}
 	public static Label scoreLabel;
 
+	public static Button toggleRangeButton;
     public static Button StartRoundButton;
 
 	public static bool waveState {
@@ -54,13 +62,18 @@ public partial class DefenseMode : Node3D
 				ShopController.Close();
                 DescriptionPanel.HidePanel();
                 StartRoundButton.Hide();
+				toggleRangeButton.Hide();
                 onWaveStartEventHandler?.Invoke();
+				towerController.ToggleTowerRange();
+				PaletteController.SetNewPallete(sunsetColor, black);
 			} else {
 				ShopController.Open();
 				towerLightNode.Hide();
                 DescriptionPanel.HidePanel();
                 StartRoundButton.Show();
+				toggleRangeButton.Show();
                 onWaveEndEventHandler?.Invoke();
+				PaletteController.SetNewPallete(sunriseColor, black);
 			}
 		}
 	}
@@ -73,6 +86,13 @@ public partial class DefenseMode : Node3D
 	EnemyController enemyControllerNode;
 	WorldEnvironment worldEnvironmentNode;
     Area3D towerLightArea;
+	static TowerController towerController;
+
+	// color pallete colors for sunrise and sunset
+
+	static Color black = new Color(0, 0, 0, 1);
+	static Color sunriseColor = new Color(1, 0.95f, 0.85f, 1);
+	static Color sunsetColor = new Color(0.85f, 0.85f, 1f, 1);
 	
 
 
@@ -96,6 +116,8 @@ public partial class DefenseMode : Node3D
 
 		mainCamera = GetNode<Camera>("MainCamera");
 
+		towerController = GetNode<TowerController>("World/TowerController");
+
 		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
 
 		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
@@ -105,6 +127,11 @@ public partial class DefenseMode : Node3D
         waveLabel = GetNode<Label>("ViewportOverlay/HUD/Info/wave");
 
         StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
+
+        toggleRangeButton = GetNode<Button>("ViewportOverlay/HUD/ToggleVisual");
+
+		StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -117,6 +144,7 @@ public partial class DefenseMode : Node3D
 			MoveTowerLight();
 			Wave(delta);
 		} else if (!waveState){
+			
 			Sunrise(delta);
 		}
 	}
@@ -170,9 +198,32 @@ public partial class DefenseMode : Node3D
 
 		waveCountDownTimer = waveCountDown;
 
-		enemyControllerNode.enemyCount = 8; // progression handled here later
+		// Determines enemy count per wave
+		switch(wave)
+		{
+			case 1:
+				//TODO: connect this with shopcontroller's starting gold
+				maxGoldPrev = 60;
+                enemyControllerNode.enemyTime = 1;
+                enemyControllerNode.enemyCount = 3;
+				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
+				MSD = 1.3f;
+                break;
+			default:
+				// enemyTime must be set b4 enemyCount is updated to use previous wave's count
 
-		waveState = true;	
+				maxGoldPrev += (enemyControllerNode.totalEnemiesLastWave * 5);
+				MSD -= 0.1f;
+				enemyControllerNode.enemyTime = 1/((maxGoldPrev / 15) / (3 * MSD));
+                enemyControllerNode.enemyCount = enemyControllerNode.totalEnemiesLastWave + 3 * (wave-1);
+				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
+                break;
+        }
+
+        //GD.Print("Wave # is " + wave);
+		//GD.Print("Wave Stats are: \nMSD: " + MSD + "\nenemies per second: " + 1/enemyControllerNode.enemyTime + "\nenemyCount: " + enemyControllerNode.enemyCount + "\nmaxGoldLastTurn: " + maxGoldPrev);
+
+        waveState = true;	
 
 	}
 
@@ -208,6 +259,8 @@ public partial class DefenseMode : Node3D
 		worldEnvironmentNode.Environment.AmbientLightEnergy += (float)delta;
 
 		worldEnvironmentNode.Environment.AmbientLightEnergy = Mathf.Clamp(worldEnvironmentNode.Environment.AmbientLightEnergy, 0.0f, 1f);
+
+
 
 	}
 
@@ -274,12 +327,10 @@ public partial class DefenseMode : Node3D
 		if(Input.IsActionPressed("MovePlayerLeft") && !Input.IsActionPressed("MovePlayerRight")){
 			playerNode.playerDirection.X = -1;
 			playerNode.playerSprite.FlipH = false;
-			playerNode.playerSprite.Position = new Vector3(0.005f, 0.15f, 0);
             playerMoved = true;
 		} else if (Input.IsActionPressed("MovePlayerRight") && !Input.IsActionPressed("MovePlayerLeft")){
 			playerNode.playerDirection.X = 1;
 			playerNode.playerSprite.FlipH = true;
-			playerNode.playerSprite.Position = new Vector3(-0.005f, 0.15f, 0);
             playerMoved = true;
 		} else {
 			playerNode.playerDirection.X = 0;
@@ -295,8 +346,18 @@ public partial class DefenseMode : Node3D
 
 		Vector3 cameraRelativeMove = playerNode.CameraRelativeMove(playerMove);
 
-		playerNode.Translate(cameraRelativeMove);
+		if (playerNode.Position.X + cameraRelativeMove.X < 9.5f 
+			&& playerNode.Position.X + cameraRelativeMove.X > -9.5f
+			&& playerNode.Position.Z + cameraRelativeMove.Z < 9.5f
+			&& playerNode.Position.Z + cameraRelativeMove.Z > -9.5f
+			){
+		
+			playerNode.Translate(cameraRelativeMove);
+			
+		} else {
 
+			playerNode.playerSprite.Play("idle");
+		}
 	}
 
 	public void MoveTowerLight() {

@@ -123,11 +123,17 @@ animations = [{
 "texture": ExtResource("12_dqwjj")
 }, {
 "duration": 1.0,
+"texture": ExtResource("10_7q4j2")
+}, {
+"duration": 1.0,
 "texture": ExtResource("13_sprwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7q4j2")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag53l"]
@@ -771,13 +777,11 @@ monitorable = false
 shape = SubResource("SphereShape3D_obv64")
 
 [node name="PlayerSprite" type="AnimatedSprite3D" parent="World/PlayerNodes/Player"]
-transform = Transform3D(-0.25, 0, 0, 0, -0.25, 0, 0, 0, -0.25, 0, 0.227876, 0)
+transform = Transform3D(-0.25, 0, 0, 0, -0.25, 0, 0, 0, -0.25, 0, 0.35, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_xva0v")
 animation = &"walk"
-frame = 1
-frame_progress = 0.13256
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
 omni_range = 1.0
@@ -1086,6 +1090,7 @@ text = "GOLD"
 horizontal_alignment = 2
 
 [node name="wave" type="Label" parent="ViewportOverlay/HUD/Info"]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 93.0
 offset_right = 263.0
@@ -1299,6 +1304,18 @@ scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
 
+[node name="ToggleVisual" type="Button" parent="ViewportOverlay/HUD"]
+layout_mode = 0
+offset_left = 1098.0
+offset_top = 9.0
+offset_right = 1255.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("18_ckqcj")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_vw4rw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jywo8")
+text = "Range"
+
 [node name="StartRoundButton" type="Button" parent="ViewportOverlay/HUD"]
 layout_mode = 0
 offset_left = 1594.0
@@ -1332,6 +1349,7 @@ texture = ExtResource("37_bhh8d")
 
 [node name="MainCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.588547, 0.808463, 0, -0.808463, 0.588547, 0, 6.45505, 9.5105)
+current = true
 fov = 35.0
 script = ExtResource("38_fqcg4")
 
@@ -1354,4 +1372,5 @@ script = ExtResource("38_fqcg4")
 [connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="OpenDescriptionPanel"]
 [connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="HideDescriptionPanel"]
 [connection signal="pressed" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="SelectTower"]
+[connection signal="pressed" from="ViewportOverlay/HUD/ToggleVisual" to="World/TowerController" method="ToggleTowerRange"]
 [connection signal="pressed" from="ViewportOverlay/HUD/StartRoundButton" to="." method="StartWave"]

@@ -29,5 +29,21 @@ public partial class TowerController : Node3D
         tow.GlobalPosition = pos;
         tow.maxHealth = tower.maxHealth;
         tow.currentHealth = tower.maxHealth;
+		tow.range = tower.range;
+
+		((TorusMesh)tow.rangeMesh.Mesh).OuterRadius = tow.range;
+        ((TorusMesh)tow.rangeMesh.Mesh).InnerRadius = tow.range - 0.2f;
+		((SphereShape3D)tow.rangeCollider.Shape).Radius = tow.range;
+		tow.rangeMesh.Show();
+	
     }
+
+	public void ToggleTowerRange(){
+
+		foreach(Tower tower in controller.GetChildren()){
+			tower.rangeMesh.Visible = !tower.rangeMesh.Visible;
+		}
+
+	}
+
 }

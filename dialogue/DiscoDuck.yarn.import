@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.YarnSpinner-Godot.YarnScript"
+type="Resource"
+uid="uid://b4qy8nojjwhry"
+path="res://.godot/imported/DiscoDuck.yarn-be1efaeaf2b288c7bcabee8c70b73926.tres"
+
+[deps]
+
+source_file="res://dialogue/DiscoDuck.yarn"
+dest_files=["res://.godot/imported/DiscoDuck.yarn-be1efaeaf2b288c7bcabee8c70b73926.tres"]
+
+[params]
+
