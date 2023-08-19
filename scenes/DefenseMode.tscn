@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=67 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_kau7u"]
 [ext_resource type="Material" uid="uid://cvu2ag2lecokv" path="res://gfx/materials/baseMaterial.tres" id="2_l6v42"]
@@ -37,7 +37,6 @@
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="36_byfir"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="37_bhh8d"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="38_fqcg4"]
-[ext_resource type="Curve3D" uid="uid://b6hn2cv7c0o72" path="res://EnemyPaths/spikeyPath_behindCamera.tres" id="38_i4qhx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
 
@@ -1349,9 +1348,6 @@ transform = Transform3D(1, 0, 0, 0, 0.588547, 0.808463, 0, -0.808463, 0.588547, 
 current = true
 fov = 35.0
 script = ExtResource("38_fqcg4")
-
-[node name="Path3D" type="Path3D" parent="."]
-curve = ExtResource("38_i4qhx")
 
 [connection signal="area_entered" from="World/PlayerNodes/Base/BaseLightHitbox" to="World/PlayerNodes/TowerLight" method="OnArea3DEntered"]
 [connection signal="area_exited" from="World/PlayerNodes/Base/BaseLightHitbox" to="World/PlayerNodes/TowerLight" method="OnArea3DExited"]
