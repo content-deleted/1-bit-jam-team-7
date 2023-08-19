@@ -57,6 +57,14 @@ public partial class LevelSelect : Control
             }
 		},
         new levelInfo { 
+			name = "Double Double",
+			description = "This one is actually good I promise, this one is normal",
+            paths = new Curve3D[] {
+                LoadPath("doubledouble1"),
+                LoadPath("doubledouble2"),
+            }
+		},
+        new levelInfo { 
 			name = "Wiggly Labryinth",
 			description = "Building on spikeyPath's introduction to the path going out of sight, it starts out of the player's view. The whole thing is also not totally visable at any one camera view. Even so, it's a pretty long, single path and so isn't too tough.",
             paths = new Curve3D[] {
@@ -72,11 +80,12 @@ public partial class LevelSelect : Control
 		},
         new levelInfo { 
 			name = "Hell Fucker 360",
-			description = "You should not have come here",
+			description = "Absolute suffering",
             paths = new Curve3D[] {
                 LoadPath("starPath"),
                 LoadPath("circularPath")
-            }
+            },
+            yarnSpinnerNodeToPlayOnLevelStart = "hellfucker_level_start"
 		},
         new levelInfo { 
 			name = "ACAB",

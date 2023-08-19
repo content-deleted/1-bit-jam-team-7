@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://ch5lqbfm0ojq6"]
+[gd_scene load_steps=68 format=3 uid="uid://ch5lqbfm0ojq6"]
 
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_kau7u"]
 [ext_resource type="Material" uid="uid://cvu2ag2lecokv" path="res://gfx/materials/baseMaterial.tres" id="2_l6v42"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" path="res://scripts/PaletteController.cs" id="36_byfir"]
 [ext_resource type="Texture2D" uid="uid://dg7nah7cuopfl" path="res://gfx/dither/test scene.png" id="37_bhh8d"]
 [ext_resource type="Script" path="res://scripts/Camera.cs" id="38_fqcg4"]
+[ext_resource type="Curve3D" uid="uid://b6hn2cv7c0o72" path="res://EnemyPaths/spikeyPath_behindCamera.tres" id="38_i4qhx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ewno6"]
 
@@ -294,6 +295,11 @@ camera_attributes = SubResource("CameraAttributesPractical_blhxc")
 [node name="Level" type="StaticBody3D" parent="World"]
 physics_material_override = SubResource("PhysicsMaterial_ewno6")
 script = ExtResource("5_yko82")
+
+[node name="Path3D" type="Path3D" parent="World/Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
+visible = false
+curve = ExtResource("38_i4qhx")
 
 [node name="FloorPlane" type="Node3D" parent="World/Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0916212, 0)
