@@ -47,7 +47,7 @@ public partial class LevelSelect : Control
             paths = new Curve3D[] {
                 LoadPath("circularPath")
             },
-            yarnSpinnerNodeToPlayOnLevelStart = "TutorialLevelStart"
+            yarnSpinnerNodeToPlayOnLevelStart = "tutorial_level_start"
 		},
         new levelInfo { 
 			name = "Spikey Path",
@@ -83,6 +83,13 @@ public partial class LevelSelect : Control
 			description = "ACAB ACAB ACAB ACAB ACAB",
             paths = new Curve3D[] {
                 LoadPath("ACABPath")
+            }
+		},
+        new levelInfo { 
+			name = "Good Luck",
+			description = "I hate you, you the player, specifically",
+            paths = new Curve3D[] {
+                LoadPath("goodLuck")
             }
 		},
 	};

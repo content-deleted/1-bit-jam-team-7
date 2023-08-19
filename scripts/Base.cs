@@ -5,8 +5,8 @@ public partial class Base : Node3D
 
 {
 
-	int health = 100;
-	int maxHealth = 100;
+	int health = 5;
+	int maxHealth = 5;
 
 	public Sprite3D towerSprite;
 	public Camera mainCamera;
@@ -38,6 +38,10 @@ public partial class Base : Node3D
 			var enemy = (Enemy)area.GetParent();
 
 			health -= enemy.damage;
+            GD.Print(health);
+            if(health <= 0) {
+                GetTree().ChangeSceneToFile("res://scenes/GameOver.tscn");
+            }
 
 			area.GetParent().QueueFree();
 			enemyControllerNode.enemies.Remove((PathFollow3D)area.GetParent());

@@ -29,12 +29,16 @@ public partial class Tower : Node3D
     [Export]
     public MeshInstance3D rangeMesh;
 
+    public delegate void OnHealthChanged(int current, int previous);
+
+    public OnHealthChanged OnHealthChangedEventHandler;
+    
+
 	public int currentHealth {
         get => _currentHealth;
         set {
-            _currentHealth = value;
             // check the health and disable if its below threshold
-            if(currentHealth > 0) {
+            if(value > 0) {
                 Show();
                 hitbox.targetable = true;
                 sprite.Texture = mainSprite;
@@ -43,7 +47,11 @@ public partial class Tower : Node3D
                 sprite.Texture = downSprite;
             }
             // Quarter health catch fire
-            fireParticles.Emitting = currentHealth < maxHealth / 4;
+            fireParticles.Emitting = value < maxHealth / 4;
+
+            OnHealthChangedEventHandler?.Invoke(value, _currentHealth);
+
+             _currentHealth = value;
         }
     }
 

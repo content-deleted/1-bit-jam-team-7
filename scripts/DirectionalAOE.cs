@@ -33,6 +33,10 @@ public partial class DirectionalAOE : Area3D
         particles = GetNode<GpuParticles3D>("particles");
         sizeParticles = particles.Scale * powerScaling;
         tower = GetParent() as Tower;
+
+        tower.OnHealthChangedEventHandler += (int cur, int prev) => {
+            EnableShooting = cur > 0;
+        };
     }
 
     Hurtbox target;

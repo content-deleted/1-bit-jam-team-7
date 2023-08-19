@@ -61,6 +61,8 @@ public partial class Player : Node3D
     private Tower repairTarget = null;
 
     public static int justStartedTalking =0;
+
+    public bool isTalkingTower = false;
     public void HandleTowerInteractions(double delta) {
         if(justStartedTalking > 0) {
             justStartedTalking--;
@@ -101,10 +103,12 @@ public partial class Player : Node3D
                     if(!runner.IsDialogueRunning && Input.IsActionJustPressed("PlayerInteract") ) {
                         justStartedTalking = 10;
                         runner.StartDialogue(tower.info.dialogueName + "_" + (GD.Randi() % tower.info.dialogueCount));
+                        isTalkingTower = true;
                     }
                 }
             } else {
-                if(runner.IsDialogueRunning) {
+                if(isTalkingTower && runner.IsDialogueRunning) {
+                    isTalkingTower = false;
                     runner.Stop();
                 }
                 interactionSprite.Hide();

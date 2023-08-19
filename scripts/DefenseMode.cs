@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Linq;
-
+using System.Text;
+using Yarn;
+using Yarn.GodotYarn;
 
 public partial class DefenseMode : Node3D
 {
@@ -147,6 +149,13 @@ public partial class DefenseMode : Node3D
 			
 			Sunrise(delta);
 		}
+
+        if(levelInfo.yarnSpinnerNodeToPlayOnLevelStart != null && levelInfo.yarnSpinnerNodeToPlayOnLevelStart != "") {
+            var runner = GetNode<DialogueRunner>("//root/DefenseMode/ViewportOverlay/HUD/DialogueRunner");
+            runner.Show();
+            runner.StartDialogue(levelInfo.yarnSpinnerNodeToPlayOnLevelStart);
+            levelInfo.yarnSpinnerNodeToPlayOnLevelStart = "";
+        }
 	}
 
 	public static Vector3 mouseFieldPos = new Vector3();

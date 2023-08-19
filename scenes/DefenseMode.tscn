@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/DefenseMode.cs" id="1_kau7u"]
 [ext_resource type="Material" uid="uid://cvu2ag2lecokv" path="res://gfx/materials/baseMaterial.tres" id="2_l6v42"]
 [ext_resource type="Texture2D" uid="uid://dom6gbpgxrgbh" path="res://gfx/starbg.png" id="3_p6s8r"]
-[ext_resource type="Curve3D" uid="uid://bxqwu0cveupmt" path="res://EnemyPaths/Spiral.tres" id="4_7wkmv"]
+[ext_resource type="Curve3D" path="res://EnemyPaths/spikeyPath_behindCamera.tres" id="4_dlpk1"]
 [ext_resource type="Script" path="res://scripts/EnemyController.cs" id="5_yko82"]
 [ext_resource type="Script" path="res://scripts/Base.cs" id="6_as3sn"]
 [ext_resource type="Texture2D" uid="uid://h23murf4vunc" path="res://gfx/towerbig.png" id="7_yee1w"]
@@ -698,7 +698,7 @@ shape = SubResource("BoxShape3D_7axem")
 
 [node name="EnemySpawn" type="Path3D" parent="World/Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
-curve = ExtResource("4_7wkmv")
+curve = ExtResource("4_dlpk1")
 script = ExtResource("5_yko82")
 
 [node name="PlayerNodes" type="Node3D" parent="World"]
