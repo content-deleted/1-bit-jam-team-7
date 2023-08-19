@@ -30,7 +30,7 @@ transform = Transform3D(86.1806, 0, 0, 0, 86.1806, 0, 0, 0, 86.1806, 0, -31.8338
 shape = SubResource("SphereShape3D_6cebn")
 
 [node name="sprite" type="Sprite3D" parent="."]
-transform = Transform3D(0.173273, 0, 0, 0, 0.173273, 0, 0, 0, 0.173273, 0, 0.346871, 0)
+transform = Transform3D(0.173273, 0, 0, 0, 0.173273, 0, 0, 0, 0.173273, 0, 0.28, 0)
 billboard = 2
 shaded = true
 texture_filter = 0
