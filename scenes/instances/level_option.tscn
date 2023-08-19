@@ -25,10 +25,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_n5ajp")
 
 [node name="title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 20.0
-offset_right = 1029.0
-offset_bottom = 80.0
+offset_left = 7.78453
+offset_top = 12.4552
+offset_right = 1019.78
+offset_bottom = 72.4552
 theme_override_fonts/font = ExtResource("1_ijema")
 theme_override_font_sizes/font_size = 70
 text = "Test Title"
@@ -40,6 +40,8 @@ offset_left = 16.0
 offset_top = 83.0
 offset_right = 1012.0
 offset_bottom = 227.0
-theme_override_font_sizes/font_size = 32
+theme_override_constants/line_spacing = 9
+theme_override_fonts/font = ExtResource("1_ijema")
+theme_override_font_sizes/font_size = 40
 text = "This path begins visable on the default camera angle before deliberately going out of sight unless the player rotates the camera. Hopefully this familiarizes them with that concept"
 autowrap_mode = 3

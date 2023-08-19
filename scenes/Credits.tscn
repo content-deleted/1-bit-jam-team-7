@@ -1,0 +1,208 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2oj0mkhl8ft"]
+
+[ext_resource type="Script" path="res://scripts/MainMenuScene.cs" id="1_yks3d"]
+[ext_resource type="FontFile" uid="uid://c5q4ivxn0tb" path="res://gfx/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf" id="2_uc1hc"]
+[ext_resource type="Shader" path="res://1bitdither.gdshader" id="3_r2i47"]
+[ext_resource type="Texture2D" uid="uid://b4hi2qray4ep3" path="res://gfx/dither/bayer2tile16.png" id="4_y81oj"]
+[ext_resource type="Script" path="res://scripts/PaletteController.cs" id="5_wwm26"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hsfit"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ajew"]
+shader = ExtResource("3_r2i47")
+shader_parameter/primaryColor = Color(0.933333, 0.929412, 0.87451, 1)
+shader_parameter/secondaryColor = Color(0.172549, 0.156863, 0.0509804, 1)
+shader_parameter/threshold = 0.5
+shader_parameter/u_dither_size = 2.0
+shader_parameter/dither_range = Vector2(0.2, 0.6)
+shader_parameter/u_dither_tex = ExtResource("4_y81oj")
+
+[node name="Base" type="Node3D"]
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yks3d")
+
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 1036.0
+offset_top = -6.99999
+offset_right = 2026.0
+offset_bottom = 222.0
+rotation = 0.10386
+scale = Vector2(2.0938, 2.0938)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "CREDITS:"
+
+[node name="Label2" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 5.99999
+offset_top = 909.0
+offset_right = 996.0
+offset_bottom = 1138.0
+rotation = -0.115231
+scale = Vector2(0.925869, 0.925869)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "i did this at 4 am"
+
+[node name="Label3" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 289.0
+offset_right = 2659.0
+offset_bottom = 518.0
+rotation = -0.0577611
+scale = Vector2(0.660595, 0.660595)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "Aquamarine Schutter:
+Narrative & Game Design, Petter of Dog(s), Rest Suggester"
+
+[node name="Label4" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 377.0
+offset_right = 3353.0
+offset_bottom = 606.0
+rotation = 0.0865409
+scale = Vector2(0.660595, 0.660595)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "Vested: 
+General Distracter, Code Bugging, Coffee
+"
+
+[node name="Label6" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 483.0
+offset_right = 2990.0
+offset_bottom = 712.0
+rotation = 0.0620288
+scale = Vector2(0.660595, 0.660595)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "Jacob:
+Czar of Unrest, Bug Creation, User Inexperience, Git FUcker 
+"
+
+[node name="Label7" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 733.0
+offset_right = 3489.0
+offset_bottom = 962.0
+rotation = -0.0315412
+scale = Vector2(0.53681, 0.53681)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "Fivth Gallagher: 
+Concept development, spritework, general story, moral support, word arguer
+"
+
+[node name="Label5" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 47.0
+offset_right = 2656.0
+offset_bottom = 276.0
+rotation = 0.0329831
+scale = Vector2(0.617457, 0.617457)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "Nathan:
+installed Godot, moral support
+"
+
+[node name="Label8" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 1406.0
+offset_top = 833.0
+offset_right = 4027.0
+offset_bottom = 1062.0
+rotation = 0.144711
+scale = Vector2(0.617457, 0.617457)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 96
+text = "Ronin Op F: 
+MORAL SUPPORT!!!
+"
+
+[node name="Control" type="Control" parent="Menu"]
+anchors_preset = 0
+offset_left = 243.0
+offset_top = 294.0
+offset_right = 283.0
+offset_bottom = 334.0
+scale = Vector2(0.71939, 0.71939)
+
+[node name="Quit" type="Button" parent="Menu/Control"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+offset_left = 470.0
+offset_top = 897.0
+offset_right = 1447.0
+offset_bottom = 1047.0
+theme_override_fonts/font = ExtResource("2_uc1hc")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_hsfit")
+text = "Back To TITLE"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Menu"]
+
+[node name="ColorRect" type="ColorRect" parent="Menu/CanvasLayer"]
+z_index = 10
+material = SubResource("ShaderMaterial_3ajew")
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 854.0
+offset_bottom = 479.0
+scale = Vector2(2.2482, 2.2482)
+mouse_filter = 2
+script = ExtResource("5_wwm26")
+
+[connection signal="pressed" from="Menu/Control/Quit" to="Menu" method="gotoTitle"]

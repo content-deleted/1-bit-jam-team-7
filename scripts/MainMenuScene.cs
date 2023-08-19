@@ -9,4 +9,12 @@ public partial class MainMenuScene : Control {
     void quitGame() {
         GetTree().Quit();
     }
+
+    void gotoCredits() {
+        GetTree().ChangeSceneToFile("res://scenes/Credits.tscn");
+    }
+
+    void gotoTitle() {
+        GetTree().ChangeSceneToFile("res://scenes/MainMenu.tscn");
+    }
 }
