@@ -123,11 +123,17 @@ animations = [{
 "texture": ExtResource("12_dqwjj")
 }, {
 "duration": 1.0,
+"texture": ExtResource("10_7q4j2")
+}, {
+"duration": 1.0,
 "texture": ExtResource("13_sprwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7q4j2")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ag53l"]
@@ -767,13 +773,11 @@ monitorable = false
 shape = SubResource("SphereShape3D_obv64")
 
 [node name="PlayerSprite" type="AnimatedSprite3D" parent="World/PlayerNodes/Player"]
-transform = Transform3D(-0.25, 0, 0, 0, -0.25, 0, 0, 0, -0.25, 0, 0.227876, 0)
+transform = Transform3D(-0.25, 0, 0, 0, -0.25, 0, 0, 0, -0.25, 0, 0.35, 0)
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_xva0v")
 animation = &"walk"
-frame = 1
-frame_progress = 0.13256
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World/PlayerNodes/Player"]
 omni_range = 1.0
