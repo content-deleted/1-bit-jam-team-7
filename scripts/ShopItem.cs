@@ -83,5 +83,17 @@ public partial class ShopItem : Button
             dialogueName = "flaminggo",
             dialogueCount = 3,
 		},
+		/*
+        new towerInfo { 
+			name = "DiscoDuck",
+			description = "Makes a nifty effect that cycles through different colors. And bragging rights.",
+			flavor = "\"This here funky dude is ready to get his groove on!\"",
+			cost = 1976,
+			maxHealth = 10,
+            prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/Discoduck.tscn"),
+            dialogueName = "discoduck",
+            dialogueCount = 4,
+		},
+		*/
 	};
 }
