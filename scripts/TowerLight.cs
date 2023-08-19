@@ -18,7 +18,7 @@ public partial class TowerLight : Node3D
 	double damageTimer;
 
 	// HACK: value of 10 is a hack, see TODO below for enemy.health adj in AOEDamage
-	double damageTime = 10; 
+	double damageTime = 6; 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
