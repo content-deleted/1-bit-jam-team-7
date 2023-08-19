@@ -4,15 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 
 
-public partial class EnemyController : Path3D
+public partial class EnemyController : StaticBody3D
 {	
 
-
+	Random randE = new Random();
 
 	//visualization var
 	[Export]
 	float lightCount = 300;
-	PackedScene pathLight;
 
 
 	//enemy spawn var
@@ -20,15 +19,17 @@ public partial class EnemyController : Path3D
 	public int enemyCount = 0;
 	public int totalEnemiesLastWave;
 
+	public bool drawPath = false;
 
 	double enemyTimer;
 	public double enemyTime;
 
 	DefenseMode defenseMode;
 	Base playerBase;
-	Path3D enemyPath;
+	public List<Path3D> enemyPaths = new List<Path3D>();
 
 	PackedScene testEnemy;
+	PackedScene pathLight;
 
 	List<PathFollow3D> pathLights = new List<PathFollow3D>();
 	public List<PathFollow3D> enemies = new List<PathFollow3D>();
@@ -39,12 +40,10 @@ public partial class EnemyController : Path3D
 
 		defenseMode = (DefenseMode)GetNode("/root/DefenseMode");
 		testEnemy = GD.Load<PackedScene>("res://scenes/enemies/TestEnemy.tscn");
-		pathLight = GD.Load<PackedScene>("res://scenes/PathLight.tscn");
-		
 		playerBase = (Base)GetNode("//root/DefenseMode/World/PlayerNodes/Base");
+		pathLight = GD.Load<PackedScene>("res://scenes/PathLight.tscn");
 
-		SetPathLights();
-
+		
 		//testEnemy = (PathFollow3D)this.GetChild(0);
 
 
@@ -54,16 +53,29 @@ public partial class EnemyController : Path3D
 	public override void _Process(double delta)
 	{
 
+		if (!drawPath){
+
+			foreach (Path3D path in enemyPaths){
+
+				DrawPath(path);
+
+			}
+
+			drawPath = true;
+
+		}
 
 		if (enemyTimer > 0){
 
 			enemyTimer -= delta;
 
 		} else {
-			
+
 			if (defenseMode.waveCountDownTimer <= 0 && DefenseMode.waveState && enemyCount > 0){
 
-				SpawnEnemy();
+				Path3D enemyPath = enemyPaths[randE.Next(enemyPaths.Count)];
+
+				SpawnEnemy(enemyPath);
 				enemyTimer = enemyTime;
 
 			}
@@ -71,24 +83,24 @@ public partial class EnemyController : Path3D
 
 	}
 
-	public void SpawnEnemy(){
+	public void SpawnEnemy(Path3D enemyPath){
 
 		var enemy = (PathFollow3D)testEnemy.Instantiate();
 		enemies.Add(enemy);
-		this.AddChild(enemy);
+		enemyPath.AddChild(enemy);
 		
 		enemyCount--;
 
 	}
 
-	public void SetPathLights(){
+	public void DrawPath(Path3D path){
 
 		for (int i = 0; i < lightCount; i ++){
 
 			var lightInstance = (PathFollow3D)pathLight.Instantiate();
 		
 			pathLights.Add(lightInstance);
-			this.AddChild(lightInstance);
+			path.AddChild(lightInstance);
 			lightInstance.ProgressRatio = i / lightCount;
 			
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://2nbenxtw1fmb"]
+[gd_scene load_steps=3 format=3 uid="uid://bsgbmy0e06k8t"]
 
 [ext_resource type="Texture2D" uid="uid://bgwfwyf3h3720" path="res://gfx/pathTemp.png" id="1_tsqdn"]
 
@@ -7,16 +7,16 @@ radius = 1.5
 
 [node name="PathLight" type="PathFollow3D"]
 
-[node name="DirectionalLight3D" type="Sprite3D" parent="."]
+[node name="pathSprite" type="Sprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 0, 0, 0)
 modulate = Color(0.521569, 0.509804, 0.545098, 1)
 shaded = true
 texture = ExtResource("1_tsqdn")
 
-[node name="Area3D" type="Area3D" parent="DirectionalLight3D"]
+[node name="Area3D" type="Area3D" parent="pathSprite"]
 collision_layer = 524288
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DirectionalLight3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pathSprite/Area3D"]
 shape = SubResource("SphereShape3D_infn1")

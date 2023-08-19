@@ -27,7 +27,7 @@ public partial class Enemy : PathFollow3D
 
 	public override void _Ready()
 	{
-		enemyControllerNode = (EnemyController)GetNode("/root/DefenseMode/World/Level/EnemySpawn");
+		enemyControllerNode = (EnemyController)GetNode("/root/DefenseMode/World/Level");
 		spriteAnimation = (AnimatedSprite3D)GetChild(0);
 		spriteAnimation.Play("walk");
 

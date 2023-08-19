@@ -87,6 +87,7 @@ public partial class DefenseMode : Node3D
 	WorldEnvironment worldEnvironmentNode;
     Area3D towerLightArea;
 	static TowerController towerController;
+	EnemyController levelNode;
 
 	// color pallete colors for sunrise and sunset
 
@@ -100,6 +101,9 @@ public partial class DefenseMode : Node3D
 	public override void _Ready()
 	{
 		CallVariousNodes();
+
+		SetEnemyPath();
+
 		waveState = false;
 		score = 0;
 	}
@@ -118,7 +122,7 @@ public partial class DefenseMode : Node3D
 
 		towerController = GetNode<TowerController>("World/TowerController");
 
-		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
+		enemyControllerNode = GetNode<EnemyController>("World/Level");
 
 		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
 
@@ -126,10 +130,9 @@ public partial class DefenseMode : Node3D
 
         waveLabel = GetNode<Label>("ViewportOverlay/HUD/Info/wave");
 
-        StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
+		levelNode = GetNode<EnemyController>("World/Level");
 
         toggleRangeButton = GetNode<Button>("ViewportOverlay/HUD/ToggleVisual");
-
 		StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
 
 	}
@@ -191,6 +194,20 @@ public partial class DefenseMode : Node3D
 	}
 
 	#region Wave State Functions
+
+	public void SetEnemyPath(){
+
+		foreach (Curve3D path in levelInfo.paths) {
+			
+			var enemyPath = new Path3D();
+			enemyPath.Curve = path;
+			levelNode.AddChild(enemyPath);
+			levelNode.enemyPaths.Add(enemyPath);
+			enemyPath.Position = new Vector3(-9, 0, -9); // FUCK YOU PAST VESTED
+
+		}
+
+	}
 
 	public void StartWave(){
 
