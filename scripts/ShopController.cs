@@ -116,7 +116,12 @@ public partial class ShopController : Panel
                         }
                         // Todo: maybe print the power being providce?
                         var powerText = tower.isPowerSource ? "Power Source" : "Power: " + tower.GetTotalPower();
-                        DescriptionPanel.ShowPanel(mousePos, tower.info.name, powerText, true, " Sell ", SellCurrentlyViewingTower);
+                        //only sell in day
+                        if(DefenseMode.waveState) {
+                            DescriptionPanel.ShowPanel(mousePos, tower.info.name, powerText, false);
+                        } else { 
+                            DescriptionPanel.ShowPanel(mousePos, tower.info.name, powerText, true, " Sell ", SellCurrentlyViewingTower);
+                        }
                     }
                 }
                 if(inputEventMouse.ButtonIndex == MouseButton.Right){

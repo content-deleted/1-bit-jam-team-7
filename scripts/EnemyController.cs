@@ -19,6 +19,8 @@ public partial class EnemyController : StaticBody3D
 	public int enemyCount = 0;
 	public int totalEnemiesLastWave;
 
+    public int enemyHealthBonus = 0;
+
 	public bool drawPath = false;
 
 	double enemyTimer;

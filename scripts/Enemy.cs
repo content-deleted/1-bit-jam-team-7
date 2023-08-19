@@ -3,7 +3,9 @@ using System;
 
 public partial class Enemy : PathFollow3D
 {
-	private int _health = 3;
+
+	public int _health = 3;
+
 	public int health {
 		get => _health;
 		set {
@@ -15,7 +17,7 @@ public partial class Enemy : PathFollow3D
 	public int damage = 1;
 
 	[Export]
-	public int speed = 40;
+	public float speed = 2;
 	[Export]
 	public int gold = 20;
 	[Export]
@@ -32,6 +34,9 @@ public partial class Enemy : PathFollow3D
 		spriteAnimation.Play("walk");
 
         hurtbox = GetNode("hitbox") as Hurtbox;
+
+        health += enemyControllerNode.enemyHealthBonus;
+        speed += GD.Randf() / 2f;
 	}
 
 	public override void _Process(double delta)

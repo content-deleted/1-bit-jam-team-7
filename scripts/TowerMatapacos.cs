@@ -14,9 +14,7 @@ public partial class TowerMatapacos : Node3D
 	public override void _Process(double delta)
 	{
         shooter.EnableShooting = tower.isOnline;
-        if(!tower.isOnline) {
-            tower.Hide();
-        } else {
+        if(tower.isOnline) {
             // may need to make this faster
             shooter.rateMult = tower.GetTotalPower();
         }

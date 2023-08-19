@@ -239,10 +239,11 @@ public partial class DefenseMode : Node3D
 				// enemyTime must be set b4 enemyCount is updated to use previous wave's count
 
 				maxGoldPrev += (enemyControllerNode.totalEnemiesLastWave * 5);
-				MSD -= 0.1f;
-				enemyControllerNode.enemyTime = 1/((maxGoldPrev / 15) / (3 * MSD));
+				MSD -= (0.5f * (10f - wave) / 10f);
+				enemyControllerNode.enemyTime =  Mathf.Clamp(3 * MSD, 1, 10);
                 enemyControllerNode.enemyCount = enemyControllerNode.totalEnemiesLastWave + 3 * (wave-1);
 				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
+                if(wave % 2 == 0) enemyControllerNode.enemyHealthBonus += 1;
                 break;
         }
 
