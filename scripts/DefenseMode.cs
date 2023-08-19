@@ -317,8 +317,18 @@ public partial class DefenseMode : Node3D
 
 		Vector3 cameraRelativeMove = playerNode.CameraRelativeMove(playerMove);
 
-		playerNode.Translate(cameraRelativeMove);
+		if (playerNode.Position.X + cameraRelativeMove.X < 9.5f 
+			&& playerNode.Position.X + cameraRelativeMove.X > -9.5f
+			&& playerNode.Position.Z + cameraRelativeMove.Z < 9.5f
+			&& playerNode.Position.Z + cameraRelativeMove.Z > -9.5f
+			){
+		
+			playerNode.Translate(cameraRelativeMove);
+			
+		} else {
 
+			playerNode.playerSprite.Play("idle");
+		}
 	}
 
 	public void MoveTowerLight() {
