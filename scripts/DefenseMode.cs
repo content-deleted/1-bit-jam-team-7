@@ -34,6 +34,7 @@ public partial class DefenseMode : Node3D
 	}
 	public static Label scoreLabel;
 
+	public static Button toggleRangeButton;
     public static Button StartRoundButton;
 
 	public static bool waveState {
@@ -45,12 +46,15 @@ public partial class DefenseMode : Node3D
 				ShopController.Close();
                 DescriptionPanel.HidePanel();
                 StartRoundButton.Hide();
+				toggleRangeButton.Hide();
                 onWaveStartEventHandler?.Invoke();
+				towerController.ToggleTowerRange();
 			} else {
 				ShopController.Open();
 				towerLightNode.Hide();
                 DescriptionPanel.HidePanel();
                 StartRoundButton.Show();
+				toggleRangeButton.Show();
                 onWaveEndEventHandler?.Invoke();
 			}
 		}
@@ -63,6 +67,7 @@ public partial class DefenseMode : Node3D
 	Camera mainCamera;
 	EnemyController enemyControllerNode;
 	WorldEnvironment worldEnvironmentNode;
+	static TowerController towerController;
 	
 
 
@@ -84,13 +89,16 @@ public partial class DefenseMode : Node3D
 
 		mainCamera = GetNode<Camera>("MainCamera");
 
+		towerController = GetNode<TowerController>("World/TowerController");
+
 		enemyControllerNode = GetNode<EnemyController>("World/Level/EnemySpawn");
 
 		worldEnvironmentNode = GetNode<WorldEnvironment>("World/Environment/WorldEnvironment");
 
 		scoreLabel = GetNode<Label>("ViewportOverlay/HUD/Info/score");
 
-        StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
+        toggleRangeButton = GetNode<Button>("ViewportOverlay/HUD/ToggleVisual");
+		StartRoundButton = GetNode<Button>("ViewportOverlay/HUD/StartRoundButton");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

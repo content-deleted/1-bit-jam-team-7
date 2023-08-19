@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d11lvrfdbc0kt"]
+[gd_scene load_steps=11 format=3 uid="uid://d11lvrfdbc0kt"]
 
 [ext_resource type="Script" path="res://scripts/Tower.cs" id="1_e0nnm"]
 [ext_resource type="Texture2D" uid="uid://r2bdnj4l2c5h" path="res://gfx/foolsbird.png" id="3_awaow"]
@@ -7,30 +7,44 @@
 [ext_resource type="Script" path="res://scripts/FoolsBird.cs" id="5_nxuq0"]
 [ext_resource type="PackedScene" uid="uid://nlhqamn16da1" path="res://scenes/instances/on_fire_particles.tscn" id="6_pnxxv"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ild1n"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_7vblc"]
+inner_radius = 9.5
+outer_radius = 10.0
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_6cebn"]
 radius = 2.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hdc3u"]
 radius = 0.15
 
-[node name="FoolsBird" type="Node3D"]
+[node name="FoolsBird" type="Node3D" node_paths=PackedStringArray("rangeCollider", "rangeMesh")]
 script = ExtResource("1_e0nnm")
 mainSprite = ExtResource("3_awaow")
 downSprite = ExtResource("3_oexhj")
+rangeCollider = NodePath("range/CollisionShape3D")
+rangeMesh = NodePath("range/RangeVisual")
 
 [node name="range" type="Area3D" parent="." groups=["powerSource"]]
-transform = Transform3D(0.0116035, 0, 0, 0, 0.0116035, 0, 0, 0, 0.0116035, 0, 0.369384, 0)
 collision_layer = 512
 collision_mask = 0
 monitoring = false
 metadata/Power = 0.5
 
+[node name="RangeVisual" type="MeshInstance3D" parent="range"]
+transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0, 0)
+layers = 16
+material_override = SubResource("StandardMaterial3D_ild1n")
+mesh = SubResource("TorusMesh_7vblc")
+skeleton = NodePath("../CollisionShape3D")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="range"]
-transform = Transform3D(86.1806, 0, 0, 0, 86.1806, 0, 0, 0, 86.1806, 0, -31.8338, 0)
 shape = SubResource("SphereShape3D_6cebn")
 
 [node name="sprite" type="Sprite3D" parent="."]
-transform = Transform3D(0.173273, 0, 0, 0, 0.173273, 0, 0, 0, 0.173273, 0, 0.28, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.38, 0)
 billboard = 2
 shaded = true
 texture_filter = 0
@@ -45,14 +59,14 @@ script = ExtResource("4_114m7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
 shape = SubResource("SphereShape3D_hdc3u")
 
-[node name="light" type="OmniLight3D" parent="."]
+[node name="light" type="OmniLight3D" parent="." groups=["FoolsBird"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0381892, 0)
 light_energy = 2.486
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_size = 0.35
 light_specular = 0.0
-omni_range = 2.5
+omni_range = 3.0
 omni_attenuation = 0.0150928
 
 [node name="brain" type="Node3D" parent="."]

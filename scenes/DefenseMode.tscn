@@ -1128,6 +1128,7 @@ text = "32"
 horizontal_alignment = 2
 
 [node name="DialogueRunner" type="Control" parent="ViewportOverlay/HUD" node_paths=PackedStringArray("_variableStorage", "lineProvider")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1281,6 +1282,17 @@ scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
 
+[node name="ToggleVisual" type="Button" parent="ViewportOverlay/HUD"]
+offset_left = 1098.0
+offset_top = 9.0
+offset_right = 1255.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("18_ckqcj")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_vw4rw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jywo8")
+text = "Range"
+
 [node name="StartRoundButton" type="Button" parent="ViewportOverlay/HUD"]
 layout_mode = 0
 offset_left = 1594.0
@@ -1334,4 +1346,5 @@ script = ExtResource("38_fqcg4")
 [connection signal="mouse_entered" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="OpenDescriptionPanel"]
 [connection signal="mouse_exited" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="HideDescriptionPanel"]
 [connection signal="pressed" from="ViewportOverlay/HUD/ShopBorder/ShopItem3" to="ViewportOverlay/HUD/ShopBorder/ShopItem3" method="SelectTower"]
+[connection signal="pressed" from="ViewportOverlay/HUD/ToggleVisual" to="World/TowerController" method="ToggleTowerRange"]
 [connection signal="pressed" from="ViewportOverlay/HUD/StartRoundButton" to="." method="StartWave"]

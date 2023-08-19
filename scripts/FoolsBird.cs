@@ -7,6 +7,8 @@ public partial class FoolsBird : Node3D
 	public override void _Ready()
 	{
         tower = GetParent<Tower>();
+		// tower.GetNode<OmniLight3D>("light").OmniRange = 1.5f * tower.range; FUCK YOU FUTURE CORY
+
 	}
 
 	public override void _Process(double delta)
