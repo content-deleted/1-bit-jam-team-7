@@ -94,22 +94,24 @@ public partial class EnemyController : StaticBody3D
 
 				Path3D enemyPath = enemyPaths[randE.Next(enemyPaths.Count)];
 
-				SpawnEnemy(enemyPath, bigEnemy);
+				var enemy = SpawnEnemy(enemyPath, bigEnemy) as Enemy;
 				bigEnemyCount--;
 				bigEnemyTimer = bigEnemyTime;
-
+                enemy.health *= 7;
+                enemy.speed *= 0.3f;
+                enemy.damage *= 2;
 			}
 
 		}
 
 	}
 
-	public void SpawnEnemy(Path3D enemyPath, PackedScene enemyType){
+	public PathFollow3D SpawnEnemy(Path3D enemyPath, PackedScene enemyType){
 
 		var enemy = (PathFollow3D)enemyType.Instantiate();
 		enemies.Add(enemy);
 		enemyPath.AddChild(enemy);
-
+        return enemy;
 	}
 
 	public void DrawPath(Path3D path){

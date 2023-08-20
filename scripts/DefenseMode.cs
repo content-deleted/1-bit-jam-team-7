@@ -234,21 +234,21 @@ public partial class DefenseMode : Node3D
                 enemyControllerNode.enemyTime = 1;
                 enemyControllerNode.enemyCount = 3;
 				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
-				MSD = 1.3f;
+				MSD = 1.0f;
                 break;
 			default:
 				// enemyTime must be set b4 enemyCount is updated to use previous wave's count
 
 				maxGoldPrev += (enemyControllerNode.totalEnemiesLastWave * 5);
-				MSD -= (0.5f * (10f - wave) / 10f);
-				enemyControllerNode.enemyTime =  Mathf.Clamp(3 * MSD, 1, 10);
+				MSD -= (0.1f);
+				enemyControllerNode.enemyTime =  Mathf.Clamp(3 * MSD, 0.1f, 1);
                 enemyControllerNode.enemyCount = enemyControllerNode.totalEnemiesLastWave + 3 * (wave-1);
 				enemyControllerNode.totalEnemiesLastWave = enemyControllerNode.enemyCount;
 
                 if(wave % 2 == 0) enemyControllerNode.enemyHealthBonus += 1;
 
 				enemyControllerNode.bigEnemyTime = enemyControllerNode.enemyTime * 5;
-				if (wave % 5 == 0){
+				if (wave % 5 == 0) {
 
 					enemyControllerNode.bigEnemyCount = wave / 5;
 					enemyControllerNode.bigEnemyTimer = enemyControllerNode.bigEnemyTime;
@@ -282,7 +282,7 @@ public partial class DefenseMode : Node3D
 		} else {
 
 			
-			if (enemyControllerNode.enemyCount == 0 && enemyControllerNode.enemies.Count == 0){
+			if (enemyControllerNode.bigEnemyCount == 0 && enemyControllerNode.enemyCount == 0 && enemyControllerNode.enemies.Count == 0){
 
 				EndWave();
 

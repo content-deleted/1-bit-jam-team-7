@@ -61,7 +61,7 @@ public partial class ShopItem : Button
 			name = "Fool's Bird",
 			description = "Cast's light about itself in a 1-space radius. Charges adjacent towers.",
 			flavor = "\"I swear it moves when I'm not looking.\"",
-			cost = 50,
+			cost = 60,
 			maxHealth = 5,
 			range = 2.5f,
             prefab = ResourceLoader.Load<PackedScene>("res://scenes/towers/FoolsBird.tscn"),

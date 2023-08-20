@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dk6f4td534k3o"]
+[gd_scene load_steps=10 format=3 uid="uid://wpweoyy0jjpr"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.cs" id="1_siyno"]
 [ext_resource type="Texture2D" uid="uid://4p5uen6of7pa" path="res://gfx/riot_walk_1.png" id="2_nxexg"]
@@ -37,12 +37,11 @@ radius = 3.0
 [node name="PathFollow3D" type="PathFollow3D"]
 transform = Transform3D(-0.195076, 0, -0.980788, 0, 1, 0, 0.980788, 0, -0.195076, 0, 0, 0)
 script = ExtResource("1_siyno")
-speed = 1
 gold = 10
 score = 50
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(-0.195076, 0, 0.980788, 0, 1, 0, -0.980788, 0, -0.195076, 0, 0.259982, 0)
+transform = Transform3D(-0.288495, 0, 1.45047, 0, 1.47888, 0, -1.45047, 0, -0.288495, 0, 0.784966, 0)
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_kosbu")

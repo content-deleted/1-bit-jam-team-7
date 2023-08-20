@@ -36,7 +36,7 @@ public partial class Enemy : PathFollow3D
         hurtbox = GetNode("hitbox") as Hurtbox;
 
         health += enemyControllerNode.enemyHealthBonus;
-        speed += GD.Randf() / 2f;
+        speed += (GD.Randf() / 2f) - 0.5f;
 	}
 
 	public override void _Process(double delta)

@@ -21,7 +21,7 @@ public partial class ShopController : Panel
     public static ShopController controller;
 
     // starting gold
-    public int startingGold = 60;
+    public int startingGold = 30;
 
     private static bool _towerPlacing = false;
     public static bool towerPlacing {
@@ -47,6 +47,7 @@ public partial class ShopController : Panel
 
 	public override void _Ready()
 	{
+        towerPlacementTest = null;
         if(controller != null && IsInstanceValid(controller)) {
 			QueueFree();
 			return;
